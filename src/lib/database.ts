@@ -1,7 +1,5 @@
-import { Pool } from "pg";
+import postgres from "postgres";
 
-export const db = new Pool({
-    connectionString: process.env.DATABASE_URL,
+export const db = postgres(process.env.DATABASE_URL || "", {
+    idle_timeout: 20,
 });
-
-await db.connect();

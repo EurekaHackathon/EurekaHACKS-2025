@@ -6,11 +6,11 @@ plugins:
       sha256: 287df8f6cc06377d67ad5ba02c9e0f00c585509881434d15ea8bd9fc751a9368
 sql:
   - engine: "postgresql"
-    queries: "database/queries.sql"
+    queries: "database/queries"
     schema: "database/schema.sql"
     codegen:
-      - out: src/lib
+      - out: src/lib/sqlc
         plugin: ts
         options:
           runtime: node
-          driver: pg
+          driver: postgres

@@ -6,10 +6,14 @@ import { SponsorSection } from "@/components/SponsorSection";
 import FaqSection from "@/components/FaqSection";
 import TeamSection from "@/components/TeamSection";
 import { db } from "@/lib/database";
-import { incrementVisitsCount } from "@/lib/queries_sql";
+import { incrementVisitsCount } from "@/lib/sqlc/visit_count_sql";
 
 export default async function Home() {
-    await incrementVisitsCount(db);
+    try {
+        await incrementVisitsCount(db);
+    } catch (error) {
+        console.error(error);
+    }
 
     return (
         <div>
