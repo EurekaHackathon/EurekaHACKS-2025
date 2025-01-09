@@ -10,7 +10,7 @@ export const subscribeToMailingList = async (prevState: any, formData: FormData)
     }
 
     // Check if email is valid
-    const emailRegex = /^([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)$/;
+    const emailRegex = /^([^@]+)*@([^.@]+\.)+([^.@]+)$/;
     if (!emailRegex.test(email.toString())) {
         return { error: "Invalid email" };
     }
