@@ -1,21 +1,21 @@
 import { Sql } from "postgres";
 
-export const checkIfSubscribedQuery = `-- name: CheckIfSubscribed :one
+export const getSubscribedEmailQuery = `-- name: GetSubscribedEmail :one
 select id, email from public.mailing_list
     where email = $1
     limit 1`;
 
-export interface CheckIfSubscribedArgs {
+export interface GetSubscribedEmailArgs {
     email: string;
 }
 
-export interface CheckIfSubscribedRow {
+export interface GetSubscribedEmailRow {
     id: number;
     email: string;
 }
 
-export async function getSubscribedEmail(sql: Sql, args: CheckIfSubscribedArgs): Promise<CheckIfSubscribedRow | null> {
-    const rows = await sql.unsafe(checkIfSubscribedQuery, [args.email]).values();
+export async function getSubscribedEmail(sql: Sql, args: GetSubscribedEmailArgs): Promise<GetSubscribedEmailRow | null> {
+    const rows = await sql.unsafe(getSubscribedEmailQuery, [args.email]).values();
     if (rows.length !== 1) {
         return null;
     }

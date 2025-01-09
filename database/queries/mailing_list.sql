@@ -1,4 +1,4 @@
--- name: CheckIfSubscribed :one
+-- name: GetSubscribedEmail :one
 select * from public.mailing_list
     where email = $1
     limit 1;

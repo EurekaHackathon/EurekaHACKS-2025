@@ -2,17 +2,13 @@
 
 import { db } from "@/lib/database";
 import { addEmailToMailingList, getSubscribedEmail } from "@/lib/sqlc/mailing_list_sql";
+import { validateEmail } from "@/lib/validation";
 
 export const subscribeToMailingList = async (prevState: any, formData: FormData) => {
     const email = formData.get("email");
-    if (!email) {
-        return { error: "Email is required" };
-    }
-
-    // Check if email is valid
-    const emailRegex = /^([^@]+)*@([^.@]+\.)+([^.@]+)$/;
-    if (!emailRegex.test(email.toString())) {
-        return { error: "Invalid email" };
+    const validationResult = validateEmail(email);
+    if (!validationResult.valid || email === null) {
+        return { error: validationResult.message };
     }
 
     try {
