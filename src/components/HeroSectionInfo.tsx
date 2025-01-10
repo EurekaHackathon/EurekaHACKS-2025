@@ -1,6 +1,6 @@
 export function HeroSectionInfo() {
     return (
-        <div className="text-center text-white pt-24 md:pt-32 lg:pt-32 2xl:pt-44">
+        <div className="text-center text-white pt-24 md:pt-32 lg:pt-64 2xl:pt-64">
             <h1 className="hidden md:block font-bold text-8xl lg:text-9xl">EurekaHACKS</h1>
             <h1 className="md:hidden font-bold text-7xl">Eureka</h1>
             <h1 className="md:hidden font-bold text-5xl">HACKS</h1>

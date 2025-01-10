@@ -33,7 +33,7 @@ export default function RootLayout({
             <title>EurekaHACKS</title>
         </head>
         <body className="overflow-x-hidden">
-        <Navbar/>
+        {/* <Navbar/> */}
         {children}
         </body>
         </html>
