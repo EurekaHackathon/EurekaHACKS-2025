@@ -2,19 +2,21 @@
 
 import { db } from "@/lib/database";
 import { addEmailToMailingList, getSubscribedEmail } from "@/lib/sqlc/mailing_list_sql";
-import { validateEmail } from "@/lib/validation";
+import { z } from "zod";
+
+const emailSchema = z.string().email({ message: "Invalid email" });
 
 export const subscribeToMailingList = async (prevState: any, formData: FormData) => {
     const email = formData.get("email");
-    const validationResult = validateEmail(email);
-    if (!validationResult.valid || email === null) {
-        return { error: validationResult.message };
+    const validationResult = emailSchema.safeParse(email);
+    if (!validationResult.success) {
+        return { error: validationResult.error.errors[0].message };
     }
 
     try {
         // Check if email is already subscribed
         const subscribedEmail = await getSubscribedEmail(db, {
-            email: email.toString(),
+            email: email!.toString(),
         });
 
         if (subscribedEmail !== null) {
@@ -23,7 +25,7 @@ export const subscribeToMailingList = async (prevState: any, formData: FormData)
 
         // Add email to mailing list
         await addEmailToMailingList(db, {
-            email: email.toString(),
+            email: email!.toString(),
         });
 
         return { success: true };
