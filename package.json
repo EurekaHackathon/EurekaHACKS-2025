@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@node-rs/argon2": "^2.0.2",
+    "@oslojs/crypto": "^1.0.1",
+    "@oslojs/encoding": "^1.1.0",
     "clsx": "^2.1.1",
     "next": "15.1.2",
     "postgres": "^3.4.5",
