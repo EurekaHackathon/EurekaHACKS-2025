@@ -11,6 +11,11 @@ html {
     src: url("../../public/Manrope-VariableFont_wght.ttf") format('truetype');
 }
 
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+
 @keyframes moveClouds1 {
     0% {
         transform: translateX(-50%);
