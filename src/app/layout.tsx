@@ -34,10 +34,10 @@ export default function RootLayout({
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
             <title>EurekaHACKS</title>
         </head>
-        <body className="overflow-x-hidden">
-        <Navbar/>
+        <body className="overflow-x-hidden h-[100vh] overflow-y-hidden">
+        {/*<Navbar/>*/}
         {children}
-        <Footer/>
+        {/*<Footer/>*/}
         </body>
         </html>
     );
