@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { subscribeToMailingList } from "@/lib/mailing-list";
 import { useActionState } from "react";
 
-
 const initialState = {
     error: ""
 };
@@ -24,42 +23,42 @@ export default function Footer() {
             <div className="flex flex-col lg:flex-row items-center justify-between">
                 <div className="flex lg:block items-start">
                     <div className="flex items-center gap-0.5 lg:gap-2">
-                        <Image className="w-8 md:w-10 lg:w-12 h-auto" src={logo} alt="EurekaHACKS Logo"/>
+                        <Image className="w-8 md:w-10 lg:w-12 h-auto" src={logo} alt="EurekaHACKS Logo" />
                         <h1 className="text-lg md:text-xl lg:text-2xl font-semibold">EurekaHACKS</h1>
                     </div>
                     <div className="ml-14">
                         <h1 className="text-md text-gray-300 font-semibold lg:pt-2">Connect With Us</h1>
                         <div className="text-xl flex items-center gap-2 text-gray-300 pt-2">
                             <a href="https://www.instagram.com/eureka_hacks/" target="_blank" rel="noopener noreferrer">
-                                <Icon icon="mdi:instagram"/>
+                                <Icon icon="mdi:instagram" />
                             </a>
                             <a href="https://www.linkedin.com/company/eurekahacks" target="_blank"
-                               rel="noopener noreferrer">
-                                <Icon icon="mdi:linkedin"/>
+                                rel="noopener noreferrer">
+                                <Icon icon="mdi:linkedin" />
                             </a>
                             <a href="https://discord.gg/ApEmE7g7GB" target="_blank" rel="noopener noreferrer">
-                                <Icon icon="mdi:discord"/>
+                                <Icon icon="mdi:discord" />
                             </a>
                             <a href="https://github.com/EurekaHackathon" target="_blank" rel="noopener noreferrer">
-                                <Icon icon="mdi:github"/>
+                                <Icon icon="mdi:github" />
                             </a>
                             <a href="mailto:hello@eurekahacks.ca" target="_blank" rel="noopener noreferrer">
-                                <Icon icon="mdi:email"/>
+                                <Icon icon="mdi:email" />
                             </a>
                         </div>
                     </div>
                 </div>
                 {/*Makes navigation links look more centered*/}
-                <div/>
+                <div />
                 <div
                     className="hidden lg:flex gap-4 md:gap-6 2xl:text-lg font-semibold text-center text-gray-50">
                     {isOnHomePage &&
                         <>
-                          <a href="/#about">About</a>
-                          <a href="/#past">Past Years</a>
-                          <a href="/#sponsors">Sponsors</a>
-                          <a href="/#faq">FAQ</a>
-                          <a href="/#team">Team</a>
+                            <a href="/#about">About</a>
+                            <a href="/#past">Past Years</a>
+                            <a href="/#sponsors">Sponsors</a>
+                            <a href="/#faq">FAQ</a>
+                            <a href="/#team">Team</a>
                         </>
                     }
                 </div>
@@ -74,11 +73,11 @@ export default function Footer() {
                         </p>
                         <div className="flex items-center lg:mt-0">
                             <input type="email" placeholder="Email" name="email" required
-                                   className="2xl:w-64 px-2 h-10 bg-gray-50 rounded text-gray-900 font-medium"/>
+                                className="2xl:w-64 px-2 h-10 bg-gray-50 rounded text-gray-900 font-medium" />
                             <button type="submit"
-                                    className="bg-accent-500 flex items-center justify-center font-medium h-10 text-gray-50 px-4 py-2 ml-2 lg:ml-3 w-28 rounded">
+                                className="bg-accent-500 flex items-center justify-center font-medium h-10 text-gray-50 px-4 py-2 ml-2 lg:ml-3 w-28 rounded">
                                 {!pending && "Subscribe"}
-                                {pending && <Icon className="text-3xl" icon="codex:loader"/>}
+                                {pending && <Icon className="text-3xl" icon="codex:loader" />}
                             </button>
                         </div>
                     </form>

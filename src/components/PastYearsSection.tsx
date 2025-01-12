@@ -37,7 +37,7 @@ export default function PastYearsSection() {
                 ))}
             </div>
             <div className="flex justify-center">
-                <ImageCarousel/>
+                <ImageCarousel />
             </div>
             <h1 className="text-center py-32 text-2xl">insert some art here or smth</h1>
         </div>

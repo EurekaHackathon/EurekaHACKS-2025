@@ -39,7 +39,7 @@ export default function FaqSection() {
                 <div className="xl:w-3/5 md:w-[80%] w-[90%]">
                     <div className="grid lg:grid-cols-2 lg:gap-x-24 lg:gap-y-8 md:gap-y-6 gap-y-4">
                         {faqs.map((faq, index) => {
-                            return <FaqDropdown key={index} title={faq.title} description={faq.description}/>;
+                            return <FaqDropdown key={index} title={faq.title} description={faq.description} />;
                         })}
                     </div>
                 </div>

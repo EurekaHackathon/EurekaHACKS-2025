@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-
-import "./globals.css";
 import React from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import "./globals.css"
 
 export const metadata: Metadata = {
     title: "EurekaHACKS 2025",
@@ -22,23 +19,21 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+    children,
+}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
         // Disable hydration warning since browser addons/extensions trigger
         <html lang="en" suppressHydrationWarning>
-        <head>
-            <meta charSet="UTF-8"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-            <title>EurekaHACKS</title>
-        </head>
-        <body className="overflow-x-hidden">
-        <Navbar/>
-        {children}
-        <Footer/>
-        </body>
+            <head>
+                <meta charSet="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+                <title>EurekaHACKS</title>
+            </head>
+            <body className="overflow-x-hidden">
+                {children}
+            </body>
         </html>
     );
 }

@@ -20,13 +20,13 @@ export function AboutSection() {
             <div className="lg:w-[55%] flex flex-col lg:flex-row items-center gap-4">
                 <div className="flex justify-center lg:justify-end lg:h-full 2xl:h-[120%] items-center">
                     <Image src={photo1} alt="todo later"
-                           className="w-[80%] lg:w-auto object-cover h-[80%]"/>
+                        className="w-[80%] lg:w-auto object-cover h-[80%]" />
                 </div>
                 <div className="flex flex-row lg:flex-col gap-4 lg:h-full 2xl:h-[150%]">
                     <Image src={photo2} alt="todo later"
-                           className="lg:w-auto object-cover w-[50%] lg:h-[200%]"/>
+                        className="lg:w-auto object-cover w-[50%] lg:h-[200%]" />
                     <Image src={photo3} alt="todo later"
-                           className="w-[80%]"/>
+                        className="w-[80%]" />
                 </div>
             </div>
         </div>
