@@ -37,10 +37,10 @@ export default function ImageCarousel() {
             {/*<div className="absolute h-48 left-0 right-0 z-10 pointer-events-none bg-gradient-to-r from-transparent to-[#512fa6ff] from-90%"/>*/}
             <div ref={carouselRef} className="carousel flex gap-4">
                 {photos.map((photo, index) => (
-                    <Image key={index} src={photo} alt={`photo-${index}`} className="h-36 md:h-40 lg:h-48 w-auto"/>
+                    <Image key={index} src={photo} alt={`photo-${index}`} className="h-36 md:h-40 lg:h-48 w-auto" />
                 ))}
                 {photos.map((photo, index) => (
-                    <Image key={index} src={photo} alt={`photo-${index}`} className="h-36 md:h-40 lg:h-48 w-auto"/>
+                    <Image key={index} src={photo} alt={`photo-${index}`} className="h-36 md:h-40 lg:h-48 w-auto" />
                 ))}
             </div>
         </div>

@@ -9,7 +9,7 @@ export function SponsorSection() {
                     insert sponsorship text here Lorem ipsum dolor sit amet,
                     consectetur adipisicing elit. Assumenda, earum. Email us
                     at <a className="font-semibold text-accent-300"
-                          href="mailto:insertsponsoremail@eurekahacks.ca">insertemail@eurekahacks.ca</a>
+                        href="mailto:insertsponsoremail@eurekahacks.ca">insertemail@eurekahacks.ca</a>
                 </p>
             </div>
             <h1 className="text-center text-3xl md:text-5xl lg:text-6xl pt-12">Coming Soon!</h1>

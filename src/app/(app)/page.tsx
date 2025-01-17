@@ -17,15 +17,15 @@ export default async function Home() {
 
     return (
         <div>
-            <HeroSectionArt/>
+            <HeroSectionArt />
             <div className="relative z-10">
-                <HeroSectionInfo/>
+                <HeroSectionInfo />
                 <div className="hidden bg-[#512fa6ff]" id="info">
-                    <AboutSection/>
-                    <PastYearsSection/>
-                    <SponsorSection/>
-                    <FaqSection/>
-                    <TeamSection/>
+                    <AboutSection />
+                    <PastYearsSection />
+                    <SponsorSection />
+                    <FaqSection />
+                    <TeamSection />
                 </div>
             </div>
         </div>

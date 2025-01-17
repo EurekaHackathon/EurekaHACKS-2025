@@ -26,8 +26,8 @@ export default function SponsorTier({ sponsorInfo, sponsorsPerRow }: {
                                     return (
                                         <React.Fragment key={sponsorIndex}>
                                             <a href={sponsor.url} target="_blank"
-                                               style={{ width: `${sponsorRow.length === sponsorsPerRow ? "100" : (1 / sponsorsPerRow * 100)}%` }}
-                                               className={"flex flex-col items-center"}>
+                                                style={{ width: `${sponsorRow.length === sponsorsPerRow ? "100" : (1 / sponsorsPerRow * 100)}%` }}
+                                                className={"flex flex-col items-center"}>
                                                 <div
                                                     className="w-full bg-gray-50 flex flex-col items-center p-4 rounded-lg duration-200 ease-in-out hover:scale-[103%] rotate-[0.01deg]">
                                                     <img

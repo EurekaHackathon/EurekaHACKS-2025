@@ -20,7 +20,7 @@ export function HeroSectionInfo() {
 
     return (
         <div className="text-center text-white pt-24 md:pt-32 lg:pt-32 2xl:pt-44" style={{ minHeight: bgHeight }}
-             id="hero">
+            id="hero">
             <h1 className="hidden md:block font-bold text-8xl lg:text-9xl">EurekaHACKS</h1>
             <h1 className="md:hidden font-bold text-7xl">Eureka</h1>
             <h1 className="md:hidden font-bold text-5xl">HACKS</h1>
@@ -40,11 +40,11 @@ export function HeroSectionInfo() {
                     }
                 </p>
                 <input type="email" placeholder="Email" name="email" required
-                       className="w-72 md:w-96 lg:w-96 rounded-lg h-12 px-4 mt-1 text-gray-900 font-medium"/>
+                    className="w-72 md:w-96 lg:w-96 rounded-lg h-12 px-4 mt-1 text-gray-900 font-medium" />
                 <button type="submit"
-                        className="flex items-center justify-center w-72 md:w-96 lg:w-96 lg:text-xl h-12 bg-accent-500 mt-3 rounded-lg font-medium">
+                    className="flex items-center justify-center w-72 md:w-96 lg:w-96 lg:text-xl h-12 bg-accent-500 mt-3 rounded-lg font-medium">
                     {!pending && "Subscribe"}
-                    {pending && <Icon className="text-4xl" icon="codex:loader"/>}
+                    {pending && <Icon className="text-4xl" icon="codex:loader" />}
                 </button>
             </form>
         </div>

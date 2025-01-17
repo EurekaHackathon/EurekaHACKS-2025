@@ -90,9 +90,9 @@ export default function () {
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
                                 <img src={`/team/${member.image}`} alt={member.name}
-                                     onMouseEnter={() => setCurrentText(`${member.name}, ${member.role} ${member.emoji}`)}
-                                     onMouseLeave={() => setCurrentText("")}
-                                     className="w-20 h-20 object-cover rounded-full border-4 border-gray-300 hover:border-accent-300 duration-100"/>
+                                    onMouseEnter={() => setCurrentText(`${member.name}, ${member.role} ${member.emoji}`)}
+                                    onMouseLeave={() => setCurrentText("")}
+                                    className="w-20 h-20 object-cover rounded-full border-4 border-gray-300 hover:border-accent-300 duration-100" />
                             </div>
                         </a>
                     ))}
@@ -102,9 +102,9 @@ export default function () {
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
                                 <img src={`/team/${member.image}`} alt={member.name}
-                                     onMouseEnter={() => setCurrentText(`${member.name}, ${member.role} ${member.emoji}`)}
-                                     onMouseLeave={() => setCurrentText("")}
-                                     className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-cover rounded-full border-4 border-gray-300 hover:border-accent-300 duration-100"/>
+                                    onMouseEnter={() => setCurrentText(`${member.name}, ${member.role} ${member.emoji}`)}
+                                    onMouseLeave={() => setCurrentText("")}
+                                    className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-cover rounded-full border-4 border-gray-300 hover:border-accent-300 duration-100" />
                             </div>
                         </a>
                     ))}
@@ -114,9 +114,9 @@ export default function () {
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
                                 <img src={`/team/${member.image}`} alt={member.name}
-                                     onMouseEnter={() => setCurrentText(`${member.name}, ${member.role} ${member.emoji}`)}
-                                     onMouseLeave={() => setCurrentText("")}
-                                     className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-cover rounded-full border-4 border-gray-300 hover:border-accent-300 duration-100"/>
+                                    onMouseEnter={() => setCurrentText(`${member.name}, ${member.role} ${member.emoji}`)}
+                                    onMouseLeave={() => setCurrentText("")}
+                                    className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-cover rounded-full border-4 border-gray-300 hover:border-accent-300 duration-100" />
                             </div>
                         </a>
                     ))}

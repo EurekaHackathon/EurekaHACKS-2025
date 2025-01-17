@@ -1,3 +1,5 @@
+"use server";
+
 import { encodeBase32LowerCaseNoPadding, encodeHexLowerCase } from "@oslojs/encoding";
 import { sha256 } from "@oslojs/crypto/sha2";
 import { db } from "@/lib/database";
@@ -9,6 +11,9 @@ import {
     updateUserSessionExpiresAt
 } from "@/lib/sqlc/auth_sql";
 import { hash } from "@node-rs/argon2";
+
+import { cookies } from "next/headers";
+import { SignJWT, jwtVerify } from "jose";
 
 async function hashPassword(password: string, salt: string): Promise<string> {
     return await hash(password + salt, {
@@ -52,7 +57,7 @@ const updateUserPassword = async (userId: number, password: string): Promise<voi
     });
 };
 
-export function generateSessionToken(): string {
+export async function generateSessionToken(): Promise<string> {
     const bytes = new Uint8Array(24);
     crypto.getRandomValues(bytes);
     return encodeBase32LowerCaseNoPadding(bytes);
@@ -124,6 +129,47 @@ export async function invalidateAllSessions(userId: number): Promise<void> {
     await deleteAllUserSessionsByUserID(db, {
         userId: userId
     });
+}
+
+const JWTsignature = new TextEncoder().encode(process.env.ADMIN_SECRET);
+const adminSessionCookie = "admin-session"
+
+export async function loginAdmin(password: string): Promise<boolean> {
+    if (password != process.env.ADMIN_PASSWORD) {
+        return false;
+    }
+
+    let token = await new SignJWT()
+        .setProtectedHeader({ alg: "HS256" })
+        .setIssuedAt()
+        .setExpirationTime("4 week from now")
+        .sign(JWTsignature);
+
+    (await cookies()).set(adminSessionCookie, token);
+
+    return true;
+}
+
+export async function isAdmin(): Promise<boolean> {
+    let token = (await cookies()).get(adminSessionCookie)?.value;
+
+    if (!token) {
+        return false
+    }
+
+    try {
+        await jwtVerify(token, JWTsignature, {
+            algorithms: ["HS256"],
+        });
+
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+export async function signoutAdmin() {
+    (await cookies()).delete(adminSessionCookie)
 }
 
 export type SessionValidationResult =
