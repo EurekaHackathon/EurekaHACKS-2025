@@ -82,7 +82,7 @@ export function HeroSectionArt() {
             <Image src={stars12} alt="Stars 12" className="absolute w-full h-auto stars12" />
         </div>
         <svg
-            className="fix-load-bug absolute h-full translate-x-[-33%] w-auto md:translate-x-[-26%] landscape:translate-x-0 landscape:w-full landscape:h-auto"
+            className="fix-load-bug absolute h-full translate-x-[-33%] w-auto md:translate-x-[-25%] landscape:translate-x-0 landscape:w-full landscape:h-auto"
             viewBox="0 0 507.99999 289.45417">
             <mask id="wave-mask">
                 <rect width="100%" height="100%" fill="white" />
