@@ -33,7 +33,7 @@ export default function RootLayout({
             <script defer src="https://cloud.umami.is/script.js"
                     data-website-id="515f16a5-8036-482d-b535-7cdc2310d52b"></script>
         </head>
-        <body className="overflow-x-hidden h-[100vh] overflow-y-hidden">
+        <body className="overflow-x-hidden">
         {children}
         </body>
         </html>
