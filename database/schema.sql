@@ -1,9 +1,3 @@
-create table if not exists public.stats (
-    id serial primary key,
-    name text not null unique check (length(name) > 0),
-    value integer not null default 0 check (value >= 0)
-);
-
 create table if not exists public.mailing_list (
     id serial primary key,
     email text unique not null check (email ~ '^([^@]+)*@([^.@]+\.)+([^.@]+)$')

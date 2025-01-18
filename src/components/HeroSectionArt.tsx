@@ -90,14 +90,14 @@ export function HeroSectionArt() {
             </mask>
             <image ref={duckRef} href={duck.src} width="25" height="25" transform="rotate(0.1)"
                 mask="url(#wave-mask)">
-                <animateMotion dur="10s" repeatCount="indefinite"
+                <animateMotion dur="40s" repeatCount="indefinite"
                     path="m 345.51252,197.30245 c 0,0 28.93833,4.47135 31.05755,20.11266 1.13149,8.35118 -35.37376,13.99404 -55.46147,18.54195 -17.49136,3.96009 -48.2485,5.28733 -69.2307,11.8133 -20.14434,6.26539 -77.99361,13.31836 -2.94156,72.14139"
                 />
                 <animateTransform attributeName="transform" type="scale" values="0.2,0.2;1,1" keyTimes="0;1"
-                    dur="10s"
+                    dur="40s"
                     repeatCount="indefinite" additive="sum" />
                 <animateTransform attributeName="transform" type="translate" values="-12.5,-12.5;-12.5,-12.5"
-                    keyTimes="0;1" dur="10s"
+                    keyTimes="0;1" dur="40s"
                     repeatCount="indefinite" additive="sum" />
             </image>
         </svg>

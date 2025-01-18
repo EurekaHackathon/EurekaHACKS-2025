@@ -26,14 +26,16 @@ export default function RootLayout({
     return (
         // Disable hydration warning since browser addons/extensions trigger
         <html lang="en" suppressHydrationWarning>
-            <head>
-                <meta charSet="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-                <title>EurekaHACKS</title>
-            </head>
-            <body className="overflow-x-hidden h-[100vh] overflow-y-hidden">
-                {children}
-            </body>
+        <head>
+            <meta charSet="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+            <title>EurekaHACKS</title>
+            <script defer src="https://cloud.umami.is/script.js"
+                    data-website-id="515f16a5-8036-482d-b535-7cdc2310d52b"></script>
+        </head>
+        <body className="overflow-x-hidden h-[100vh] overflow-y-hidden">
+        {children}
+        </body>
         </html>
     );
 }

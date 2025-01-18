@@ -5,27 +5,19 @@ import PastYearsSection from "@/components/PastYearsSection";
 import { SponsorSection } from "@/components/SponsorSection";
 import FaqSection from "@/components/FaqSection";
 import TeamSection from "@/components/TeamSection";
-import { db } from "@/lib/database";
-import { incrementVisitsCount } from "@/lib/sqlc/visit_count_sql";
 
 export default async function Home() {
-    try {
-        await incrementVisitsCount(db);
-    } catch (error) {
-        console.error(error);
-    }
-
     return (
         <div>
-            <HeroSectionArt />
+            <HeroSectionArt/>
             <div className="relative z-10">
-                <HeroSectionInfo />
+                <HeroSectionInfo/>
                 <div className="hidden bg-[#512fa6ff]" id="info">
-                    <AboutSection />
-                    <PastYearsSection />
-                    <SponsorSection />
-                    <FaqSection />
-                    <TeamSection />
+                    <AboutSection/>
+                    <PastYearsSection/>
+                    <SponsorSection/>
+                    <FaqSection/>
+                    <TeamSection/>
                 </div>
             </div>
         </div>
