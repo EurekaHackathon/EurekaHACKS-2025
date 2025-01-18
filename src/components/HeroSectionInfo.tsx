@@ -14,6 +14,12 @@ export function HeroSectionInfo() {
     useEffect(() => {
         setBgHeight(document.getElementById("bg")?.clientHeight ?? 0);
         document.getElementById("info")?.classList.remove("hidden");
+
+        // Do same thing on window resize
+        const resize = () => {
+            setBgHeight(document.getElementById("bg")?.clientHeight ?? 0);
+        };
+        window.addEventListener("resize", resize);
     }, []);
 
     const [state, formAction, pending] = useActionState(subscribeToMailingList, initialState);
