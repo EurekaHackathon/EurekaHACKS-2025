@@ -157,3 +157,19 @@
 .fade-in {
     animation: fade-in 0.5s ease-in-out;
 }
+
+@keyframes blink {
+    0%, 15% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    85%, 100% {
+        opacity: 0;
+    }
+}
+
+.blink {
+    animation: blink 1.5s infinite;
+}
