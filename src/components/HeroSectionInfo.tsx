@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { subscribeToMailingList } from "@/lib/mailing-list";
+import { subscribeToMailingList } from "@/lib/actions/mailing-list";
 import { useActionState } from "react";
 import { Icon } from "@iconify/react";
 

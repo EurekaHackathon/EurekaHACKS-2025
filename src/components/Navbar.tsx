@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "../../public/logo.png";
 import { Icon } from "@iconify/react";
+import Link from "next/link";
 
 export default function Navbar() {
     const [isScrollPositionNotZero, setIsScrollPositionNotZero] = useState(false);
@@ -48,16 +49,16 @@ export default function Navbar() {
              ${isMenuOpen ? "backdrop-brightness-75 backdrop-blur-3xl" : ""}`}>
             <div className="hidden lg:flex items-center justify-between py-4 lg:w-[85%] 2xl:w-[60%]">
                 <div className="flex items-center font-semibold gap-12">
-                    <a href="/#hero">
+                    <Link href="/#hero">
                         <Image className="w-12 h-auto" src={logo} alt="EurekaHACKS Logo" />
-                    </a>
+                    </Link>
                     {isOnHomePage &&
                         <>
-                            <a href="/#about">About</a>
-                            <a href="/#past">Past Years</a>
-                            <a href="/#sponsors">Sponsors</a>
-                            <a href="/#faq">FAQ</a>
-                            <a href="/#team">Team</a>
+                            <Link href="/#about">About</Link>
+                            <Link href="/#past">Past Years</Link>
+                            <Link href="/#sponsors">Sponsors</Link>
+                            <Link href="/#faq">FAQ</Link>
+                            <Link href="/#team">Team</Link>
                         </>
                     }
                 </div>
@@ -80,9 +81,9 @@ export default function Navbar() {
                 </div>
             </div>
             <div className="flex lg:hidden items-center justify-between mx-4 py-2">
-                <a href="/#hero">
+                <Link href="/#hero">
                     <Image className="w-10 md:w-12 h-auto" src={logo} alt="EurekaHACKS Logo" />
-                </a>
+                </Link>
                 <button onClick={toggleMenu}>
                     {isMenuOpen && <Icon icon="mdi:close" className="text-3xl md:text-4xl fade-in" />}
                     {!isMenuOpen &&
@@ -97,11 +98,11 @@ export default function Navbar() {
                         className="flex flex-col gap-4 md:gap-8 landscape:gap-4 text-xl md:text-4xl landscape:text-xl font-semibold text-center">
                         {isOnHomePage &&
                             <>
-                                <a href="/#about">About</a>
-                                <a href="/#past">Past Years</a>
-                                <a href="/#sponsors">Sponsors</a>
-                                <a href="/#faq">FAQ</a>
-                                <a href="/#team">Team</a>
+                                <Link href="/#about">About</Link>
+                                <Link href="/#past">Past Years</Link>
+                                <Link href="/#sponsors">Sponsors</Link>
+                                <Link href="/#faq">FAQ</Link>
+                                <Link href="/#team">Team</Link>
                             </>
                         }
                     </div>

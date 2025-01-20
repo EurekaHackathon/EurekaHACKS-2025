@@ -2,6 +2,7 @@
 
 import { Icon } from "@iconify/react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function SignUpPage() {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -19,6 +20,7 @@ export default function SignUpPage() {
                             <input
                                 className="mt-2 rounded-xl py-4 px-6 border-gray-300 border hover:border-secondary-300 focus:outline-none"
                                 type="text"
+                                required
                                 name="first-name" placeholder="First Name"/>
                         </label>
                         <label className="flex flex-col md:text-lg w-full">
@@ -26,7 +28,8 @@ export default function SignUpPage() {
                             <input
                                 className="mt-2 rounded-xl py-4 px-6 border-gray-300 border hover:border-secondary-300 focus:outline-none"
                                 type="text"
-                                name="first-name" placeholder="Last Name"/>
+                                required
+                                name="last-name" placeholder="Last Name"/>
                         </label>
                     </div>
                     <label className="pt-4 lg:pt-6 flex flex-col md:text-lg">
@@ -34,6 +37,7 @@ export default function SignUpPage() {
                         <input
                             className="mt-2 rounded-xl py-4 px-6 border-gray-300 border hover:border-secondary-300 focus:outline-none"
                             type="email"
+                            required
                             name="email" placeholder="hello@eurekahacks.ca"/>
                     </label>
                     <div className="pt-4 lg:pt-6 flex flex-col md:flex-row gap-4">
@@ -41,6 +45,7 @@ export default function SignUpPage() {
                             Password
                             <div className="flex mt-2 items-center">
                                 <input
+                                    required
                                     className="rounded-xl py-4 px-6 border-gray-300 border hover:border-secondary-200 focus:outline-none w-full"
                                     type={passwordVisible ? "text" : "password"}
                                     name="password" placeholder="••••••••••••"/>
@@ -55,6 +60,7 @@ export default function SignUpPage() {
                             Confirm Password
                             <div className="flex mt-2 items-center">
                                 <input
+                                    required
                                     className="rounded-xl py-4 px-6 border-gray-300 border hover:border-secondary-200 focus:outline-none w-full"
                                     type={confirmPasswordVisible ? "text" : "password"}
                                     name="confirm-password" placeholder="••••••••••••"/>
@@ -86,9 +92,9 @@ export default function SignUpPage() {
                     </div>
                     Sign up with Github
                 </button>
-                <h2 className="pt-8 text-center text-sm md:text-lg">Already have an account? <a
+                <h2 className="pt-8 text-center text-sm md:text-lg">Already have an account? <Link
                     className="font-semibold underline"
-                    href="/signin">Log in</a></h2>
+                    href="/signin">Log in</Link></h2>
             </div>
         </div>
     );

@@ -31,15 +31,24 @@ const generateSalt = () => {
     return encodeBase32LowerCaseNoPadding(bytes);
 };
 
+interface userData {
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string
+}
+
 /**
  * @throws {Error}
  */
-export async function createUser(email: string, password: string, firstName: string, lastName: string): Promise<CreateDBUserRow | null> {
+export async function createUser(userData: userData): Promise<CreateDBUserRow | null> {
+    const { email, password, firstName, lastName } = userData;
+
     const salt = generateSalt();
     const hashedPassword = await hashPassword(password, salt);
     return await createDBUser(db, {
         email: email,
-        password: hashedPassword + salt,
+        password: hashedPassword + " " + salt,
         firstName: firstName,
         lastName: lastName
     });
@@ -132,7 +141,7 @@ export async function invalidateAllSessions(userId: number): Promise<void> {
 }
 
 const JWTsignature = new TextEncoder().encode(process.env.ADMIN_SECRET);
-const adminSessionCookie = "admin-session"
+const adminSessionCookie = "admin-session";
 
 export async function loginAdmin(password: string): Promise<boolean> {
     if (password != process.env.ADMIN_PASSWORD) {
@@ -154,7 +163,7 @@ export async function isAdmin(): Promise<boolean> {
     let token = (await cookies()).get(adminSessionCookie)?.value;
 
     if (!token) {
-        return false
+        return false;
     }
 
     try {
@@ -169,7 +178,7 @@ export async function isAdmin(): Promise<boolean> {
 }
 
 export async function signoutAdmin() {
-    (await cookies()).delete(adminSessionCookie)
+    (await cookies()).delete(adminSessionCookie);
 }
 
 export type SessionValidationResult =

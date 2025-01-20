@@ -131,3 +131,39 @@ export async function updateDBUserPassword(sql: Sql, args: UpdateDBUserPasswordA
     await sql.unsafe(updateDBUserPasswordQuery, [args.id, args.password]);
 }
 
+export const getUserByEmailQuery = `-- name: GetUserByEmail :one
+select id, first_name, last_name, email, password, email_verified, created_at, updated_at from public.apps_users where email = $1`;
+
+export interface GetUserByEmailArgs {
+    email: string;
+}
+
+export interface GetUserByEmailRow {
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    emailVerified: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export async function getUserByEmail(sql: Sql, args: GetUserByEmailArgs): Promise<GetUserByEmailRow | null> {
+    const rows = await sql.unsafe(getUserByEmailQuery, [args.email]).values();
+    if (rows.length !== 1) {
+        return null;
+    }
+    const row = rows[0];
+    return {
+        id: row[0],
+        firstName: row[1],
+        lastName: row[2],
+        email: row[3],
+        password: row[4],
+        emailVerified: row[5],
+        createdAt: row[6],
+        updatedAt: row[7]
+    };
+}
+

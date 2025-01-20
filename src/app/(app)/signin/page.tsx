@@ -2,6 +2,7 @@
 
 import { Icon } from "@iconify/react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function SignUpPage() {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -53,9 +54,9 @@ export default function SignUpPage() {
                     </div>
                     Log in with Github
                 </button>
-                <h2 className="pt-8 text-center text-sm md:text-lg">Don't have an account? <a
+                <h2 className="pt-8 text-center text-sm md:text-lg">Don't have an account? <Link
                     className="font-semibold underline"
-                    href="/signup">Sign up</a></h2>
+                    href="/signup">Sign up</Link></h2>
             </div>
         </div>
     );

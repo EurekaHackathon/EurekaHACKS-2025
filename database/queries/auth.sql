@@ -21,3 +21,6 @@ returning *;
 
 -- name: UpdateDBUserPassword :exec
 update public.apps_users set password = $2 where id = $1;
+
+-- name: GetUserByEmail :one
+select * from public.apps_users where email = $1;
