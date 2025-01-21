@@ -46,7 +46,7 @@ export default function VerifyEmailPage() {
                                     ${code.length > i ? "border-secondary-500 border-2 bg-gray-100" : ""}`}
                                     key={i}>
                                     {code.length >= i &&
-                                        <h1 className="font-semibold md:text-lgz lg:text-xl text-secondary-950">{code[i]}</h1>}
+                                        <h1 className="font-semibold md:text-lg lg:text-xl text-secondary-950">{code[i]}</h1>}
                                     {code.length === i && <div className="h-4 lg:h-6 border border-gray-500 blink"/>}
                                 </div>
                             ))}
