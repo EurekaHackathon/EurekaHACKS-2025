@@ -16,6 +16,7 @@ create table if not exists public.apps_users (
     email text unique not null check (email ~ '^[^@]+@[^@]+\\.[^@]+$'),
     password text not null check (password ~ '(?=.*\d)(?=.*[A-Za-z]).{8,128}$'),
     email_verified boolean not null default false,
+    is_admin boolean not null default false,
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()
 );
@@ -29,10 +30,9 @@ create table if not exists public.user_sessions (
 );
 
 create table if not exists public.email_verification_tokens (
-    id serial primary key,
+    id uuid primary key default uuid_generate_v4(),
     user_id integer not null references public.apps_users(id) on delete cascade,
-    verification_url text not null,
-    otp text not null,
+    token text not null,
     expires_at timestamptz not null,
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()

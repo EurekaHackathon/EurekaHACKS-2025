@@ -24,3 +24,17 @@ update public.apps_users set password = $2 where id = $1;
 
 -- name: GetUserByEmail :one
 select * from public.apps_users where email = $1;
+
+-- name: CreateEmailVerificationToken :one
+insert into public.email_verification_tokens (user_id, token, expires_at)
+values ($1, $2, $3)
+returning *;
+
+-- name: DeleteAllEmailVerificationTokensByUserID :exec
+delete from public.email_verification_tokens where user_id = $1;
+
+-- name: GetEmailVerificationTokenByUserID :one
+select * from public.email_verification_tokens where user_id = $1;
+
+-- name: GetEmailByVerificationTokenID :one
+select email from public.apps_users where id = (select user_id from public.email_verification_tokens where public.email_verification_tokens.id = $1);
