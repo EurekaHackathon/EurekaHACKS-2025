@@ -13,7 +13,7 @@ create table if not exists public.apps_users (
         length(last_name) > 0
         and length(last_name) < 128
     ),
-    email text unique not null check (email ~ '^[^@]+@[^@]+\\.[^@]+$'),
+    email text unique not null,
     password text not null check (password ~ '(?=.*\d)(?=.*[A-Za-z]).{8,128}$'),
     email_verified boolean not null default false,
     is_admin boolean not null default false,

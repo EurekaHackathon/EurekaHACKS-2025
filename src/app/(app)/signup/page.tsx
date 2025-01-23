@@ -1,19 +1,25 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import Link from "next/link";
+import { signUpWithEmail } from "@/lib/actions/auth";
+
+const initialState = {
+    error: ""
+};
 
 export default function SignUpPage() {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+    const [state, formAction, pending] = useActionState(signUpWithEmail, initialState);
 
     return (
         <div className="bg-secondary-200 flex items-center justify-center py-32">
-            <div className="bg-gray-50 p-8 md:p-12 lg:p-16 rounded-2xl text-gray-700 min-w-[40vw] lg:min-w-[750px]">
+            <div className="bg-gray-50 p-8 md:p-12 lg:p-16 rounded-2xl text-gray-700 min-w-[40vw] max-w-[90vw] lg:w-[750px]">
                 <h1 className="text-2xl md:text-4xl font-bold">Create an account</h1>
                 <h2 className="md:text-xl font-medium pt-2">Sign up to apply to EurekaHACKS</h2>
-                <form className="pt-12">
+                <form className="pt-12" action={formAction}>
                     <div className="flex flex-col md:flex-row gap-4">
                         <label className="flex flex-col md:text-lg w-full">
                             First Name
@@ -72,10 +78,16 @@ export default function SignUpPage() {
                             </div>
                         </label>
                     </div>
+                    <p className="mt-6 min-h-6 text-red-400 font-semibold break-words">
+                        {!pending && state?.error}
+                    </p>
                     <button
-                        className="bg-secondary-500 text-gray-50 font-semibold md:text-xl mt-8 w-full py-4 rounded-xl hover:bg-[#947ef2] duration-200"
-                        type="submit">
-                        Sign Up
+                        className="mt-2 flex justify-center bg-secondary-500 text-gray-50 font-semibold md:text-xl w-full py-4 rounded-xl hover:bg-[#947ef2] duration-200"
+                        type="submit" disabled={pending}>
+                        {!pending && "Sign up"}
+                        {/*Absolute position, so the height doesn't get messed up. Zero width space used to maintain minimum height*/}
+                        {pending && "​"}
+                        {pending && <Icon className="text-2xl md:text-3xl lg:text-4xl absolute" icon="codex:loader"/>}
                     </button>
                 </form>
                 <button

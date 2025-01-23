@@ -1,23 +1,30 @@
 import { getEmailByVerificationTokenID } from "@/lib/sqlc/auth_sql";
 import { db } from "@/lib/database";
 import { redirect } from "next/navigation";
-import { Icon } from "@iconify/react";
+import { ResendEmailForm } from "@/components/ResendEmailForm";
 
 export default async function VerifyEmailPage({ searchParams, }: {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-    // const verificationTokenID = (await searchParams).id;
-    // if (!verificationTokenID || typeof verificationTokenID !== "string") {
-    //     redirect("/signin");
-    // }
-    //
-    // const email = getEmailByVerificationTokenID(db, {
-    //     id: verificationTokenID
-    // });
-    //
-    // if (!email) {
-    //     redirect("/signin");
-    // }
+    let email: string | undefined;
+    let verificationTokenID: string | string[] | undefined;
+    try {
+
+        verificationTokenID = (await searchParams).id;
+        if (!verificationTokenID || typeof verificationTokenID !== "string") {
+            redirect("/signin");
+        }
+
+        email = (await getEmailByVerificationTokenID(db, {
+            id: verificationTokenID
+        }))?.email;
+
+        if (!email) {
+            redirect("/signin");
+        }
+    } catch (error) {
+        redirect("/signin");
+    }
 
     return (
         <div className="bg-secondary-200 flex items-center justify-center py-32 min-h-screen">
@@ -34,13 +41,7 @@ export default async function VerifyEmailPage({ searchParams, }: {
                     <b className="pl-1.5">check your spam folder</b>.
                 </p>
                 <p className="pt-6">Still can't find the email?</p>
-                <form>
-                    <button
-                        className="mt-2 flex justify-center bg-secondary-500 text-gray-50 font-semibold md:text-xl w-full py-4 rounded-xl hover:bg-[#947ef2] duration-200"
-                        type="submit">
-                        Resend Email
-                    </button>
-                </form>
+                <ResendEmailForm email={email} id={verificationTokenID}/>
             </div>
         </div>
     );

@@ -1,19 +1,22 @@
 "use server";
 
-import { encodeBase32LowerCaseNoPadding, encodeHexLowerCase } from "@oslojs/encoding";
+import { encodeBase32LowerCaseNoPadding, encodeBase32UpperCaseNoPadding, encodeHexLowerCase } from "@oslojs/encoding";
 import { sha256 } from "@oslojs/crypto/sha2";
 import { db } from "@/lib/database";
 import {
     createDBSession,
-    createDBUser, CreateDBUserRow, deleteAllUserSessionsByUserID,
+    createDBUser,
+    CreateDBUserRow,
+    deleteAllUserSessionsByUserID,
     deleteUserSessionBySessionID,
-    getUserSessionBySessionID, updateDBUserPassword,
+    getUserSessionBySessionID,
+    updateDBUserPassword,
     updateUserSessionExpiresAt
 } from "@/lib/sqlc/auth_sql";
 import { hash } from "@node-rs/argon2";
 
 import { cookies } from "next/headers";
-import { SignJWT, jwtVerify } from "jose";
+import { jwtVerify, SignJWT } from "jose";
 
 async function hashPassword(password: string, salt: string): Promise<string> {
     return await hash(password + salt, {
@@ -68,6 +71,12 @@ const updateUserPassword = async (userId: number, password: string): Promise<voi
 
 export async function generateSessionToken(): Promise<string> {
     const bytes = new Uint8Array(24);
+    crypto.getRandomValues(bytes);
+    return encodeBase32LowerCaseNoPadding(bytes);
+}
+
+export async function generateEmailVerificationToken(): Promise<string> {
+    const bytes = new Uint8Array(32);
     crypto.getRandomValues(bytes);
     return encodeBase32LowerCaseNoPadding(bytes);
 }
