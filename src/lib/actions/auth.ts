@@ -125,7 +125,7 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
         const mailOptions = {
             from: `"EurekaHACKS" verify@eurekahacks.ca`,
             to: email,
-            subject: "Verify your email",
+            subject: "Verify your email for EurekaHACKS",
             text: emailText,
             html: emailHTML,
         };
@@ -212,7 +212,7 @@ export const resendEmailVerificationLink = async (prevState: any, formData: Form
         const mailOptions = {
             from: `"EurekaHACKS" verify@eurekahacks.ca`,
             to: email,
-            subject: "Verify your email",
+            subject: "Verify your email for EurekaHACKS",
             text: emailText,
             html: emailHTML,
         };
