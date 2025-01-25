@@ -28,7 +28,7 @@ export const VerifyEmailTemplate = ({
         <Body style={main}>
             <Container style={container}>
                 <Img
-                    src={`https://eurekahacks.ca/logo-small.svg`}
+                    src={`https://eurekahacks.ca/logo-small.png`}
                     width="50"
                     height="50"
                     alt="EurekaHACKS logo"
