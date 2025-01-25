@@ -1,18 +1,24 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import Link from "next/link";
+import { signUpWithEmail } from "@/lib/actions/auth";
+
+const initialState = {
+    error: ""
+};
 
 export default function SignUpPage() {
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [state, formAction, pending] = useActionState(signUpWithEmail, initialState);
 
     return (
         <div className="bg-secondary-200 flex items-center justify-center py-32">
-            <div className="bg-gray-50 p-8 md:p-12 lg:p-16 rounded-2xl text-gray-700 min-w-[40vw] lg:min-w-[750px]">
+            <div className="bg-gray-50 p-8 md:p-12 lg:p-16 rounded-2xl text-gray-700 min-w-[40vw] max-w-[90vw] lg:w-[750px]">
                 <h1 className="text-2xl md:text-4xl font-bold">Log in to your account</h1>
                 <h2 className="md:text-xl font-medium pt-2">Log in to apply to EurekaHACKS</h2>
-                <form className="pt-12">
+                <form className="pt-12" action={formAction}>
                     <label className="flex flex-col md:text-lg">
                         Email
                         <input

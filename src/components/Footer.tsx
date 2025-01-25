@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import logo from "../../public/logo.png";
+import logo from "../../public/logo.svg";
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
 import { subscribeToMailingList } from "@/lib/actions/mailing-list";
