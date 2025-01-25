@@ -18,7 +18,7 @@ export default function SignUpPage() {
         <div className="bg-secondary-200 flex items-center justify-center py-32">
             <div className="bg-gray-50 p-8 md:p-12 lg:p-16 rounded-2xl text-gray-700 min-w-[40vw] max-w-[90vw] lg:w-[750px]">
                 <h1 className="text-2xl md:text-4xl font-bold">Create an account</h1>
-                <h2 className="md:text-xl font-medium pt-2">Sign up to apply to EurekaHACKS</h2>
+                <h2 className="md:text-xl font-medium pt-2">Register to apply to EurekaHACKS</h2>
                 <form className="pt-12" action={formAction}>
                     <div className="flex flex-col md:flex-row gap-4">
                         <label className="flex flex-col md:text-lg w-full">
@@ -106,7 +106,7 @@ export default function SignUpPage() {
                 </button>
                 <h2 className="pt-8 text-center text-sm md:text-lg">Already have an account? <Link
                     className="font-semibold underline"
-                    href="/signin">Log in</Link></h2>
+                    href="/login">Log in</Link></h2>
             </div>
         </div>
     );

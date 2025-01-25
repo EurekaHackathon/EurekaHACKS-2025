@@ -12,7 +12,7 @@ export default async function VerifyEmailPage({ searchParams, }: {
 
         verificationTokenID = (await searchParams).id;
         if (!verificationTokenID || typeof verificationTokenID !== "string") {
-            redirect("/signin");
+            redirect("/login");
         }
 
         email = (await getEmailByVerificationTokenID(db, {
@@ -20,10 +20,10 @@ export default async function VerifyEmailPage({ searchParams, }: {
         }))?.email;
 
         if (!email) {
-            redirect("/signin");
+            redirect("/login");
         }
     } catch (error) {
-        redirect("/signin");
+        redirect("/login");
     }
 
     return (
@@ -37,7 +37,7 @@ export default async function VerifyEmailPage({ searchParams, }: {
                     <span className="font-bold text-secondary-600 pl-1.5">aaronye1001@gmail.com</span>.
                 </h2>
                 <p className="pt-4 lg:pt-6">
-                    Just click the link in that email to complete your signup. If you don't see it, you may need to
+                    Just click the link in that email to complete your registration. If you don't see it, you may need to
                     <b className="pl-1.5">check your spam folder</b>.
                 </p>
                 <p className="pt-6">Still can't find the email?</p>

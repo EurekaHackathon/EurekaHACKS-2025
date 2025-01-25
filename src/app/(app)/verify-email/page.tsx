@@ -15,7 +15,7 @@ export default async function VerifyEmailPage({ searchParams, }: {
     try {
         emailVerificationToken = (await searchParams).token;
         if (!emailVerificationToken || typeof emailVerificationToken !== "string") {
-            redirect("/signin");
+            redirect("/login");
         }
 
         const token = await getEmailVerificationTokenByToken(db, {
@@ -45,7 +45,7 @@ export default async function VerifyEmailPage({ searchParams, }: {
             });
         }
     } catch (error) {
-        redirect("/signin");
+        redirect("/login");
     }
 
     return (
@@ -61,7 +61,7 @@ export default async function VerifyEmailPage({ searchParams, }: {
                       <p className="pt-6">
                         You can now
                         <Link className="lg:pt-6 whitespace-pre font-semibold text-secondary-600"
-                              href="/signin"> login </Link>
+                              href="/login"> log in </Link>
                         to your account.
                       </p>
                     </>
@@ -74,7 +74,7 @@ export default async function VerifyEmailPage({ searchParams, }: {
                       </h2>
                       <p className="pt-6">Please
                         <Link className="lg:pt-6 whitespace-pre font-semibold text-secondary-600"
-                              href="/signin"> login </Link>
+                              href="/login"> log in </Link>
                         again to receive a new email.
                       </p>
                     </>
