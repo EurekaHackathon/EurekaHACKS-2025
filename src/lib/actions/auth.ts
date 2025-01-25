@@ -61,7 +61,7 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
         });
 
         if (existingUser) {
-            return { error: "Email is already in use" };
+            return { error: "An account with this email already exists" };
         }
 
         const user = await createUser({
