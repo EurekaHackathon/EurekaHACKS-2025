@@ -33,11 +33,11 @@ export default async function VerifyEmailPage({ searchParams, }: {
                 <h1 className="text-2xl md:text-4xl font-bold">Please verify your email</h1>
                 <h2 className="md:text-xl font-medium pt-2">
                     You're almost there! We sent an email to
-                    {/*TODO: Change*/}
-                    <span className="font-bold text-secondary-600 pl-1.5">aaronye1001@gmail.com</span>.
+                    <span className="font-bold text-secondary-600 pl-1.5">{email}</span>.
                 </h2>
                 <p className="pt-4 lg:pt-6">
-                    Just click the link in that email to complete your registration. If you don't see it, you may need to
+                    Just click the link in that email to complete your registration. If you don't see it, you may need
+                    to
                     <b className="pl-1.5">check your spam folder</b>.
                 </p>
                 <p className="pt-6">Still can't find the email?</p>
