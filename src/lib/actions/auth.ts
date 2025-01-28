@@ -1,8 +1,15 @@
 "use server";
 
 import { z } from "zod";
-import { createUser, generateEmailVerificationToken } from "@/lib/auth";
 import {
+    createSession,
+    createUser,
+    generateEmailVerificationToken,
+    generateSessionToken,
+    hashPassword
+} from "@/lib/auth";
+import {
+    createDBSession,
     createEmailVerificationToken,
     getUserByEmail, updateEmailVerificationToken
 } from "@/lib/sqlc/auth_sql";
@@ -12,6 +19,8 @@ import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { render } from "@react-email/components";
 import { VerifyEmailTemplate } from "@/lib/emails/verify-email";
+import { cookies } from "next/headers";
+import { verify } from "@node-rs/argon2";
 
 const signUpSchema = z.object({
     firstName: z.string().min(1, { message: "First name is required" }).max(128, { message: "First name must be less than 128 characters" }),
@@ -26,6 +35,60 @@ const signUpSchema = z.object({
         message: "Passwords do not match",
     }),
 });
+
+const loginSchema = z.object({
+    email: z.string({ message: "Email is required" }),
+    password: z.string({ message: "Password is required" }),
+});
+
+export const loginWithEmail = async (prevState: any, formData: FormData) => {
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    const validationResult = loginSchema.safeParse({
+        email: email,
+        password: password,
+    });
+
+    if (!validationResult.success) {
+        return { error: validationResult.error.errors[0].message };
+    }
+
+    if (!email || !password || typeof email !== "string" || typeof password !== "string") {
+        return { error: "All fields are required" };
+    }
+    try {
+        const user = await getUserByEmail(db, {
+            email: email,
+        });
+
+        if (!user) {
+            return { error: "Invalid email or password" };
+        }
+
+        const passwordMatches = await verify(user.password, password);
+        if (!passwordMatches) {
+            return { error: "Invalid email or password" };
+        }
+
+        const sessionToken = await generateSessionToken();
+        await createSession(sessionToken, user.id);
+
+        // Set cookie
+        const cookieStore = await cookies();
+        cookieStore.set("session", sessionToken, {
+            httpOnly: true,
+            secure: process.env.DEV !== "true",
+            sameSite: "lax",
+        });
+
+    } catch (error) {
+        console.error(error);
+        return { error: "Internal server error, please try again later" };
+    }
+
+    redirect("/dashboard");
+};
 
 export const signUpWithEmail = async (prevState: any, formData: FormData) => {
     const firstName = formData.get("first-name");

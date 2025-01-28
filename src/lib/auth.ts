@@ -18,21 +18,14 @@ import { hash } from "@node-rs/argon2";
 import { cookies } from "next/headers";
 import { jwtVerify, SignJWT } from "jose";
 
-async function hashPassword(password: string, salt: string): Promise<string> {
-    return await hash(password + salt, {
+export async function hashPassword(password: string): Promise<string> {
+    return await hash(password, {
         memoryCost: 19456,
         timeCost: 2,
         outputLen: 32,
         parallelism: 1,
-        algorithm: 2,
     });
 }
-
-const generateSalt = () => {
-    const bytes = new Uint8Array(16);
-    crypto.getRandomValues(bytes);
-    return encodeBase32LowerCaseNoPadding(bytes);
-};
 
 interface userData {
     email: string,
@@ -47,11 +40,10 @@ interface userData {
 export async function createUser(userData: userData): Promise<CreateDBUserRow | null> {
     const { email, password, firstName, lastName } = userData;
 
-    const salt = generateSalt();
-    const hashedPassword = await hashPassword(password, salt);
+    const hashedPassword = await hashPassword(password);
     return await createDBUser(db, {
         email: email,
-        password: hashedPassword + " " + salt,
+        password: hashedPassword,
         firstName: firstName,
         lastName: lastName
     });
@@ -61,11 +53,10 @@ export async function createUser(userData: userData): Promise<CreateDBUserRow | 
  * @throws {Error}
  */
 const updateUserPassword = async (userId: number, password: string): Promise<void> => {
-    const salt = generateSalt();
-    const hashedPassword = await hashPassword(password, salt);
+    const hashedPassword = await hashPassword(password);
     await updateDBUserPassword(db, {
         id: userId,
-        password: hashedPassword + salt
+        password: hashedPassword
     });
 };
 
