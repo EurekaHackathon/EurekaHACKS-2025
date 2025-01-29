@@ -270,8 +270,8 @@ interface SendVerificationEmailProps {
 
 const sendVerificationEmail = async ({ emailVerificationToken, firstName, email }: SendVerificationEmailProps) => {
     const transporter = NodeMailer.createTransport({
-        host: "email-smtp.us-east-1.amazonaws.com",
-        port: 587,
+        host: process.env.SMTP_HOST,
+        port: parseInt(process.env.SMTP_PORT || "587"),
         secure: false,
         auth: {
             user: process.env.SMTP_USER,
