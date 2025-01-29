@@ -12,6 +12,7 @@ const initialState = {
 export function HeroSectionInfo() {
     const [bgHeight, setBgHeight] = useState(0);
 
+    // TODO: Make this less scuffed
     useEffect(() => {
         setBgHeight(document.getElementById("bg")?.clientHeight ?? 0);
         document.getElementById("info")?.classList.remove("hidden");
