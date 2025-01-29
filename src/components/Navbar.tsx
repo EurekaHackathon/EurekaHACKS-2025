@@ -5,6 +5,7 @@ import Image from "next/image";
 import logo from "../../public/logo.svg";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
     const [isScrollPositionNotZero, setIsScrollPositionNotZero] = useState(false);
@@ -13,11 +14,10 @@ export default function Navbar() {
     const [clickedOnce, setClickedOnce] = useState(false);
     // Fix for iOS Chrome
     const [isOnIosChrome, setIsOnIosChrome] = useState(false);
-    const [isOnHomePage, setIsOnHomePage] = useState(false);
+    const darkIcons = usePathname().split("#")[0] !== "/";
 
     useEffect(() => {
         setIsOnIosChrome(navigator.userAgent.includes("CriOS"));
-        setIsOnHomePage(window.location.pathname === "/");
 
         const handleScroll = () => {
             setIsUserScrolled(true);
@@ -50,44 +50,46 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center justify-between py-4 lg:w-[85%] 2xl:w-[60%]">
                 <div className="flex items-center font-semibold gap-12">
                     <Link href="/#hero">
-                        <Image className="w-12 h-auto" src={logo} alt="EurekaHACKS Logo" />
+                        <Image className="w-12 h-auto" src={logo} alt="EurekaHACKS Logo"/>
                     </Link>
-                    {isOnHomePage &&
+                    {usePathname() === "/" &&
                         <>
-                            <Link href="/#about">About</Link>
-                            <Link href="/#past">Past Years</Link>
-                            <Link href="/#sponsors">Sponsors</Link>
-                            <Link href="/#faq">FAQ</Link>
-                            <Link href="/#team">Team</Link>
+                          <Link href="/#about">About</Link>
+                          <Link href="/#past">Past Years</Link>
+                          <Link href="/#sponsors">Sponsors</Link>
+                          <Link href="/#faq">FAQ</Link>
+                          <Link href="/#team">Team</Link>
                         </>
                     }
                 </div>
-                <div className="text-3xl flex items-center gap-6">
+                <div className={`text-3xl flex items-center gap-6 ${darkIcons ? "text-secondary-950" : ""}`}>
                     <a href="https://www.instagram.com/eureka_hacks/" target="_blank" rel="noopener noreferrer">
-                        <Icon icon="mdi:instagram" />
+                        <Icon icon="mdi:instagram"/>
                     </a>
                     <a href="https://www.linkedin.com/company/eurekahacks" target="_blank" rel="noopener noreferrer">
-                        <Icon icon="mdi:linkedin" />
+                        <Icon icon="mdi:linkedin"/>
                     </a>
                     <a href="https://discord.gg/ApEmE7g7GB" target="_blank" rel="noopener noreferrer">
-                        <Icon icon="mdi:discord" />
+                        <Icon icon="mdi:discord"/>
                     </a>
                     <a href="https://github.com/EurekaHackathon" target="_blank" rel="noopener noreferrer">
-                        <Icon icon="mdi:github" />
+                        <Icon icon="mdi:github"/>
                     </a>
                     <a href="mailto:hello@eurekahacks.ca" target="_blank" rel="noopener noreferrer">
-                        <Icon icon="mdi:email" />
+                        <Icon icon="mdi:email"/>
                     </a>
                 </div>
             </div>
             <div className="flex lg:hidden items-center justify-between mx-4 py-2">
                 <Link href="/#hero">
-                    <Image className="w-10 md:w-12 h-auto" src={logo} alt="EurekaHACKS Logo" />
+                    <Image className="w-10 md:w-12 h-auto" src={logo} alt="EurekaHACKS Logo"/>
                 </Link>
                 <button onClick={toggleMenu}>
-                    {isMenuOpen && <Icon icon="mdi:close" className="text-3xl md:text-4xl fade-in" />}
+                    {isMenuOpen && <Icon icon="mdi:close"
+                                         className={`text-3xl md:text-4xl fade-in ${darkIcons ? "text-secondary-950" : ""}`}/>}
                     {!isMenuOpen &&
-                        <Icon icon="mdi:menu" className={`text-3xl md:text-4xl ${clickedOnce ? "fade-in" : ""}`} />}
+                        <Icon icon="mdi:menu"
+                              className={`text-3xl md:text-4xl ${clickedOnce ? "fade-in" : ""} ${darkIcons ? "text-secondary-950" : ""}`}/>}
                 </button>
             </div>
             <div
@@ -96,32 +98,33 @@ export default function Navbar() {
                     className="h-[100vh] fade-in flex flex-col items-center justify-center gap-8 md:gap-12 landscape:gap-8">
                     <div
                         className="flex flex-col gap-4 md:gap-8 landscape:gap-4 text-xl md:text-4xl landscape:text-xl font-semibold text-center">
-                        {isOnHomePage &&
+                        {usePathname() === "/" &&
                             <>
-                                <Link href="/#about">About</Link>
-                                <Link href="/#past">Past Years</Link>
-                                <Link href="/#sponsors">Sponsors</Link>
-                                <Link href="/#faq">FAQ</Link>
-                                <Link href="/#team">Team</Link>
+                              <Link href="/#about">About</Link>
+                              <Link href="/#past">Past Years</Link>
+                              <Link href="/#sponsors">Sponsors</Link>
+                              <Link href="/#faq">FAQ</Link>
+                              <Link href="/#team">Team</Link>
                             </>
                         }
                     </div>
-                    <div className="text-3xl md:text-5xl landscape:text-4xl flex items-center gap-6 md:gap-12 pb-20">
+                    <div
+                        className={`text-3xl md:text-5xl landscape:text-4xl flex items-center gap-6 md:gap-12 pb-20 ${darkIcons ? "text-secondary-950" : ""}`}>
                         <a href="https://www.instagram.com/eureka_hacks/" target="_blank" rel="noopener noreferrer">
-                            <Icon icon="mdi:instagram" />
+                            <Icon icon="mdi:instagram"/>
                         </a>
                         <a href="https://www.linkedin.com/company/eurekahacks" target="_blank"
-                            rel="noopener noreferrer">
-                            <Icon icon="mdi:linkedin" />
+                           rel="noopener noreferrer">
+                            <Icon icon="mdi:linkedin"/>
                         </a>
                         <a href="https://discord.gg/ApEmE7g7GB" target="_blank" rel="noopener noreferrer">
-                            <Icon icon="mdi:discord" />
+                            <Icon icon="mdi:discord"/>
                         </a>
                         <a href="https://github.com/EurekaHackathon" target="_blank" rel="noopener noreferrer">
-                            <Icon icon="mdi:github" />
+                            <Icon icon="mdi:github"/>
                         </a>
                         <a href="mailto:hello@eurekahacks.ca" target="_blank" rel="noopener noreferrer">
-                            <Icon icon="mdi:email" />
+                            <Icon icon="mdi:email"/>
                         </a>
                     </div>
                 </div>
