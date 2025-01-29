@@ -14,7 +14,7 @@ export default async function SignUpPage() {
     }
 
     return (
-        <div className="bg-secondary-200 flex items-center justify-center py-32">
+        <div className="bg-secondary-200 flex items-center justify-center py-32 flex-grow">
             <RegistrationForm/>
         </div>
     );
