@@ -171,6 +171,44 @@ export async function getUserByEmail(sql: Sql, args: GetUserByEmailArgs): Promis
     };
 }
 
+export const getUserByIDQuery = `-- name: GetUserByID :one
+select id, first_name, last_name, email, password, email_verified, is_admin, created_at, updated_at from public.apps_users where id = $1`;
+
+export interface GetUserByIDArgs {
+    id: number;
+}
+
+export interface GetUserByIDRow {
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    emailVerified: boolean;
+    isAdmin: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export async function getUserByID(sql: Sql, args: GetUserByIDArgs): Promise<GetUserByIDRow | null> {
+    const rows = await sql.unsafe(getUserByIDQuery, [args.id]).values();
+    if (rows.length !== 1) {
+        return null;
+    }
+    const row = rows[0];
+    return {
+        id: row[0],
+        firstName: row[1],
+        lastName: row[2],
+        email: row[3],
+        password: row[4],
+        emailVerified: row[5],
+        isAdmin: row[6],
+        createdAt: row[7],
+        updatedAt: row[8]
+    };
+}
+
 export const createEmailVerificationTokenQuery = `-- name: CreateEmailVerificationToken :one
 insert into public.email_verification_tokens (user_id, token, expires_at)
 values ($1, $2, $3)

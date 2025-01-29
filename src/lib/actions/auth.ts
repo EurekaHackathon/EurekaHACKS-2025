@@ -2,7 +2,6 @@
 
 import { z } from "zod";
 import {
-    createSession,
     createUser,
     generateEmailVerificationToken,
     generateSessionToken,
@@ -10,7 +9,7 @@ import {
 } from "@/lib/auth";
 import {
     createDBSession,
-    createEmailVerificationToken,
+    createEmailVerificationToken, deleteUserSessionBySessionID,
     getUserByEmail, updateEmailVerificationToken
 } from "@/lib/sqlc/auth_sql";
 import { db } from "@/lib/database";
@@ -21,6 +20,7 @@ import { render } from "@react-email/components";
 import { VerifyEmailTemplate } from "@/lib/emails/verify-email";
 import { cookies } from "next/headers";
 import { verify } from "@node-rs/argon2";
+import { createSession, invalidateSession } from "@/lib/sessions";
 
 const signUpSchema = z.object({
     firstName: z.string().min(1, { message: "First name is required" }).max(128, { message: "First name must be less than 128 characters" }),
@@ -35,6 +35,22 @@ const signUpSchema = z.object({
         message: "Passwords do not match",
     }),
 });
+
+export const logout = async (prevState: any, formData: FormData) => {
+    const cookieStore = await cookies();
+    const sessionCookie = cookieStore.get("session");
+
+    if (sessionCookie) {
+        try {
+            await invalidateSession(sessionCookie.value);
+        } catch (error) {
+            console.error(error);
+        }
+        cookieStore.delete("session");
+    }
+
+    redirect("/login");
+};
 
 const loginSchema = z.object({
     email: z.string({ message: "Email is required" }),
@@ -72,7 +88,7 @@ export const loginWithEmail = async (prevState: any, formData: FormData) => {
         }
 
         const sessionToken = await generateSessionToken();
-        await createSession(sessionToken, user.id);
+        const session = await createSession(sessionToken, user.id);
 
         // Set cookie
         const cookieStore = await cookies();
