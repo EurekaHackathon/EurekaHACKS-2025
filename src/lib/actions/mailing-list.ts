@@ -4,7 +4,7 @@ import { db } from "@/lib/database";
 import { addEmailToMailingList, getSubscribedEmail } from "@/lib/sqlc/mailing_list_sql";
 import { emailSchema } from "../validation";
 
-export const subscribeToMailingList = async (_prevState: any, formData: FormData) => {
+export const subscribeToMailingList = async (prevState: any, formData: FormData) => {
     const email = formData.get("email");
     const validationResult = emailSchema.safeParse(email);
     if (!validationResult.success) {
