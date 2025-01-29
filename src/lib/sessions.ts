@@ -2,14 +2,16 @@ import { encodeHexLowerCase } from "@oslojs/encoding";
 import {
     createDBSession,
     deleteAllUserSessionsByUserID,
-    deleteUserSessionBySessionID, getUserByID,
+    deleteUserSessionBySessionID, 
+    getUserByID,
     getUserSessionBySessionID,
     updateUserSessionExpiresAt
 } from "@/lib/sqlc/auth_sql";
 import { db } from "@/lib/database";
 import { sha256 } from "@oslojs/crypto/sha2";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+
+const MILLI_TO_DAYS = 1000 * 60 * 60 * 24;
 
 /**
  * @throws {Error}
@@ -36,8 +38,8 @@ export async function validateSessionToken(token: string): Promise<SessionValida
     }
 
     // If the session is about to expire, extend the expiry date
-    if (Date.now() >= session.expiresAt.getTime() - 1000 * 60 * 60 * 24 * 15) {
-        const newExpiry = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30);
+    if (Date.now() >= session.expiresAt.getTime() - MILLI_TO_DAYS * 15) {
+        const newExpiry = new Date(Date.now() + MILLI_TO_DAYS * 30);
         await updateUserSessionExpiresAt(db, {
             id: sessionId,
             expiresAt: newExpiry
@@ -87,7 +89,7 @@ export async function createSession(token: string, userId: number): Promise<Sess
         id: sessionId,
         userId,
         // 30 days
-        expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
+        expiresAt: new Date(Date.now() + MILLI_TO_DAYS * 30)
     };
     await createDBSession(db, session);
     return session;
