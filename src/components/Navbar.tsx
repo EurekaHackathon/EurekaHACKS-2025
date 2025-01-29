@@ -70,7 +70,7 @@ export default function Navbar() {
                         <Icon icon="mdi:linkedin"/>
                     </a>
                     <a href="https://discord.gg/ApEmE7g7GB" target="_blank" rel="noopener noreferrer">
-                        <Icon icon="mdi:discord"/>
+                        <Icon icon="ic:baseline-discord"/>
                     </a>
                     <a href="https://github.com/EurekaHackathon" target="_blank" rel="noopener noreferrer">
                         <Icon icon="mdi:github"/>
@@ -118,7 +118,7 @@ export default function Navbar() {
                             <Icon icon="mdi:linkedin"/>
                         </a>
                         <a href="https://discord.gg/ApEmE7g7GB" target="_blank" rel="noopener noreferrer">
-                            <Icon icon="mdi:discord"/>
+                            <Icon icon="ic:baseline-discord"/>
                         </a>
                         <a href="https://github.com/EurekaHackathon" target="_blank" rel="noopener noreferrer">
                             <Icon icon="mdi:github"/>
