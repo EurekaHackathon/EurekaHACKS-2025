@@ -310,41 +310,6 @@ export async function getEmailByVerificationTokenID(sql: Sql, args: GetEmailByVe
     };
 }
 
-export const updateEmailVerificationTokenQuery = `-- name: UpdateEmailVerificationToken :one
-update public.email_verification_tokens set (token, expires_at) = ($2, $3) where id = $1
-returning id, user_id, token, expires_at, created_at, updated_at`;
-
-export interface UpdateEmailVerificationTokenArgs {
-    id: string;
-    token: string;
-    expiresAt: Date;
-}
-
-export interface UpdateEmailVerificationTokenRow {
-    id: string;
-    userId: number;
-    token: string;
-    expiresAt: Date;
-    createdAt: Date;
-    updatedAt: Date;
-}
-
-export async function updateEmailVerificationToken(sql: Sql, args: UpdateEmailVerificationTokenArgs): Promise<UpdateEmailVerificationTokenRow | null> {
-    const rows = await sql.unsafe(updateEmailVerificationTokenQuery, [args.id, args.token, args.expiresAt]).values();
-    if (rows.length !== 1) {
-        return null;
-    }
-    const row = rows[0];
-    return {
-        id: row[0],
-        userId: row[1],
-        token: row[2],
-        expiresAt: row[3],
-        createdAt: row[4],
-        updatedAt: row[5]
-    };
-}
-
 export const verifyUserEmailQuery = `-- name: VerifyUserEmail :exec
 update public.apps_users set email_verified = true where id = $1`;
 

@@ -4,13 +4,10 @@ import { z } from "zod";
 import {
     createUser,
     generateEmailVerificationToken,
-    generateSessionToken,
-    hashPassword
+    generateSessionToken
 } from "@/lib/auth";
 import {
-    createDBSession,
-    createEmailVerificationToken, deleteUserSessionBySessionID,
-    getUserByEmail, updateEmailVerificationToken
+    createEmailVerificationToken, deleteAllEmailVerificationTokensByUserID, getUserByEmail
 } from "@/lib/sqlc/auth_sql";
 import { db } from "@/lib/database";
 import NodeMailer from "nodemailer";
@@ -73,6 +70,9 @@ export const loginWithEmail = async (prevState: any, formData: FormData) => {
     if (!email || !password || typeof email !== "string" || typeof password !== "string") {
         return { error: "All fields are required" };
     }
+
+    let emailVerificationTokenRecord;
+    let emailVerified = true;
     try {
         const user = await getUserByEmail(db, {
             email: email,
@@ -87,23 +87,50 @@ export const loginWithEmail = async (prevState: any, formData: FormData) => {
             return { error: "Invalid email or password" };
         }
 
-        const sessionToken = await generateSessionToken();
-        const session = await createSession(sessionToken, user.id);
+        if (!user.emailVerified) {
+            emailVerified = false;
+            await deleteAllEmailVerificationTokensByUserID(db, {
+                userId: user.id,
+            });
 
-        // Set cookie
-        const cookieStore = await cookies();
-        cookieStore.set("session", sessionToken, {
-            httpOnly: true,
-            secure: process.env.DEV !== "true",
-            sameSite: "lax",
-        });
+            const emailVerificationToken = await generateEmailVerificationToken();
+            // 15 minutes
+
+            const tokenExpiry = new Date(Date.now() + 15 * 60 * 1000);
+
+            emailVerificationTokenRecord = await createEmailVerificationToken(db, {
+                token: emailVerificationToken,
+                userId: user.id,
+                expiresAt: tokenExpiry,
+            });
+
+            await sendVerificationEmail({
+                emailVerificationToken: emailVerificationToken,
+                firstName: user.firstName,
+                email: email,
+            });
+        } else {
+            const sessionToken = await generateSessionToken();
+            await createSession(sessionToken, user.id);
+
+            // Set cookie
+            const cookieStore = await cookies();
+            cookieStore.set("session", sessionToken, {
+                httpOnly: true,
+                secure: process.env.DEV !== "true",
+                sameSite: "lax",
+            });
+        }
 
     } catch (error) {
         console.error(error);
         return { error: "Internal server error, please try again later" };
     }
-
-    redirect("/dashboard");
+    if (emailVerified) {
+        redirect("/dashboard");
+    } else {
+        redirect(`/verify-email-prompt?id=${emailVerificationTokenRecord!.id}`);
+    }
 };
 
 export const signUpWithEmail = async (prevState: any, formData: FormData) => {
@@ -168,48 +195,11 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
             return { error: "Internal server error, please try again later" };
         }
 
-        const transporter = NodeMailer.createTransport({
-            host: "email-smtp.us-east-1.amazonaws.com",
-            port: 587,
-            secure: false,
-            auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASSWORD,
-            },
-            tls: {
-                rejectUnauthorized: false,
-            }
+        await sendVerificationEmail({
+            emailVerificationToken: emailVerificationToken,
+            firstName: firstName,
+            email: email,
         });
-
-        const headersList = await headers();
-        const domain = headersList.get("host");
-        const isHttp = process.env.DEV === "true";
-        const emailHTML = await render(VerifyEmailTemplate({
-            verificationLink: `${isHttp ? "http" : "https"}://${domain}/verify-email?token=${emailVerificationToken}`,
-            userFirstname: user.firstName,
-        }));
-
-        const emailText = `
-        Hi ${user.firstName},
-
-        Thank you for creating a EurekaHACKS account! To get started, please verify your
-        email address by clicking the link below. This will expire in 15 minutes.
-        
-        ${domain}/verify-email?token=${emailVerificationToken}
-        
-        Best,
-        The EurekaHACKS Team
-        `;
-
-        const mailOptions = {
-            from: `"EurekaHACKS" verify@eurekahacks.ca`,
-            to: email,
-            subject: "Verify your email for EurekaHACKS",
-            text: emailText,
-            html: emailHTML,
-        };
-
-        await sendMailAsync(transporter, mailOptions);
 
     } catch (error) {
         console.error(error);
@@ -240,14 +230,23 @@ export const resendEmailVerificationLink = async (prevState: any, formData: Form
             return { error: "Internal server error, please try again later." };
         }
 
+        // Check if email is already verified
+        if (user.emailVerified) {
+            return { error: "Email is already verified" };
+        }
+
+        await deleteAllEmailVerificationTokensByUserID(db, {
+            userId: user.id,
+        });
+
         const emailVerificationToken = await generateEmailVerificationToken();
         // 15 minutes
         const tokenExpiry = new Date(Date.now() + 15 * 60 * 1000);
 
         // Update the existing record so the id is the same
-        const newToken = await updateEmailVerificationToken(db, {
-            id: id,
+        const newToken = await createEmailVerificationToken(db, {
             token: emailVerificationToken,
+            userId: user.id,
             expiresAt: tokenExpiry,
         });
 
@@ -255,48 +254,11 @@ export const resendEmailVerificationLink = async (prevState: any, formData: Form
             return { error: "Internal server error, please try again later." };
         }
 
-        const transporter = NodeMailer.createTransport({
-            host: "email-smtp.us-east-1.amazonaws.com",
-            port: 587,
-            secure: false,
-            auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASSWORD,
-            },
-            tls: {
-                rejectUnauthorized: false,
-            }
+        await sendVerificationEmail({
+            emailVerificationToken: emailVerificationToken,
+            firstName: user.firstName,
+            email: email,
         });
-
-        const headersList = await headers();
-        const domain = headersList.get("host");
-        const isHttp = process.env.DEV === "true";
-        const emailHTML = await render(VerifyEmailTemplate({
-            verificationLink: `${isHttp ? "http" : "https"}://${domain}/verify-email?token=${emailVerificationToken}`,
-            userFirstname: user.firstName,
-        }));
-
-        const emailText = `
-        Hi ${user.firstName},
-
-        Thank you for creating a EurekaHACKS account! To get started, please verify your
-        email address by clicking the link below. This will expire in 15 minutes.
-        
-        ${domain}/verify-email?token=${emailVerificationToken}
-        
-        Best,
-        The EurekaHACKS Team
-        `;
-
-        const mailOptions = {
-            from: `"EurekaHACKS" verify@eurekahacks.ca`,
-            to: email,
-            subject: "Verify your email for EurekaHACKS",
-            text: emailText,
-            html: emailHTML,
-        };
-
-        await sendMailAsync(transporter, mailOptions);
 
         return { success: true };
     } catch (error) {
@@ -315,4 +277,55 @@ const sendMailAsync = (transporter: NodeMailer.Transporter, mailOptions: NodeMai
             }
         });
     });
+};
+
+interface SendVerificationEmailProps {
+    emailVerificationToken: string;
+    firstName: string;
+    email: string;
+}
+
+const sendVerificationEmail = async ({ emailVerificationToken, firstName, email }: SendVerificationEmailProps) => {
+    const transporter = NodeMailer.createTransport({
+        host: "email-smtp.us-east-1.amazonaws.com",
+        port: 587,
+        secure: false,
+        auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASSWORD,
+        },
+        tls: {
+            rejectUnauthorized: false,
+        }
+    });
+
+    const headersList = await headers();
+    const domain = headersList.get("host");
+    const isHttp = process.env.DEV === "true";
+    const emailHTML = await render(VerifyEmailTemplate({
+        verificationLink: `${isHttp ? "http" : "https"}://${domain}/verify-email?token=${emailVerificationToken}`,
+        userFirstname: firstName,
+    }));
+
+    const emailText = `
+                Hi ${firstName},
+        
+                Thank you for creating a EurekaHACKS account! To get started, please verify your
+                email address by clicking the link below. This will expire in 15 minutes.
+                
+                ${domain}/verify-email?token=${emailVerificationToken}
+                
+                Best,
+                The EurekaHACKS Team
+                `;
+
+    const mailOptions = {
+        from: `"EurekaHACKS" verify@eurekahacks.ca`,
+        to: email,
+        subject: "Verify your email for EurekaHACKS",
+        text: emailText,
+        html: emailHTML,
+    };
+
+    await sendMailAsync(transporter, mailOptions);
 };

@@ -42,9 +42,5 @@ select * from public.email_verification_tokens where token = $1;
 -- name: GetEmailByVerificationTokenID :one
 select email from public.apps_users where id = (select user_id from public.email_verification_tokens where public.email_verification_tokens.id = $1);
 
--- name: UpdateEmailVerificationToken :one
-update public.email_verification_tokens set (token, expires_at) = ($2, $3) where id = $1
-returning *;
-
 -- name: VerifyUserEmail :exec
 update public.apps_users set email_verified = true where id = $1;
