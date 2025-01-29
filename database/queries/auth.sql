@@ -25,6 +25,9 @@ update public.apps_users set password = $2 where id = $1;
 -- name: GetUserByEmail :one
 select * from public.apps_users where email = $1;
 
+-- name: GetUserByID :one
+select * from public.apps_users where id = $1;
+
 -- name: CreateEmailVerificationToken :one
 insert into public.email_verification_tokens (user_id, token, expires_at)
 values ($1, $2, $3)
