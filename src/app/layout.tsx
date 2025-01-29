@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
-import "./globals.css"
+import "./global.css"
 
 export const metadata: Metadata = {
     title: "EurekaHACKS 2025",
@@ -26,16 +26,16 @@ export default function RootLayout({
     return (
         // Disable hydration warning since browser addons/extensions trigger
         <html lang="en" suppressHydrationWarning>
-        <head>
-            <meta charSet="UTF-8"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-            <title>EurekaHACKS</title>
-            <script defer src="https://cloud.umami.is/script.js"
+            <head>
+                <meta charSet="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+                <title>EurekaHACKS</title>
+                <script defer src="https://cloud.umami.is/script.js"
                     data-website-id="515f16a5-8036-482d-b535-7cdc2310d52b"></script>
-        </head>
-        <body className="overflow-x-hidden">
-        {children}
-        </body>
+            </head>
+            <body className="overflow-x-hidden">
+                {children}
+            </body>
         </html>
     );
 }

@@ -55,7 +55,7 @@ export default function RegistrationForm() {
                                 className="rounded-xl py-4 px-6 border-gray-300 border hover:border-secondary-200 focus:outline-none w-full"
                                 type={passwordVisible ? "text" : "password"}
                                 name="password" placeholder="••••••••••••"/>
-                            <div>
+                            <div className="cursor-pointer">
                                 <Icon onClick={() => setPasswordVisible(!passwordVisible)}
                                       className="text-2xl -ml-12 text-gray-400"
                                       icon={passwordVisible ? "mdi:show-outline" : "mdi:hide-outline"}/>
@@ -70,7 +70,7 @@ export default function RegistrationForm() {
                                 className="rounded-xl py-4 px-6 border-gray-300 border hover:border-secondary-200 focus:outline-none w-full"
                                 type={confirmPasswordVisible ? "text" : "password"}
                                 name="confirm-password" placeholder="••••••••••••"/>
-                            <div>
+                            <div className="cursor-pointer">
                                 <Icon onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
                                       className="text-2xl -ml-12 text-gray-400"
                                       icon={confirmPasswordVisible ? "mdi:show-outline" : "mdi:hide-outline"}/>

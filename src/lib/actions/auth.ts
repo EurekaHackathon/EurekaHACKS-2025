@@ -1,6 +1,5 @@
 "use server";
 
-import { z } from "zod";
 import {
     createUser,
     generateEmailVerificationToken,
@@ -18,20 +17,8 @@ import { VerifyEmailTemplate } from "@/lib/emails/verify-email";
 import { cookies } from "next/headers";
 import { verify } from "@node-rs/argon2";
 import { createSession, invalidateSession } from "@/lib/sessions";
+import { loginSchema, signUpSchema } from "../validation";
 
-const signUpSchema = z.object({
-    firstName: z.string().min(1, { message: "First name is required" }).max(128, { message: "First name must be less than 128 characters" }),
-    lastName: z.string().min(1, { message: "Last name is required" }).max(128, { message: "Last name must be less than 128 characters" }),
-    email: z.string().email({ message: "Invalid email" }),
-    password: z
-        .string()
-        .regex(/(?=.*\d)(?=.*[A-Za-z]).{8,128}$/, {
-            message: "Password must contain at least one letter and one number, and be between 8 and 128 characters",
-        }),
-    confirmPassword: z.string({
-        message: "Passwords do not match",
-    }),
-});
 
 export const logout = async (prevState: any, formData: FormData) => {
     const cookieStore = await cookies();
@@ -49,10 +36,6 @@ export const logout = async (prevState: any, formData: FormData) => {
     redirect("/login");
 };
 
-const loginSchema = z.object({
-    email: z.string({ message: "Email is required" }),
-    password: z.string({ message: "Password is required" }),
-});
 
 export const loginWithEmail = async (prevState: any, formData: FormData) => {
     const email = formData.get("email");
