@@ -29,6 +29,7 @@ export async function DashboardNav() {
                                   route="/dashboard/schedule"/>
                 <DashboardNavItem icon="fluent:qr-code-28-filled" text="QR Code"
                                   route="/dashboard/qr-code"/>
+                {user.isAdmin && <DashboardNavItem icon="fluent:people-16-filled" text="Admin" route="/dashboard/admin"/>}
             </div>
             <div className="pb-12">
                 <div className="flex items-center text-gray-600 gap-3 justify-center pt-32">
