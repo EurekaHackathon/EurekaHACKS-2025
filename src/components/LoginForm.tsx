@@ -35,7 +35,7 @@ export default function LoginForm() {
                             type={passwordVisible ? "text" : "password"}
                             required
                             name="password" placeholder="••••••••••••"/>
-                        <div>
+                        <div className="cursor-pointer">
                             <Icon onClick={() => setPasswordVisible(!passwordVisible)}
                                   className="text-2xl -ml-12 text-gray-400"
                                   icon={passwordVisible ? "mdi:show-outline" : "mdi:hide-outline"}/>
