@@ -14,7 +14,7 @@ export default async function Dashboard() {
     return (
         <div className="py-32 px-48">
             <h1 className="text-5xl font-bold text-gray-700">Welcome, <span
-                className="text-secondary-600">{user.firstName}</span></h1>
+                className="text-secondary-600">{user.firstName ?? "Hacker"}</span></h1>
             <div className="border border-gray-300 mt-12 rounded-lg bg-gray-50 py-8 px-12">
                 <div className="flex justify-between">
                     <h2 className="text-gray-600 font-semibold text-2xl">Application status</h2>

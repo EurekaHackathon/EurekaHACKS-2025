@@ -2,7 +2,7 @@
 
 import { encodeBase32LowerCaseNoPadding } from "@oslojs/encoding";
 import { db } from "@/lib/database";
-import { createDBUser, CreateDBUserRow, updateDBUserPassword } from "@/lib/sqlc/auth_sql";
+import { createEmailUser, CreateEmailUserRow, updateDBUserPassword } from "@/lib/sqlc/auth_sql";
 import { hash } from "@node-rs/argon2";
 
 export async function hashPassword(password: string): Promise<string> {
@@ -24,11 +24,11 @@ interface userData {
 /**
  * @throws {Error}
  */
-export async function createUser(userData: userData): Promise<CreateDBUserRow | null> {
+export async function createUser(userData: userData): Promise<CreateEmailUserRow | null> {
     const { email, password, firstName, lastName } = userData;
 
     const hashedPassword = await hashPassword(password);
-    return await createDBUser(db, {
+    return await createEmailUser(db, {
         email: email,
         password: hashedPassword,
         firstName: firstName,

@@ -78,32 +78,34 @@ export async function updateUserSessionExpiresAt(sql: Sql, args: UpdateUserSessi
     await sql.unsafe(updateUserSessionExpiresAtQuery, [args.id, args.expiresAt]);
 }
 
-export const createDBUserQuery = `-- name: CreateDBUser :one
-insert into public.apps_users (first_name, last_name, email, password)
-values ($1, $2, $3, $4)
-returning id, first_name, last_name, email, password, email_verified, is_admin, created_at, updated_at`;
+export const createEmailUserQuery = `-- name: CreateEmailUser :one
+insert into public.apps_users (first_name, last_name, email, password, account_type)
+values ($1, $2, $3, $4, 'email')
+returning id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at`;
 
-export interface CreateDBUserArgs {
-    firstName: string;
-    lastName: string;
-    email: string;
+export interface CreateEmailUserArgs {
+    firstName: string | null;
+    lastName: string | null;
+    email: string | null;
     password: string;
 }
 
-export interface CreateDBUserRow {
+export interface CreateEmailUserRow {
     id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    email: string | null;
     password: string;
     emailVerified: boolean;
+    accountType: string;
+    oauthId: string | null;
     isAdmin: boolean;
     createdAt: Date;
     updatedAt: Date;
 }
 
-export async function createDBUser(sql: Sql, args: CreateDBUserArgs): Promise<CreateDBUserRow | null> {
-    const rows = await sql.unsafe(createDBUserQuery, [args.firstName, args.lastName, args.email, args.password]).values();
+export async function createEmailUser(sql: Sql, args: CreateEmailUserArgs): Promise<CreateEmailUserRow | null> {
+    const rows = await sql.unsafe(createEmailUserQuery, [args.firstName, args.lastName, args.email, args.password]).values();
     if (rows.length !== 1) {
         return null;
     }
@@ -115,9 +117,11 @@ export async function createDBUser(sql: Sql, args: CreateDBUserArgs): Promise<Cr
         email: row[3],
         password: row[4],
         emailVerified: row[5],
-        isAdmin: row[6],
-        createdAt: row[7],
-        updatedAt: row[8]
+        accountType: row[6],
+        oauthId: row[7],
+        isAdmin: row[8],
+        createdAt: row[9],
+        updatedAt: row[10]
     };
 }
 
@@ -134,19 +138,21 @@ export async function updateDBUserPassword(sql: Sql, args: UpdateDBUserPasswordA
 }
 
 export const getUserByEmailQuery = `-- name: GetUserByEmail :one
-select id, first_name, last_name, email, password, email_verified, is_admin, created_at, updated_at from public.apps_users where email = $1`;
+select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.apps_users where email = $1 and account_type = 'email'`;
 
 export interface GetUserByEmailArgs {
-    email: string;
+    email: string | null;
 }
 
 export interface GetUserByEmailRow {
     id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    email: string | null;
     password: string;
     emailVerified: boolean;
+    accountType: string;
+    oauthId: string | null;
     isAdmin: boolean;
     createdAt: Date;
     updatedAt: Date;
@@ -165,14 +171,16 @@ export async function getUserByEmail(sql: Sql, args: GetUserByEmailArgs): Promis
         email: row[3],
         password: row[4],
         emailVerified: row[5],
-        isAdmin: row[6],
-        createdAt: row[7],
-        updatedAt: row[8]
+        accountType: row[6],
+        oauthId: row[7],
+        isAdmin: row[8],
+        createdAt: row[9],
+        updatedAt: row[10]
     };
 }
 
 export const getUserByIDQuery = `-- name: GetUserByID :one
-select id, first_name, last_name, email, password, email_verified, is_admin, created_at, updated_at from public.apps_users where id = $1`;
+select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.apps_users where id = $1`;
 
 export interface GetUserByIDArgs {
     id: number;
@@ -180,11 +188,13 @@ export interface GetUserByIDArgs {
 
 export interface GetUserByIDRow {
     id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
+    firstName: string | null;
+    lastName: string | null;
+    email: string | null;
     password: string;
     emailVerified: boolean;
+    accountType: string;
+    oauthId: string | null;
     isAdmin: boolean;
     createdAt: Date;
     updatedAt: Date;
@@ -203,9 +213,11 @@ export async function getUserByID(sql: Sql, args: GetUserByIDArgs): Promise<GetU
         email: row[3],
         password: row[4],
         emailVerified: row[5],
-        isAdmin: row[6],
-        createdAt: row[7],
-        updatedAt: row[8]
+        accountType: row[6],
+        oauthId: row[7],
+        isAdmin: row[8],
+        createdAt: row[9],
+        updatedAt: row[10]
     };
 }
 
@@ -296,7 +308,7 @@ export interface GetEmailByVerificationTokenIDArgs {
 }
 
 export interface GetEmailByVerificationTokenIDRow {
-    email: string;
+    email: string | null;
 }
 
 export async function getEmailByVerificationTokenID(sql: Sql, args: GetEmailByVerificationTokenIDArgs): Promise<GetEmailByVerificationTokenIDRow | null> {

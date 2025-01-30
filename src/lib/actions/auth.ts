@@ -89,7 +89,7 @@ export const loginWithEmail = async (prevState: any, formData: FormData) => {
 
             await sendVerificationEmail({
                 emailVerificationToken: emailVerificationToken,
-                firstName: user.firstName,
+                firstName: user.firstName ?? "",
                 email: email,
             });
         } else {
@@ -117,8 +117,8 @@ export const loginWithEmail = async (prevState: any, formData: FormData) => {
 };
 
 export const signUpWithEmail = async (prevState: any, formData: FormData) => {
-    const firstName = formData.get("first-name");
-    const lastName = formData.get("last-name");
+    const firstName = formData.get("first-name")?.toString().trim();
+    const lastName = formData.get("last-name")?.toString().trim();
     const email = formData.get("email");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirm-password");
@@ -239,7 +239,7 @@ export const resendEmailVerificationLink = async (prevState: any, formData: Form
 
         await sendVerificationEmail({
             emailVerificationToken: emailVerificationToken,
-            firstName: user.firstName,
+            firstName: user.firstName ?? "Hacker",
             email: email,
         });
 

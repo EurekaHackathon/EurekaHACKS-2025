@@ -1,21 +1,21 @@
 create table if not exists public.mailing_list (
     id serial primary key,
-    email text unique not null check (email ~ '^([^@]+)*@([^.@]+\.)+([^.@]+)$')
+    email text unique not null
 );
 
 create table if not exists public.apps_users (
     id serial primary key,
-    first_name text not null check (
-        length(first_name) > 0
-        and length(first_name) < 128
-    ),
-    last_name text not null check (
-        length(last_name) > 0
-        and length(last_name) < 128
-    ),
-    email text unique not null,
+    first_name text,
+    last_name text,
+    email text unique,
     password text not null check (password ~ '(?=.*\d)(?=.*[A-Za-z]).{8,128}$'),
     email_verified boolean not null default false,
+    account_type text not null check (
+        account_type = 'email'
+        or account_type = 'github'
+        or account_type = 'google'
+    ),
+    oauth_id text,
     is_admin boolean not null default false,
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()
@@ -36,4 +36,71 @@ create table if not exists public.email_verification_tokens (
     expires_at timestamptz not null,
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()
-)
+);
+
+create table if not exists public.hackathon_applications (
+    id serial primary key,
+    user_id integer not null references public.apps_users(id) on delete cascade,
+    first_name text not null check (
+        length(first_name) > 0
+        and length(first_name) < 128
+    ),
+    last_name text not null check (
+        length(last_name) > 0
+        and length(last_name) < 128
+    ),
+    email text not null,
+    age integer not null check (age > 0 and age < 150),
+    pronouns text not null check (
+        length(pronouns) > 0
+        and length(pronouns) < 128
+    ),
+    school text not null check (
+        length(school) > 0
+        and length(school) < 256
+    ),
+    year_of_graduation integer not null check (year_of_graduation > 1900 and year_of_graduation < 2100),
+    country text not null,
+    province text not null,
+    city text not null,
+    dietary_restrictions text not null check (
+        length(dietary_restrictions) > 0
+        and length(dietary_restrictions) < 256
+    ),
+    number_of_hackathons_attended integer not null check (number_of_hackathons_attended >= 0),
+    github_link text not null check (
+        length(github_link) > 0
+        and length(github_link) < 256
+    ),
+    linkedin_link text not null check (
+        length(linkedin_link) > 0
+        and length(linkedin_link) < 256
+    ),
+    portfolio_link text not null check (
+        length(portfolio_link) > 0
+        and length(portfolio_link) < 256
+    ),
+    emergency_contact_first_name text not null check (
+        length(emergency_contact_first_name) > 0
+        and length(emergency_contact_first_name) < 128
+    ),
+    emergency_contact_last_name text not null check (
+        length(emergency_contact_last_name) > 0
+        and length(emergency_contact_last_name) < 128
+    ),
+    emergency_contact_relationship text not null check (
+        length(emergency_contact_relationship) > 0
+        and length(emergency_contact_relationship) < 128
+    ),
+    emergency_contact_phone_number text not null check (
+        length(emergency_contact_phone_number) > 0
+        and length(emergency_contact_phone_number) < 128
+    ),
+    short_answer_response text not null check (
+        length(short_answer_response) > 0
+        and length(short_answer_response) < 1024
+    ),
+
+    created_at timestamptz not null default now(),
+    updated_at timestamptz not null default now()
+);

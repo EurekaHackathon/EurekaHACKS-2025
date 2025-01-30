@@ -8,10 +8,6 @@ export const passwordSchema = z.string()
     .max(128, { message: "Password must be less than 128 characters long" })
     .regex(/^(?=.*[a-zA-Z])(?=.*\d)/, { message: "Password must contain at least one letter and one number" });
 
-export const nameSchema = z.string()
-    .min(1, { message: "Name is required" })
-    .max(128, { message: "Name must be less than 128 characters long" });
-
 export const signUpSchema = z.object({
     firstName: z.string()
         .min(1, { message: "First name is required" })

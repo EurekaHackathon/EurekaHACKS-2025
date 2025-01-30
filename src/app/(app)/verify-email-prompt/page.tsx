@@ -6,7 +6,7 @@ import { ResendEmailForm } from "@/components/ResendEmailForm";
 export default async function VerifyEmailPage({ searchParams, }: {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-    let email: string | undefined;
+    let email: string | undefined | null;
     let verificationTokenID: string | string[] | undefined;
     try {
 

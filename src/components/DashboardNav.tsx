@@ -33,9 +33,11 @@ export async function DashboardNav() {
                 <div className="flex items-center text-gray-600 gap-3 justify-center pt-32">
                     <div
                         className="flex items-center justify-center h-10 w-10 bg-gray-50 rounded-full border-gray-300 border">
-                        <h1 className="font-bold text-gray-600">{user.firstName.slice(0, 1)}{user.lastName.slice(0, 1)}</h1>
+                        <h1 className="font-bold text-gray-600">{user.firstName?.slice(0, 1) ?? ""}{user.lastName?.slice(0, 1) ?? ""}</h1>
                     </div>
-                    <h1 className="font-semibold pr-10">{user.firstName} {user.lastName}</h1>
+                    <h1 className="font-semibold pr-10">
+                        {(user.firstName && user.lastName) ? user.firstName + " " + user.lastName : "Hacker"}
+                    </h1>
                 </div>
                 <div className="pt-4 flex justify-center">
                     <SignOutForm/>

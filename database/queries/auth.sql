@@ -14,16 +14,16 @@ delete from public.user_sessions where user_id = $1;
 -- name: UpdateUserSessionExpiresAt :exec
 update public.user_sessions set expires_at = $2 where id = $1;
 
--- name: CreateDBUser :one
-insert into public.apps_users (first_name, last_name, email, password)
-values ($1, $2, $3, $4)
+-- name: CreateEmailUser :one
+insert into public.apps_users (first_name, last_name, email, password, account_type)
+values ($1, $2, $3, $4, 'email')
 returning *;
 
 -- name: UpdateDBUserPassword :exec
 update public.apps_users set password = $2 where id = $1;
 
 -- name: GetUserByEmail :one
-select * from public.apps_users where email = $1;
+select * from public.apps_users where email = $1 and account_type = 'email';
 
 -- name: GetUserByID :one
 select * from public.apps_users where id = $1;
