@@ -49,10 +49,9 @@ export default async function VerifyEmailPage({ searchParams, }: {
     }
 
     return (
-        <div className="bg-secondary-200 flex items-center justify-center py-32 min-h-screen">
-            <div
-                className="bg-gray-50 p-8 md:p-12 lg:p-16 rounded-2xl text-gray-700 min-w-[40vw] max-w-[90vw] lg:w-[750px]">
-                {valid &&
+        <div className="bg-secondary-200 flex items-center justify-center py-32 flex-grow">
+            <div className="bg-gray-50 p-8 md:p-12 lg:p-16 rounded-2xl text-gray-700 min-w-[40vw] max-w-[90vw] lg:w-[750px]">
+                {valid ?
                     <>
                       <h1 className="text-2xl md:text-4xl font-bold">Verified!</h1>
                       <h2 className="md:text-xl font-medium pt-2">
@@ -65,8 +64,7 @@ export default async function VerifyEmailPage({ searchParams, }: {
                         to your account.
                       </p>
                     </>
-                }
-                {!valid &&
+                :
                     <>
                       <h1 className="text-2xl md:text-4xl font-bold">Invalid verification link</h1>
                       <h2 className="md:text-xl font-medium pt-2">
