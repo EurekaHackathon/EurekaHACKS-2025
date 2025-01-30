@@ -2,6 +2,7 @@ import Image from "next/image";
 import logo from "../../public/logo.svg";
 import DashboardNavItem from "@/components/DashboardNavItem";
 import Link from "next/link";
+import { Icon } from "@iconify/react";
 import { authorizeSession } from "@/lib/sessions";
 import { cookies } from "next/headers";
 import { SignOutForm } from "@/components/SignOutForm";
@@ -13,14 +14,15 @@ export async function DashboardNav() {
 
     return (
         <div className="bg-[#f3f2f7] h-screen flex justify-between flex-col border-r border-gray-600 border-opacity-20">
-            <Link href="/" className="px-6 pt-10 flex justify-center gap-2">
-                <Image className="w-10 h-auto" src={logo} alt="EurekaHACKS Logo"/>
-                <div className="text-gray-600 font-bold pr-10">
-                    <span>EurekaHACKS</span>
-                    <br/>
-                    <span>Dashboard</span>
-                </div>
-            </Link>
+            <div className="flex justify-between items-center gap-2 px-6 pt-10">
+                <Link href="/" className="gap-2 flex items-center">
+                    <Image className="w-12 h-auto" src={logo} alt="EurekaHACKS Logo"/>
+                    <p className="text-gray-600 font-bold text-xl">EurekaHACKS</p>
+                </Link>
+                <button className="p-2 bg-gray-600 bg-opacity-10 rounded-md">
+                    <Icon icon="fluent:chevron-left-12-filled" className="text-2xl"></Icon>
+                </button>
+            </div>
             <div className="flex flex-col px-8 gap-2">
                 <DashboardNavItem icon="fluent:home-16-filled" text="Home" route="/dashboard"/>
                 <DashboardNavItem icon="fluent:form-multiple-48-filled" text="Application"
