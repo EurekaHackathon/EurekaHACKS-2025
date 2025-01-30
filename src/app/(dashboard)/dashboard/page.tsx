@@ -9,12 +9,12 @@ export default async function Dashboard() {
     const cookieStore = await cookies();
     const sessionCookie = cookieStore.get("session");
     const user = await authorizeSession(sessionCookie?.value);
-
+    const firstName = user.firstName?.length > 0 ? user.firstName : "Hacker";
     // TODO: Add mobile support
     return (
         <div className="py-32 px-48">
             <h1 className="text-5xl font-bold text-gray-700">Welcome, <span
-                className="text-secondary-600">{user.firstName ?? "Hacker"}</span></h1>
+                className="text-secondary-600">{firstName}</span></h1>
             <div className="border border-gray-300 mt-12 rounded-lg bg-gray-50 py-8 px-12">
                 <div className="flex justify-between">
                     <h2 className="text-gray-600 font-semibold text-2xl">Application status</h2>

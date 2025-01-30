@@ -4,9 +4,21 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { useActionState, useState } from "react";
 import { loginWithEmail } from "@/lib/actions/auth";
+import { redirect } from "next/navigation";
 
 const initialState = {
     error: ""
+};
+
+const loginWithGithub = async () => {
+    const res = await fetch("/login/github", {
+        method: "POST",
+    });
+    if (!res.ok) {
+        throw new Error("Failed to sign up with Github");
+    }
+    const { url } = await res.json();
+    redirect(url);
 };
 
 export default function LoginForm() {
@@ -61,8 +73,8 @@ export default function LoginForm() {
                 </div>
                 Log in with Google
             </button>
-            <button
-                className="flex items-center justify-center gap-2 border font-semibold border-gray-300 md:text-xl mt-4 w-full py-4 rounded-xl hover:border-secondary-500 duration-200">
+            <button onClick={loginWithGithub}
+                    className="flex items-center justify-center gap-2 border font-semibold border-gray-300 md:text-xl mt-4 w-full py-4 rounded-xl hover:border-secondary-500 duration-200">
                 <div className="min-w-6 md:min-w-8">
                     <Icon icon="logos:github-icon" className="text-xl md:text-2xl"/>
                 </div>

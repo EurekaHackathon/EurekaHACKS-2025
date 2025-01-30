@@ -19,11 +19,19 @@ insert into public.apps_users (first_name, last_name, email, password, account_t
 values ($1, $2, $3, $4, 'email')
 returning *;
 
+-- name: CreateGithubUser :one
+insert into public.apps_users (first_name, last_name, oauth_id, account_type, email_verified)
+values ($1, $2, $3, 'github', true)
+returning *;
+
 -- name: UpdateDBUserPassword :exec
 update public.apps_users set password = $2 where id = $1;
 
 -- name: GetUserByEmail :one
 select * from public.apps_users where email = $1 and account_type = 'email';
+
+-- name: GetUserByGithubID :one
+select * from public.apps_users where oauth_id = $1 and account_type = 'github';
 
 -- name: GetUserByID :one
 select * from public.apps_users where id = $1;

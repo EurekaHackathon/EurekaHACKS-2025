@@ -125,6 +125,52 @@ export async function createEmailUser(sql: Sql, args: CreateEmailUserArgs): Prom
     };
 }
 
+export const createGithubUserQuery = `-- name: CreateGithubUser :one
+insert into public.apps_users (first_name, last_name, oauth_id, account_type, email_verified)
+values ($1, $2, $3, 'github', true)
+returning id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at`;
+
+export interface CreateGithubUserArgs {
+    firstName: string | null;
+    lastName: string | null;
+    oauthId: string | null;
+}
+
+export interface CreateGithubUserRow {
+    id: number;
+    firstName: string | null;
+    lastName: string | null;
+    email: string | null;
+    password: string;
+    emailVerified: boolean;
+    accountType: string;
+    oauthId: string | null;
+    isAdmin: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export async function createGithubUser(sql: Sql, args: CreateGithubUserArgs): Promise<CreateGithubUserRow | null> {
+    const rows = await sql.unsafe(createGithubUserQuery, [args.firstName, args.lastName, args.oauthId]).values();
+    if (rows.length !== 1) {
+        return null;
+    }
+    const row = rows[0];
+    return {
+        id: row[0],
+        firstName: row[1],
+        lastName: row[2],
+        email: row[3],
+        password: row[4],
+        emailVerified: row[5],
+        accountType: row[6],
+        oauthId: row[7],
+        isAdmin: row[8],
+        createdAt: row[9],
+        updatedAt: row[10]
+    };
+}
+
 export const updateDBUserPasswordQuery = `-- name: UpdateDBUserPassword :exec
 update public.apps_users set password = $2 where id = $1`;
 
@@ -160,6 +206,48 @@ export interface GetUserByEmailRow {
 
 export async function getUserByEmail(sql: Sql, args: GetUserByEmailArgs): Promise<GetUserByEmailRow | null> {
     const rows = await sql.unsafe(getUserByEmailQuery, [args.email]).values();
+    if (rows.length !== 1) {
+        return null;
+    }
+    const row = rows[0];
+    return {
+        id: row[0],
+        firstName: row[1],
+        lastName: row[2],
+        email: row[3],
+        password: row[4],
+        emailVerified: row[5],
+        accountType: row[6],
+        oauthId: row[7],
+        isAdmin: row[8],
+        createdAt: row[9],
+        updatedAt: row[10]
+    };
+}
+
+export const getUserByGithubIDQuery = `-- name: GetUserByGithubID :one
+select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.apps_users where oauth_id = $1 and account_type = 'github'`;
+
+export interface GetUserByGithubIDArgs {
+    oauthId: string | null;
+}
+
+export interface GetUserByGithubIDRow {
+    id: number;
+    firstName: string | null;
+    lastName: string | null;
+    email: string | null;
+    password: string;
+    emailVerified: boolean;
+    accountType: string;
+    oauthId: string | null;
+    isAdmin: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export async function getUserByGithubID(sql: Sql, args: GetUserByGithubIDArgs): Promise<GetUserByGithubIDRow | null> {
+    const rows = await sql.unsafe(getUserByGithubIDQuery, [args.oauthId]).values();
     if (rows.length !== 1) {
         return null;
     }
