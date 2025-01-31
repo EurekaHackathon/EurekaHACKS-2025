@@ -2,7 +2,7 @@ import { google } from "@/lib/oauth";
 import { cookies } from "next/headers";
 
 import { decodeIdToken, type OAuth2Tokens } from "arctic";
-import { createGithubUser, getUserByGoogleID } from "@/lib/sqlc/auth_sql";
+import { createGoogleUser, getUserByGoogleID } from "@/lib/sqlc/auth_sql";
 import { generateSessionToken } from "@/lib/auth";
 import { createSession } from "@/lib/sessions";
 import { db } from "@/lib/database";
@@ -65,7 +65,7 @@ export async function GET(request: Request): Promise<Response> {
         });
     }
 
-    const user = await createGithubUser(db, {
+    const user = await createGoogleUser(db, {
         oauthId: googleId,
         firstName: name.split(" ", 2)[0] ?? "",
         lastName: name.split(" ", 2)[1] ?? "",

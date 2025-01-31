@@ -15,7 +15,7 @@ create table if not exists public.apps_users (
         or account_type = 'github'
         or account_type = 'google'
     ),
-    oauth_id text,
+    oauth_id text unique,
     is_admin boolean not null default false,
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()
