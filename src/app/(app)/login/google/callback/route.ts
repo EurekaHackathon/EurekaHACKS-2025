@@ -1,17 +1,19 @@
-import { github } from "@/lib/oauth";
+import { google } from "@/lib/oauth";
 import { cookies } from "next/headers";
-import type { OAuth2Tokens } from "arctic";
-import { createGithubUser, getUserByGithubID } from "@/lib/sqlc/auth_sql";
-import { db } from "@/lib/database";
+
+import { decodeIdToken, type OAuth2Tokens } from "arctic";
+import { createGithubUser, getUserByGoogleID } from "@/lib/sqlc/auth_sql";
 import { generateSessionToken } from "@/lib/auth";
 import { createSession } from "@/lib/sessions";
+import { db } from "@/lib/database";
 
 export async function GET(request: Request): Promise<Response> {
     const url = new URL(request.url);
     const code = url.searchParams.get("code");
     const state = url.searchParams.get("state");
-    const storedState = (await cookies()).get("github_oauth_state")?.value ?? null;
-    if (code === null || state === null || storedState === null) {
+    const storedState = (await cookies()).get("google_oauth_state")?.value ?? null;
+    const codeVerifier = (await cookies()).get("google_code_verifier")?.value ?? null;
+    if (code === null || state === null || storedState === null || codeVerifier === null) {
         return new Response("Please restart the process.", {
             status: 400
         });
@@ -24,47 +26,32 @@ export async function GET(request: Request): Promise<Response> {
 
     let tokens: OAuth2Tokens;
     try {
-        tokens = await github.validateAuthorizationCode(code);
+        tokens = await google.validateAuthorizationCode(code, codeVerifier);
     } catch {
-        // Invalid code or client credentials
-        return new Response("Please restart the process.", {
-            status: 400
-        });
-    }
-    const githubAccessToken = tokens.accessToken();
-    const userRequest = new Request("https://api.github.com/user");
-    userRequest.headers.set("Authorization", `Bearer ${githubAccessToken}`);
-    const userResponse = await fetch(userRequest);
-
-    if (!userResponse.ok) {
         return new Response("Please restart the process.", {
             status: 400
         });
     }
 
-    const userResult = await userResponse.json();
-    const githubUserId: number | undefined = userResult.id;
+    const claims: any = decodeIdToken(tokens.idToken());
 
-    if (!githubUserId) {
+    const googleId: string | undefined = claims.sub;
+    const name: string | undefined = claims.name;
+
+    if (googleId === undefined || name === undefined) {
         return new Response("Please restart the process.", {
             status: 400
         });
     }
 
-    const name: string | undefined = userResult.name;
-    const firstName = name?.split(" ", 2)[0];
-    const lastName = name?.split(" ", 2)[1];
-
-    const existingUser = await getUserByGithubID(db, {
-        oauthId: githubUserId.toString()
+    const existingUser = await getUserByGoogleID(db, {
+        oauthId: googleId
     });
-
     if (existingUser !== null) {
         const sessionToken = await generateSessionToken();
         await createSession(sessionToken, existingUser.id);
 
-        const cookieStore = await cookies();
-        cookieStore.set("session", sessionToken, {
+        (await cookies()).set("session", sessionToken, {
             httpOnly: true,
             secure: process.env.DEV !== "true",
             sameSite: "lax",
@@ -79,9 +66,9 @@ export async function GET(request: Request): Promise<Response> {
     }
 
     const user = await createGithubUser(db, {
-        oauthId: githubUserId.toString(),
-        firstName: firstName ?? "",
-        lastName: lastName ?? "",
+        oauthId: googleId,
+        firstName: name.split(" ", 2)[0] ?? "",
+        lastName: name.split(" ", 2)[1] ?? "",
     });
 
     if (!user) {
@@ -93,8 +80,7 @@ export async function GET(request: Request): Promise<Response> {
     const sessionToken = await generateSessionToken();
     await createSession(sessionToken, user.id);
 
-    const cookieStore = await cookies();
-    cookieStore.set("session", sessionToken, {
+    (await cookies()).set("session", sessionToken, {
         httpOnly: true,
         secure: process.env.DEV !== "true",
         sameSite: "lax",

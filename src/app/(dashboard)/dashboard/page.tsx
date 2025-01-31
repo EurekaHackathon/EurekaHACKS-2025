@@ -9,7 +9,7 @@ export default async function Dashboard() {
     const cookieStore = await cookies();
     const sessionCookie = cookieStore.get("session");
     const user = await authorizeSession(sessionCookie?.value);
-    const firstName = user.firstName?.length > 0 ? user.firstName : "Hacker";
+    const firstName = user.firstName ? user.firstName : "Hacker";
     // TODO: Add mobile support
     return (
         <div className="py-32 px-48">

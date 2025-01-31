@@ -61,7 +61,7 @@ export const loginWithEmail = async (prevState: any, formData: FormData) => {
             email: email,
         });
 
-        if (!user) {
+        if (!user || !user.password || !user.email) {
             return { error: "Invalid email or password" };
         }
 
