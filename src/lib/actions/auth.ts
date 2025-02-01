@@ -61,7 +61,7 @@ export const loginWithEmail = async (prevState: any, formData: FormData) => {
             email: email,
         });
 
-        if (!user) {
+        if (!user || !user.password || !user.email) {
             return { error: "Invalid email or password" };
         }
 
@@ -139,7 +139,7 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
         return { error: "Passwords do not match" };
     }
 
-    if (!email || !password || !firstName || !lastName || typeof email !== "string" || typeof password !== "string" || typeof firstName !== "string" || typeof lastName !== "string") {
+    if (!email || !password || !firstName || !lastName || typeof email !== "string" || typeof password !== "string") {
         return { error: "All fields are required" };
     }
 

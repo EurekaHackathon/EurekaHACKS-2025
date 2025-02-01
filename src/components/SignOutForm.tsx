@@ -10,7 +10,7 @@ export function SignOutForm() {
     return (
         <form action={formAction}>
             <button type="submit" disabled={pending}
-                    className="text-gray-600 flex items-center justify-center gap-2 border font-semibold border-gray-300
+                    className="text-gray-600 w-40 flex items-center justify-center gap-2 border font-semibold border-gray-300
                      py-1 px-12 rounded-xl hover:border-secondary-500 duration-200">
                 {!pending && "Log out"}
                 {/*Absolute position, so the height doesn't get messed up. Zero width space used to maintain minimum height*/}

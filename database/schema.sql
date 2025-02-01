@@ -8,14 +8,14 @@ create table if not exists public.apps_users (
     first_name text,
     last_name text,
     email text unique,
-    password text not null check (password ~ '(?=.*\d)(?=.*[A-Za-z]).{8,128}$'),
+    password text check (password ~ '(?=.*\d)(?=.*[A-Za-z]).{8,128}$'),
     email_verified boolean not null default false,
     account_type text not null check (
         account_type = 'email'
         or account_type = 'github'
         or account_type = 'google'
     ),
-    oauth_id text,
+    oauth_id text unique,
     is_admin boolean not null default false,
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()

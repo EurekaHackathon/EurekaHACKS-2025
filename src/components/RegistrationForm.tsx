@@ -4,9 +4,32 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { useActionState, useState } from "react";
 import { signUpWithEmail } from "@/lib/actions/auth";
+import { redirect } from "next/navigation";
 
 const initialState = {
     error: ""
+};
+
+const signUpWithGithub = async () => {
+    const res = await fetch("/login/github", {
+        method: "POST",
+    });
+    if (!res.ok) {
+        throw new Error("Failed to sign up with Github");
+    }
+    const { url } = await res.json();
+    redirect(url);
+};
+
+const signUpWithGoogle = async () => {
+    const res = await fetch("/login/google", {
+        method: "POST",
+    });
+    if (!res.ok) {
+        throw new Error("Failed to sign up with Google");
+    }
+    const { url } = await res.json();
+    redirect(url);
 };
 
 export default function RegistrationForm() {
@@ -90,14 +113,15 @@ export default function RegistrationForm() {
                     {pending && <Icon className="text-2xl md:text-3xl lg:text-4xl absolute" icon="codex:loader"/>}
                 </button>
             </form>
-            <button
-                className="flex items-center justify-center gap-2 border font-semibold border-gray-300 md:text-xl mt-4 w-full py-4 rounded-xl hover:border-secondary-500 duration-200">
+            <button onClick={signUpWithGoogle}
+                    className="flex items-center justify-center gap-2 border font-semibold border-gray-300 md:text-xl mt-4 w-full py-4 rounded-xl hover:border-secondary-500 duration-200">
                 <div className="min-w-6 md:min-w-8">
                     <Icon icon="logos:google-icon" className="text-xl md:text-2xl"/>
                 </div>
                 Sign up with Google
             </button>
             <button
+                onClick={signUpWithGithub}
                 className="flex items-center justify-center gap-2 border font-semibold border-gray-300 md:text-xl mt-4 w-full py-4 rounded-xl hover:border-secondary-500 duration-200">
                 <div className="min-w-6 md:min-w-8">
                     <Icon icon="logos:github-icon" className="text-xl md:text-2xl"/>

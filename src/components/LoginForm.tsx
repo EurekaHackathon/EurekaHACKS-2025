@@ -4,9 +4,32 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { useActionState, useState } from "react";
 import { loginWithEmail } from "@/lib/actions/auth";
+import { redirect } from "next/navigation";
 
 const initialState = {
     error: ""
+};
+
+const loginWithGithub = async () => {
+    const res = await fetch("/login/github", {
+        method: "POST",
+    });
+    if (!res.ok) {
+        throw new Error("Failed to sign up with Github");
+    }
+    const { url } = await res.json();
+    redirect(url);
+};
+
+const loginWithGoogle = async () => {
+    const res = await fetch("/login/google", {
+        method: "POST",
+    });
+    if (!res.ok) {
+        throw new Error("Failed to sign up with Google");
+    }
+    const { url } = await res.json();
+    redirect(url);
 };
 
 export default function LoginForm() {
@@ -54,14 +77,14 @@ export default function LoginForm() {
                     {pending && <Icon className="text-2xl md:text-3xl lg:text-4xl absolute" icon="codex:loader"/>}
                 </button>
             </form>
-            <button
+            <button onClick={loginWithGoogle}
                 className="flex items-center justify-center gap-2 border font-semibold border-gray-300 md:text-xl mt-4 w-full py-4 rounded-xl hover:border-secondary-500 duration-200">
                 <div className="min-w-6 md:min-w-8">
                     <Icon icon="logos:google-icon" className="text-xl md:text-2xl"/>
                 </div>
                 Log in with Google
             </button>
-            <button
+            <button onClick={loginWithGithub}
                 className="flex items-center justify-center gap-2 border font-semibold border-gray-300 md:text-xl mt-4 w-full py-4 rounded-xl hover:border-secondary-500 duration-200">
                 <div className="min-w-6 md:min-w-8">
                     <Icon icon="logos:github-icon" className="text-xl md:text-2xl"/>
