@@ -24,7 +24,6 @@ export function DashboardNav() {
         <nav className={`bg-[#f3f2f7] min-h-screen flex flex-col justify-between border-r border-gray-200 transition-all duration-300 overflow-hidden ${
             isCollapsed ? "w-16" : "w-64"
         } fixed left-0 top-0 z-50`}>
-            {/* Header with Logo */}
             <div className="flex flex-col">
                 <div className="flex justify-between items-center px-4 py-6 border-b border-gray-200">
                     <Link href="/" className="flex items-center gap-3 min-w-0">
@@ -51,7 +50,6 @@ export function DashboardNav() {
                     </button>
                 </div>
 
-                {/* Navigation Items */}
                 <div className="flex flex-col px-3 py-6 space-y-2">
                     <DashboardNavItem 
                         icon="fluent:home-16-filled" 
@@ -88,7 +86,6 @@ export function DashboardNav() {
                 </div>
             </div>
 
-            {/* User Profile & Sign Out */}
             <div className="border-t border-gray-200 p-4">
                 <div className="flex items-center gap-3 mb-4">
                     <div className="flex-shrink-0 w-10 h-10 bg-gray-50 rounded-full border border-gray-300 flex items-center justify-center">
