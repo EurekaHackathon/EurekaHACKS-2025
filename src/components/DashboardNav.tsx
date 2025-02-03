@@ -40,7 +40,7 @@ export function DashboardNav() {
                     </Link>
                     <button 
                         onClick={() => setIsCollapsed(!isCollapsed)}
-                        className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
+                        className="z-10 p-2 hover:bg-gray-200 rounded-lg transition-colors"
                         aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
                     >
                         <Icon 
