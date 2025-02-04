@@ -36,28 +36,28 @@ export default function TeamSection() {
         },
         {
             name: "Selena",
-            role: "Director",
+            role: "Logistics & Business",
             image: "person.jpg",
             url: "https://example.com",
             emoji: "😎"
         },
         {
             name: "Nabira",
-            role: "Director",
+            role: "Business",
             image: "person.jpg",
             url: "https://example.com",
             emoji: "😎"
         },
         {
             name: "Eason",
-            role: "Director",
+            role: "Web Dev",
             image: "person.jpg",
             url: "https://example.com",
             emoji: "😎"
         },
         {
             name: "Naman",
-            role: "Director",
+            role: "Web Dev",
             image: "person.jpg",
             url: "https://example.com",
             emoji: "😎"
@@ -78,28 +78,28 @@ export default function TeamSection() {
         },
         {
             name: "Margeret",
-            role: "Director",
+            role: "Visual Design",
             image: "person.jpg",
             url: "https://example.com",
             emoji: "😎"
         },
         {
             name: "Vihaan",
-            role: "Director",
+            role: "Business",
             image: "person.jpg",
             url: "https://example.com",
             emoji: "😎"
         },
         {
             name: "Minsun",
-            role: "Director",
+            role: "Marketing",
             image: "person.jpg",
             url: "https://example.com",
             emoji: "😎"
         },
         {
             name: "Nahyan",
-            role: "Director",
+            role: "Marketing",
             image: "person.jpg",
             url: "https://example.com",
             emoji: "😎"
