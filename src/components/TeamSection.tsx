@@ -77,7 +77,7 @@ export default function TeamSection() {
             emoji: "😎"
         },
         {
-            name: "Margeret",
+            name: "Margaret",
             role: "Visual Design",
             image: "person.jpg",
             url: "https://example.com",
@@ -106,9 +106,10 @@ export default function TeamSection() {
         },
     ];
 
-    // Display name is whatever is being currently displayed, name is the one we want it to display
+    // Display name is whatever is being currently displayed, name is the one we want it to display. Name ref because react states is silly
     const [displayName, setDisplayName] = useState("the EurekaHACKS Team");
     const [name, setName] = useState("the EurekaHACKS Team");
+    const nameRef = useRef("the EurekaHACKS Team");
 
     // To keep track of intervals
     const typingID = useRef(0);
@@ -122,22 +123,26 @@ export default function TeamSection() {
         // Clear existing intervals
         if (typingID.current) clearInterval(typingID.current);
 
+        // for some reason the states don't keep up??
+        nameRef.current = name;
+
         // @ts-ignore typescript is convinced that it's nodejs setInterval and not webjs
         typingID.current = setInterval(() => {
             setDisplayName((dn) => {
-                if (name == dn) {
+                if (nameRef.current === dn) {
                     clearInterval(typingID.current);
                     typingID.current = 0;
                     return dn;
                 }
     
-                if (dn == "" || name.startsWith(dn)) {
-                    return name.substring(0, dn.length + 1);
+                if (dn === "" || nameRef.current.startsWith(dn)) {
+                    return nameRef.current.substring(0, dn.length + 1);
                 } else {
                     return dn.slice(0, -1);
                 }
             })            
         }, 50);
+        
     }, [name]);
 
     return (
