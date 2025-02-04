@@ -80,6 +80,10 @@ create table if not exists public.hackathon_applications (
         length(portfolio_link) > 0
         and length(portfolio_link) < 256
     ),
+    resume_link text not null check (
+        length(resume_link) > 0
+        and length(resume_link) < 256
+    ),
     emergency_contact_first_name text not null check (
         length(emergency_contact_first_name) > 0
         and length(emergency_contact_first_name) < 128
