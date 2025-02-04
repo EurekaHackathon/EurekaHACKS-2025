@@ -141,8 +141,7 @@ export default function TeamSection() {
                     return dn.slice(0, -1);
                 }
             })            
-        }, 50);
-        
+        }, 40);
     }, [name]);
 
     return (
