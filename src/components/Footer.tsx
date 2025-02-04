@@ -82,14 +82,14 @@ export default function Footer() {
             </div>
             <div
                 className="hidden md:flex justify-center text-md items-center gap-12 pt-12 lg:pt-2 text-gray-300 text-md">
-                <Link href="/code-of-conduct" className="font-medium">Code of Conduct</Link>
-                <Link href="/privacy" className="font-medium">Privacy Policy</Link>
+                <Link href="/terms-of-service" className="font-medium">Terms of Service</Link>
+                <Link href="/privacy-policy" className="font-medium">Privacy Policy</Link>
                 <p className="text-center font-medium">Copyright © EurekaHACKS 2025</p>
             </div>
             <div
                 className="md:hidden flex justify-center text-md items-center gap-12 pt-12 text-gray-300 text-md">
-                <Link href="/code-of-conduct" className="font-medium">Code of Conduct</Link>
-                <Link href="/privacy" className="font-medium">Privacy Policy</Link>
+                <Link href="/terms-of-service" className="font-medium">Terms of Service</Link>
+                <Link href="/privacy-policy" className="font-medium">Privacy Policy</Link>
             </div>
             <p className="md:hidden  text-gray-300 text-center font-medium pt-1">Copyright © EurekaHACKS 2025</p>
         </footer>
