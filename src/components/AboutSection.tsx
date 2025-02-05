@@ -10,11 +10,7 @@ export function AboutSection() {
             <div className="lg:w-[45%]">
                 <h1 className="text-4xl md:text-5xl font-semibold text-gray-50">About EurkeaHACKS</h1>
                 <p className="mt-2 lg:mt-4 text-xl md:text-2xl font-medium leading-relaxed text-gray-100">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid blanditiis corporis
-                    culpa cum distinctio doloremque dolores ducimus earum eum explicabo facilis impedit itaque iusto
-                    laboriosam minima nihil nobis obcaecati quae quam quas quod recusandae repudiandae saepe,
-                    tenetur? Culpa doloremque eveniet ipsum odit quibusdam rem tempore? Ducimus minus reiciendis
-                    tenetur.
+                    Welcome to EurekaHacks! 🎉 Join us for a 36-hour hackathon filled with creativity, innovation, and fun! 💡 Compete, collaborate, and learn through workshops, exciting challenges, and networking opportunities with industry experts 🌐. Whether you're a beginner or seasoned hacker, come build, innovate, and network.
                 </p>
             </div>
             <div className="lg:w-[55%] flex flex-col lg:flex-row items-center gap-4">

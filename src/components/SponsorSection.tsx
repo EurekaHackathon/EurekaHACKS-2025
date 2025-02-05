@@ -6,9 +6,7 @@ export function SponsorSection() {
             <h1 className="text-center font-semibold text-5xl md:text-7xl lg:text-8xl">Our Sponsors</h1>
             <div className="flex justify-center">
                 <p className="text-center md:text-lg w-[90%] lg:w-[66%] 2xl:w-[33%] pt-6">
-                    insert sponsorship text here Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Assumenda, earum. Email us
-                    at <a className="font-semibold text-accent-300"
+                    Become a part of Canada's premier high school hackathon. Your support helps inspire the next generation of innovators and leaders in technology. Looking to make an impact? Email us at <a className="font-semibold text-accent-300"
                         href="mailto:insertsponsoremail@eurekahacks.ca">insertemail@eurekahacks.ca</a>
                 </p>
             </div>
