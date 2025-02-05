@@ -20,6 +20,7 @@
     "@react-email/components": "0.0.32",
     "arctic": "^3.2.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.3.1",
     "next": "15.1.2",
     "nodemailer": "^6.9.16",
     "postgres": "^3.4.5",

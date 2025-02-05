@@ -33,7 +33,6 @@ export function DashboardNav() {
         setOpen(false)
     }, [path]);
 
-
     return (
         <>
             <nav className="lg:hidden fixed flex items-center bg-gray-50 text-gray-700 py-2 px-4 w-screen border-b">
