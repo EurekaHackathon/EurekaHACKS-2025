@@ -154,7 +154,7 @@ export default function TeamSection() {
                     <span id="team-name" className="typewriter">{displayName}</span>
                 </h1>
                 <h2 className="text-center md:text-lg min-h-12 font-semibold pt-4">{currentText}</h2>
-                <div className="hidden lg:flex justify-center gap-8 pt-8">
+                <div className="hidden xl:flex justify-center gap-8 pt-8">
                     {teamInfo.map((member: TeamMember, index: number) => (
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
@@ -172,7 +172,7 @@ export default function TeamSection() {
                         </a>
                     ))}
                 </div>
-                <div className="lg:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-8">
+                <div className="xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-8">
                     {teamInfo.slice(0, 5).map((member: TeamMember, index: number) => (
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
@@ -190,8 +190,26 @@ export default function TeamSection() {
                         </a>
                     ))}
                 </div>
-                <div className="lg:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-4">
-                    {teamInfo.slice(5).map((member: TeamMember, index: number) => (
+                <div className="xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-4">
+                    {teamInfo.slice(5, 10).map((member: TeamMember, index: number) => (
+                        <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
+                            <div className="flex flex-col items-center">
+                                <Image src={`/team/${member.image}`} alt={member.name} width={80} height={80}
+                                       onMouseEnter={() => {
+                                           setCurrentText(`${member.name}, ${member.role} ${member.emoji}`);
+                                           setName(member.name);
+                                       }}
+                                       onMouseLeave={() => {
+                                           setCurrentText("");
+                                           setName("the EurekaHACKS Team");
+                                       }}
+                                       className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-cover rounded-full border-4 border-gray-300 hover:border-accent-300 duration-100"/>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+                <div className="xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-4">
+                    {teamInfo.slice(10).map((member: TeamMember, index: number) => (
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
                                 <Image src={`/team/${member.image}`} alt={member.name} width={80} height={80}
