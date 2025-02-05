@@ -26,3 +26,8 @@ html {
     from, to { border-color: transparent }
     50% { border-color: white; }
 }
+@layer base {
+  :root {
+        --radius: 0.5rem;
+    }
+}
