@@ -12,6 +12,11 @@ import {
     SelectValue,
 } from "@/components/Select"
 
+const schools = [
+    "Abbey Park",
+    "Iroquois"
+]
+
 export default function ApplicationPage() {
     const { user } = useDashboardCtx();
 
@@ -87,10 +92,24 @@ export default function ApplicationPage() {
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
-                                    <SelectItem value="apple">2025</SelectItem>
-                                    <SelectItem value="banana">2026</SelectItem>
-                                    <SelectItem value="blueberry">2027</SelectItem>
-                                    <SelectItem value="grapes">2028</SelectItem>
+                                    <SelectItem value="2025">2025</SelectItem>
+                                    <SelectItem value="2026">2026</SelectItem>
+                                    <SelectItem value="2027">2027</SelectItem>
+                                    <SelectItem value="2028">2028</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    <div>
+                        <label className="block text-lg font-medium">School</label>
+                        <Select>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select a year" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    {schools.map((name, key) => <SelectItem value={name} key={key}>{name}</SelectItem>)}
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
