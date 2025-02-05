@@ -32,7 +32,7 @@ const getLoginMethodIcon = (loginMethod: string) => {
 
 export default function SettingsForm({ currentFirstName, currentLastName, loginMethod }: SettingsFormProps) {
     return (
-        <div className="text-gray-700 py-36 w-[40%]">
+        <div className="text-gray-700 w-full">
             <h1 className="text-5xl font-bold">Settings</h1>
             <h2 className="text-3xl font-semibold mt-8">Profile information</h2>
             <h3 className="font-medium text-gray-500">This will not affect your application information.</h3>
