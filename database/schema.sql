@@ -1,5 +1,5 @@
 create table if not exists public.mailing_list (
-    id serial primary key,
+    id uuid primary key default uuid_generate_v4(),
     email text unique not null
 );
 
@@ -60,8 +60,6 @@ create table if not exists public.hackathon_applications (
         and length(school) < 256
     ),
     year_of_graduation integer not null check (year_of_graduation > 1900 and year_of_graduation < 2100),
-    country text not null,
-    province text not null,
     city text not null,
     dietary_restrictions text not null check (
         length(dietary_restrictions) > 0
