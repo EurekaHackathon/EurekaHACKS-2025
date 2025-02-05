@@ -1,5 +1,5 @@
 create table if not exists public.mailing_list (
-    id serial primary key,
+    id uuid primary key default uuid_generate_v4(),
     email text unique not null
 );
 
