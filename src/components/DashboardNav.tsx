@@ -33,7 +33,6 @@ export function DashboardNav() {
         setOpen(false)
     }, [path]);
 
-
     return (
         <>
             <button onClick={() => setOpen(!open)}>
