@@ -7,3 +7,8 @@ select * from public.mailing_list
 insert into public.mailing_list (email)
     values ($1)
     returning *;
+
+-- name: RemoveEmailFromMailingList :one
+delete from public.mailing_list
+    where id = $1
+    returning *;

@@ -154,7 +154,7 @@ export default function TeamSection() {
                     <span id="team-name" className="typewriter">{displayName}</span>
                 </h1>
                 <h2 className="text-center md:text-lg min-h-12 font-semibold pt-4">{currentText}</h2>
-                <div className="hidden xl:flex justify-center gap-8 pt-8">
+                <div className="hidden 2xl:flex justify-center gap-8 pt-8">
                     {teamInfo.map((member: TeamMember, index: number) => (
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
@@ -172,7 +172,7 @@ export default function TeamSection() {
                         </a>
                     ))}
                 </div>
-                <div className="xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-8">
+                <div className="2xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-8">
                     {teamInfo.slice(0, 5).map((member: TeamMember, index: number) => (
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
@@ -190,7 +190,7 @@ export default function TeamSection() {
                         </a>
                     ))}
                 </div>
-                <div className="xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-4">
+                <div className="2xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-4">
                     {teamInfo.slice(5, 10).map((member: TeamMember, index: number) => (
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
@@ -208,7 +208,7 @@ export default function TeamSection() {
                         </a>
                     ))}
                 </div>
-                <div className="xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-4">
+                <div className="2xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-4">
                     {teamInfo.slice(10).map((member: TeamMember, index: number) => (
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
