@@ -16,7 +16,7 @@ export default async function Layout({
         <DashboardProvider value={{user}}>
             <div className="min-h-screen flex">
                 <DashboardNav />
-                <div className="flex-grow">
+                <div className="w-full lg:w-[75%] xl:w-[82%]">
                     {children}
                 </div>
             </div>

@@ -13,7 +13,7 @@ import { Icon } from "@iconify/react";
 
 export function DashboardNav() {
     const { user } = useDashboardCtx();
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
 
     if (!user) {
         redirect("/login");
@@ -36,26 +36,28 @@ export function DashboardNav() {
 
     return (
         <>
-            <button onClick={() => setOpen(!open)}>
-                <Icon icon="fluent:navigation-16-filled" className={cn(
-                    "size-8 fixed top-8 left-6 lg:hidden",
-                    open && "translate-x-[-100%]",
-                )} />
-            </button>
+            <nav className="lg:hidden fixed flex items-center bg-gray-50 text-gray-700 py-2 px-4 w-screen border-b">
+                <button onClick={() => setOpen(!open)}>
+                    <Icon icon="fluent:navigation-16-filled" className={cn(
+                        "text-3xl md:text-4xl",
+                        open && "translate-x-[-100%]",
+                    )} />
+                </button>
+            </nav>
             <div className={cn(
-                "top-0 fixed lg:sticky min-w-80 z-10 bg-[#f3f2f7] h-screen flex justify-between flex-col border-r border-gray-600 border-opacity-20 transition",
+                "top-0 fixed lg:sticky w-full lg:w-[25%] xl:w-[18%] z-10 bg-[#f3f2f7] h-screen flex justify-between flex-col border-r border-gray-600 border-opacity-20 transition",
                 !open && "translate-x-[-100%] lg:translate-x-0"
             )}>
-                <div className="px-8 pt-10 flex justify-between gap-2">
+                <div className="text-gray-600 px-8 pt-10 flex justify-between lg:justify-center gap-2">
                     <Link href="/" className="flex items-center gap-2">
-                        <Image className="w-10 h-auto" src={logo} alt="EurekaHACKS Logo" />
-                        <div className="text-gray-600 font-bold pr-10">
+                        <Image className="w-12 md:w-16 lg:w-10 h-auto" src={logo} alt="EurekaHACKS Logo" />
+                        <div className="text-gray-600 text-2xl md:text-3xl lg:text-xl font-bold pr-10">
                             <span>EurekaHACKS</span>
                         </div>
                     </Link>
 
-                    <button onClick={() => setOpen(!open)} className="lg:hidden">
-                        <Icon icon="fluent:dismiss-12-regular" className="size-5" />
+                    <button onClick={() => setOpen(!open)} className="z-10 lg:hidden">
+                        <Icon icon="fluent:dismiss-12-regular" className="text-2xl md:text-4xl" />
                     </button>
                 </div>
                 <div className="flex flex-col px-8 gap-2">
