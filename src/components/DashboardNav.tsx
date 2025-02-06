@@ -44,7 +44,7 @@ export function DashboardNav() {
                 </button>
             </nav>
             <div className={cn(
-                "top-0 fixed lg:sticky w-full lg:w-[25%] xl:w-[18%] z-10 bg-[#f3f2f7] h-screen flex justify-between flex-col border-r border-gray-600 border-opacity-20 transition",
+                "top-0 fixed lg:sticky w-full lg:w-[25%] xl:w-[20%] 2xl:w-[15%] z-10 bg-[#f3f2f7] h-screen flex justify-between flex-col border-r border-gray-600 border-opacity-20 transition",
                 !open && "translate-x-[-100%] lg:translate-x-0"
             )}>
                 <div className="text-gray-600 px-8 pt-10 flex justify-between lg:justify-center gap-2">

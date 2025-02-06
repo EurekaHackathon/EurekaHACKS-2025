@@ -4,8 +4,8 @@ import { DashboardProvider } from "@/components/DashboardProvider";
 import { DashboardNav } from "@/components/DashboardNav";
 
 export default async function Layout({
-    children,
-}: Readonly<{
+                                         children,
+                                     }: Readonly<{
     children: React.ReactNode;
 }>) {
     const cookieStore = await cookies();
@@ -13,10 +13,10 @@ export default async function Layout({
     const user = await authorizeSession(sessionCookie?.value);
 
     return (
-        <DashboardProvider value={{user}}>
+        <DashboardProvider value={{ user }}>
             <div className="min-h-screen flex">
-                <DashboardNav />
-                <div className="w-full lg:w-[75%] xl:w-[82%]">
+                <DashboardNav/>
+                <div className="w-full lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
                     {children}
                 </div>
             </div>
