@@ -4,8 +4,8 @@ import { DashboardProvider } from "@/components/DashboardProvider";
 import { DashboardNav } from "@/components/DashboardNav";
 
 export default async function Layout({
-    children,
-}: Readonly<{
+                                         children,
+                                     }: Readonly<{
     children: React.ReactNode;
 }>) {
     const cookieStore = await cookies();
