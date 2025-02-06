@@ -1,11 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 @font-face {
     font-family: "Manrope";
     src: url("../../public/Manrope-VariableFont_wght.ttf") format('truetype');
 }
+
+@font-face {
+    font-family: "Etna";
+    src: url("../../public/etna-font.otf") format('opentype');
+}
+
 
 html {
     scroll-behavior: smooth;
