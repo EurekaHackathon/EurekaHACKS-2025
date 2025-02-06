@@ -11,9 +11,11 @@ export default function Dashboard() {
     const firstName = user?.firstName ? user?.firstName : "Hacker";
 
     return (
-        <div className="py-32 px-48">
-            <h1 className="text-5xl font-bold text-gray-700">Welcome, <span
-                className="text-secondary-600">{firstName}</span></h1>
+        <div className="self-center flex flex-col items-stretch">
+            <h1 className="text-5xl font-bold text-gray-700">
+                Welcome,&nbsp;
+                <span className="text-secondary-600">{firstName}</span>
+            </h1>
             <div className="border border-gray-300 mt-12 rounded-lg bg-gray-50 py-8 px-12">
                 <div className="flex justify-between">
                     <h2 className="text-gray-600 font-semibold text-2xl">Application status</h2>
@@ -28,8 +30,8 @@ export default function Dashboard() {
                     Start application
                 </Link>
             </div>
-            <div className="flex gap-8 mt-8">
-                <div className="border border-gray-300 rounded-lg bg-gray-50 py-8 px-12 w-[50%]">
+            <div className="flex flex-col md:flex-row gap-8 mt-8">
+                <div className="border border-gray-300 rounded-lg bg-gray-50 py-8 px-12 flex-1 overflow-hidden">
                     <div className="flex justify-between">
                         <h2 className="text-gray-500 font-semibold text-2xl">Time until application deadline</h2>
                         <Icon icon="fluent:clock-12-filled" className="text-gray-500 text-4xl" />
@@ -39,7 +41,7 @@ export default function Dashboard() {
                         Application due on March 23, 2025 at 11:59 PM EST.
                     </p>
                 </div>
-                <div className="border border-gray-300 rounded-lg bg-gray-50 py-8 px-12 w-[50%]">
+                <div className="border border-gray-300 rounded-lg bg-gray-50 py-8 px-12 flex-1 overflow-hidden">
                     <div className="flex justify-between">
                         <h2 className="text-gray-500 font-semibold text-2xl">Time until Hackathon</h2>
                         <Icon icon="fluent:hourglass-half-16-regular" className="text-gray-500 text-4xl" />
@@ -47,8 +49,8 @@ export default function Dashboard() {
                     <CountdownTimer />
                 </div>
             </div>
-            <div className="flex gap-8 mt-8">
-                <div className="border border-gray-300 rounded-lg bg-gray-50 py-8 px-12 w-[50%]">
+            <div className="flex flex-col md:flex-row gap-8 mt-8">
+                <div className="border border-gray-300 rounded-lg bg-gray-50 py-8 px-12 flex-1 overflow-hidden">
                     <div className="flex justify-between">
                         <h2 className="text-gray-600 font-semibold text-2xl">Discord server</h2>
                         <Icon icon="ic:baseline-discord" className="text-gray-500 text-4xl" />
@@ -62,7 +64,7 @@ export default function Dashboard() {
                         Join Discord
                     </a>
                 </div>
-                <div className="border border-gray-300 rounded-lg bg-gray-50 py-8 px-12 w-[50%]">
+                <div className="border border-gray-300 rounded-lg bg-gray-50 py-8 px-12 flex-1 overflow-hidden">
                     <div className="flex justify-between">
                         <h2 className="text-gray-600 font-semibold text-2xl">Hacker package</h2>
                         <Icon icon="fluent:book-information-20-filled" className="text-gray-500 text-4xl" />

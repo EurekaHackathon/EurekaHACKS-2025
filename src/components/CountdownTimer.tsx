@@ -31,24 +31,24 @@ export function CountdownTimer() {
     }, []);
 
     return (
-        <div className="flex gap-4 text-secondary-600 font-bold text-5xl pt-6">
+        <div className="flex gap-2 text-secondary-600 font-bold text-5xl pt-6 flex-wrap">
             <div>
-                <h1 className="px-2">{String(timeLeft.days).padStart(2, "0")}</h1>
+                <h1 className="">{String(timeLeft.days).padStart(2, "0")}</h1>
                 <h2 className="text-center text-lg font-semibold">Days</h2>
             </div>
             <h1>:</h1>
             <div>
-                <h1 className="px-2">{String(timeLeft.hours).padStart(2, "0")}</h1>
+                <h1 className="">{String(timeLeft.hours).padStart(2, "0")}</h1>
                 <h2 className="text-center text-lg font-semibold">Hours</h2>
             </div>
             <h1>:</h1>
             <div>
-                <h1 className="px-2">{String(timeLeft.minutes).padStart(2, "0")}</h1>
+                <h1 className="">{String(timeLeft.minutes).padStart(2, "0")}</h1>
                 <h2 className="text-center text-lg font-semibold">Minutes</h2>
             </div>
             <h1>:</h1>
             <div>
-                <h1 className="px-2">{String(timeLeft.seconds).padStart(2, "0")}</h1>
+                <h1 className="">{String(timeLeft.seconds).padStart(2, "0")}</h1>
                 <h2 className="text-center text-lg font-semibold">Seconds</h2>
             </div>
         </div>
