@@ -11,16 +11,18 @@ import {
     Text,
 } from "@react-email/components";
 import * as React from "react";
+import Link from "next/link";
 
 interface ApplicationsOpenTemplateProps {
     recipientFirstname: string;
     applicationLink: string;
+    unsubscribeLink: string;
 }
 
 export const ApplicationsOpenTemplate = ({
-    recipientFirstname, 
-    applicationLink
-}: ApplicationsOpenTemplateProps) => (
+                                             recipientFirstname,
+                                             applicationLink, unsubscribeLink
+                                         }: ApplicationsOpenTemplateProps) => (
     <Html>
         <Head/>
         <Preview>
@@ -37,13 +39,9 @@ export const ApplicationsOpenTemplate = ({
                 />
                 <Text style={paragraph}>Hi {recipientFirstname},</Text>
                 <Text style={paragraph}>
-                    We're excited to announce that applications for EurekaHACKS 2025 are now open! 
-                    Join us on April 5th, 2025 at Abbey Park High School for an unforgettable day of 
+                    We're excited to announce that applications for EurekaHACKS 2025 are now open!
+                    Join us on April 5th, 2025 at Abbey Park High School for an unforgettable day of
                     innovation, learning, and fun.
-                </Text>
-                <Text style={paragraph}>
-                    As a registered member of our community, you're among the first to know. 
-                    Space is limited, so make sure to apply early!
                 </Text>
                 <Section style={highlightBox}>
                     <Text style={highlightText}>
@@ -59,7 +57,9 @@ export const ApplicationsOpenTemplate = ({
                     </Button>
                 </Section>
                 <Text style={paragraph}>
-                    Questions? Feel free to reach out to us at support@eurekahacks.ca
+                    Questions? Feel free to reach out to us at <Link href="mailto:hello@eurekahacks.ca">
+                    hello@eurekahacks.ca
+                </Link>!
                 </Text>
                 <Text style={paragraph}>
                     Can't wait to see what you'll create!
@@ -68,7 +68,7 @@ export const ApplicationsOpenTemplate = ({
                 </Text>
                 <Hr style={hr}/>
                 <Text style={footer}>
-                    Copyright © EurekaHACKS 2025, All rights reserved.
+                    Copyright © EurekaHACKS 2025, All rights reserved. | <Link target="_blank" href={unsubscribeLink}>Unsubscribe</Link>
                 </Text>
             </Container>
         </Body>
@@ -77,7 +77,8 @@ export const ApplicationsOpenTemplate = ({
 
 ApplicationsOpenTemplate.PreviewProps = {
     recipientFirstname: "John",
-    applicationLink: "https://eurekahacks.ca/login",
+    applicationLink: "http://localhost:3000/dashboard",
+    unsubscribeLink: "http://localhost:3000/unsubscribe?id=abcdefg",
 } as ApplicationsOpenTemplateProps;
 
 export default ApplicationsOpenTemplate;
