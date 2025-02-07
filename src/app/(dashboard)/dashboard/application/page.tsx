@@ -113,7 +113,45 @@ export default function ApplicationPage() {
                                 <label>{name}</label>
                             </div>
                         )}
+                        <div className="flex items-center gap-4">
+                            <Checkbox />
+                            <div className="flex gap-4 w-full">
+                                <label>Other:</label>
+                                <div className="relative w-full">
+                                    <input
+                                        type="text"
+                                        className="peer w-full border-b-2 border-gray-300 focus:outline-none focus:border-transparent relative bg-transparent pb-1"
+                                    />
+                                    <span className="absolute left-0 bottom-0 h-0.5 scale-x-0 w-full bg-secondary-600 transition-transform duration-300 ease-in-out origin-center peer-focus:scale-x-100"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div>
+                        <h2 className="text-3xl font-semibold mt-8">Socials</h2>
+                        <h3 className="font-medium text-gray-500">(Optional)</h3>
+                    </div>
+
+                    <Input
+                        type="text"
+                        label="Github"
+                    />
+
+                    <Input
+                        type="text"
+                        label="Linkedin"
+                    />
+
+                    <Input
+                        type="text"
+                        label="Portfolio"
+                    />
+
+                    <Input
+                        type="text"
+                        label="Resume"
+                    />
 
                     <div className="mb-6">
                         <h2 className="text-3xl font-semibold mt-8">Emergency Contact Information</h2>
