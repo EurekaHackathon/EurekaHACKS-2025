@@ -51,10 +51,6 @@ create table if not exists public.hackathon_applications (
     ),
     email text not null,
     age integer not null check (age > 0 and age < 150),
-    pronouns text not null check (
-        length(pronouns) > 0
-        and length(pronouns) < 128
-    ),
     school text not null check (
         length(school) > 0
         and length(school) < 256

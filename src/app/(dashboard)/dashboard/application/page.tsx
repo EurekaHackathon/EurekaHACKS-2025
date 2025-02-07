@@ -10,12 +10,13 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/Select"
+} from "@/components/Select";
 import { Checkbox } from "@/components/Checkbox";
 
-import { schools, diets } from "./data";
+import { ontarioSchoolsList, dietaryRestrictionsList } from "./data";
 import { apply } from "@/lib/actions/application";
 import { Icon } from "@iconify/react";
+import { SchoolSelect } from "@/components/SchoolSelect";
 
 const initialState = {
     error: ""
@@ -36,7 +37,7 @@ export default function ApplicationPage() {
     const [_state, formAction, pending] = useActionState(apply, initialState);
 
     return (
-        <div className="px-20">
+        <div className="px-20 text-gray-700">
             <div className="my-[10vh] max-w-screen-lg m-auto">
                 <h1 className="text-5xl font-bold">Application</h1>
 
@@ -51,31 +52,41 @@ export default function ApplicationPage() {
                             <Input
                                 type="text"
                                 label="First name"
-                                defaultValue={user?.firstName ?? ""}
+                                name="first-name"
+                                required
                             />
                             <Input
                                 type="text"
                                 label="Last name"
-                                defaultValue={user?.lastName ?? ""}
+                                name="last-name"
+                                required
                             />
                         </div>
                         <Input
                             type="text"
                             label="Email"
-                            defaultValue={user?.email ?? ""}
+                            name="email"
+                            required
                         />
 
                         <Input
                             type="number"
                             label="Age"
-                            defaultValue={user?.email ?? ""}
+                            name="age"
+                            required
                         />
+
+
+                        <div>
+                            <label className="block text-lg font-medium">School</label>
+                            <SchoolSelect/>
+                        </div>
 
                         <div>
                             <label className="block text-lg font-medium">Graduating year</label>
                             <Select>
                                 <SelectTrigger>
-                                    <SelectValue placeholder="Select a year" />
+                                    <SelectValue placeholder="Select a year"/>
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
@@ -89,28 +100,14 @@ export default function ApplicationPage() {
                         </div>
 
                         <div>
-                            <label className="block text-lg font-medium">School</label>
-                            <Select>
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select a year" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        {schools.map((name, key) => <SelectItem value={name} key={key}>{name}</SelectItem>)}
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        </div>
-
-                        <div>
                             <h2 className="text-3xl font-semibold mt-8">Dietary Restrictions</h2>
                             <h3 className="font-medium text-gray-500">Select all that apply</h3>
                         </div>
 
                         <div className="mt-4 border rounded-md border-gray-300 py-4 px-6 grid gap-2">
-                            {diets.map((name, key) =>
+                            {dietaryRestrictionsList.map((name, key) =>
                                 <div key={key} className="flex items-center gap-4">
-                                    <Checkbox />
+                                    <Checkbox/>
                                     <label>{name}</label>
                                 </div>
                             )}
@@ -136,19 +133,22 @@ export default function ApplicationPage() {
                         className="bg-secondary-600 text-gray-100 font-medium py-2 px-4 rounded-lg mt-8 hover:bg-[#815eeb] duration-200 relative"
                         type="submit" disabled={pending}>
                         <span className={pending ? "text-transparent" : ""}>Submit</span>
-                        {pending && <Icon className="text-2xl md:text-3xl lg:text-4xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]" icon="codex:loader" />}
+                        {pending && <Icon
+                            className="text-2xl md:text-3xl lg:text-4xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                            icon="codex:loader"/>}
                     </button>
                 </form>
             </div>
         </div>
-    )
+    );
 }
 
 function Input({ label, ...props }: any) {
     return (
         <div className="flex-1">
             <label className="block text-lg font-medium">{label}</label>
-            <input {...props} className="border-gray-300 border hover:border-secondary-300 focus:outline-none rounded-lg w-full py-2 px-4 mt-2" />
+            <input {...props}
+                   className="border-gray-300 border hover:border-secondary-300 focus:outline-none rounded-lg w-full py-2 px-4 mt-2"/>
         </div>
     );
 }
@@ -160,20 +160,20 @@ function PhoneInput({ label, ...props }: any) {
         <div className="flex-1">
             <label className="block text-lg font-medium">{label}</label>
             <input {...props}
-                type="tel"
-                className="border-gray-300 border hover:border-secondary-300 focus:outline-none rounded-lg w-full py-2 px-4 mt-2"
-                placeholder="(XXX) XXX-XXXX"
-                value={value}
-                onChange={e => {
-                    const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
-                    let format = "";
+                   type="tel"
+                   className="border-gray-300 border hover:border-secondary-300 focus:outline-none rounded-lg w-full py-2 px-4 mt-2"
+                   placeholder="(XXX) XXX-XXXX"
+                   value={value}
+                   onChange={e => {
+                       const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+                       let format = "";
 
-                    if (digits.length > 0) format = digits.slice(0, 3);
-                    if (digits.length > 3) format = `(${format}) ${digits.slice(3, 6)}`;
-                    if (digits.length > 6) format = `${format}-${digits.slice(6)}`;
+                       if (digits.length > 0) format = digits.slice(0, 3);
+                       if (digits.length > 3) format = `(${format}) ${digits.slice(3, 6)}`;
+                       if (digits.length > 6) format = `${format}-${digits.slice(6)}`;
 
-                    setValue(format)
-                }}
+                       setValue(format);
+                   }}
 
             />
         </div>
