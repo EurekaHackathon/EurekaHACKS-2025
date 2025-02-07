@@ -11,7 +11,7 @@ export default function Dashboard() {
     const firstName = user?.firstName ? user?.firstName : "Hacker";
 
     return (
-        <div className="self-center flex flex-col items-stretch">
+        <div className="self-center flex flex-col items-stretch py-[10vh]">
             <h1 className="text-5xl font-bold text-gray-700">
                 Welcome,&nbsp;
                 <span className="text-secondary-600">{firstName}</span>

@@ -8,11 +8,9 @@ export default async function ApplicationPage() {
     const user = await authorizeSession(sessionCookie?.value);
 
     return (
-        <div className="px-20">
-            <div className="my-[10vh] max-w-screen-lg m-auto">
-                <SettingsForm currentFirstName={user.firstName ?? ""} currentLastName={user.lastName ?? ""}
-                            loginMethod={user.accountType}/>
-            </div>
+        <div className="max-w-screen-lg m-auto py-[10vh]">
+            <SettingsForm currentFirstName={user.firstName ?? ""} currentLastName={user.lastName ?? ""}
+                        loginMethod={user.accountType}/>
         </div>
     );
 }
