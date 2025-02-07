@@ -13,10 +13,10 @@ export default async function Layout({
     const user = await authorizeSession(sessionCookie?.value);
 
     return (
-        <DashboardProvider value={{ user }}>
-            <div className="min-h-screen flex">
-                <DashboardNav/>
-                <div className="w-full lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
+        <DashboardProvider value={{user}}>
+            <div className="min-h-screen flex flex-row w-full">
+                <DashboardNav />
+                <div className="overflow-hidden flex-grow px-20">
                     {children}
                 </div>
             </div>
