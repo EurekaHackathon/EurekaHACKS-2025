@@ -50,9 +50,9 @@ export default function SettingsForm({ currentFirstName, currentLastName, loginM
                 </button>
             </form>
             <h2 className="text-xl font-semibold mt-12">
-                Your login method: <span className="inline-flex items-center justify-center w-36 ml-2 border border-gray-400 rounded-full py-2 px-4">
+                Your login method: <span className="inline-flex text-sm items-center justify-center w-36 ml-2 border border-gray-400 rounded-full py-1 px-2">
                 {formatLoginMethod(loginMethod)}
-                <Icon icon={getLoginMethodIcon(loginMethod)} className="text-xl ml-2"/>
+                <Icon icon={getLoginMethodIcon(loginMethod)} className="text-lg ml-2"/>
             </span>
             </h2>
             {loginMethod === "email" &&
