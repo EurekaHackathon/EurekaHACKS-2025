@@ -17,6 +17,7 @@ import { ontarioSchoolsList, dietaryRestrictionsList } from "./data";
 import { apply } from "@/lib/actions/application";
 import { Icon } from "@iconify/react";
 import { SchoolSelect } from "@/components/SchoolSelect";
+import { CitySelect } from "@/components/CitySelect";
 
 const initialState = {
     error: ""
@@ -81,6 +82,11 @@ export default function ApplicationPage() {
                             <label className="block text-lg font-medium">School</label>
                             <SchoolSelect/>
                         </div>
+                        <div>
+                            <label className="block text-lg font-medium">City</label>
+                            <CitySelect/>
+                        </div>
+
 
                         <div>
                             <label className="block text-lg font-medium">Graduating year</label>
@@ -94,6 +100,7 @@ export default function ApplicationPage() {
                                         <SelectItem value="2026">2026</SelectItem>
                                         <SelectItem value="2027">2027</SelectItem>
                                         <SelectItem value="2028">2028</SelectItem>
+                                        <SelectItem value="other">Other</SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
@@ -112,46 +119,45 @@ export default function ApplicationPage() {
                                 </div>
                             )}
                         </div>
-                    </div>
 
-                    <div>
-                        <h2 className="text-3xl font-semibold mt-8">Socials</h2>
-                        <h3 className="font-medium text-gray-500">(Optional)</h3>
-                    </div>
+                        <div>
+                            <h2 className="text-3xl font-semibold mt-8">Socials</h2>
+                            <h3 className="font-medium text-gray-500">(Optional)</h3>
+                        </div>
 
-                    <Input
-                        type="text"
-                        label="Github"
-                    />
-
-                    <Input
-                        type="text"
-                        label="Linkedin"
-                    />
-
-                    <Input
-                        type="text"
-                        label="Portfolio"
-                    />
-
-                    <Input
-                        type="text"
-                        label="Resume"
-                    />
-
-                    <div className="mb-6">
-                        <h2 className="text-3xl font-semibold mt-8">Emergency Contact Information</h2>
-                    </div>
-
-                    <div className="flex flex-col lg:flex-row gap-4">
                         <Input
                             type="text"
-                            label="Name"
+                            label="Github"
                         />
-                        <PhoneInput
-                            label="Phone number"
+
+                        <Input
+                            type="text"
+                            label="Linkedin"
                         />
-                    </div>
+
+                        <Input
+                            type="text"
+                            label="Portfolio"
+                        />
+
+                        <Input
+                            type="text"
+                            label="Resume"
+                        />
+
+                        <div className="mb-6">
+                            <h2 className="text-3xl font-semibold mt-8">Emergency Contact Information</h2>
+                        </div>
+
+                        <div className="flex flex-col lg:flex-row gap-4">
+                            <Input
+                                type="text"
+                                label="Name"
+                            />
+                            <PhoneInput
+                                label="Phone number"
+                            />
+                        </div>
 
                     </div>
 
