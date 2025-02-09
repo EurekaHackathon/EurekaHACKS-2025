@@ -51,7 +51,7 @@ export default function TeamSection() {
         {
             name: "Eason",
             role: "Web Dev",
-            image: "eason.webp",
+            image: "eason.png",
             url: "https://example.com",
             emoji: "😎"
         },
