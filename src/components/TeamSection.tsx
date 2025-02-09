@@ -45,7 +45,7 @@ export default function TeamSection() {
             name: "Nabira",
             role: "Business",
             image: "nabira.webp",
-            url: "https://example.com",
+            url: "https://www.linkedin.com/in/nabira-rashid-46338a283/",
             emoji: "😎"
         },
         {
