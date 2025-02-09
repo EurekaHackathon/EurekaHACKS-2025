@@ -2,6 +2,7 @@
 
 import * as React from "react";
 
+import { Input } from "@/components/Input";
 import { cn } from "@/lib/utils";
 import {
     Command,
@@ -39,48 +40,56 @@ export function SchoolSelect() {
     const [value, setValue] = React.useState("");
 
     return (
-        <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-                <button
-                    role="combobox"
-                    aria-expanded={open}
-                    className="w-full border font-medium flex items-center py-2 px-4 rounded-lg border-gray-300 justify-between"
-                >
-                    {value
-                        ? data.find((school) => school.value === value)?.label
-                        : "Select school"}
-                    <Icon icon="fluent:chevron-up-down-20-filled" className="opacity-50"/>
-                </button>
-            </PopoverTrigger>
-            <PopoverContent className="p-0">
-                <Command filter={filterFunction}>
-                    <CommandInput placeholder="Search school..."/>
-                    <CommandList>
-                        <CommandEmpty>No school found.</CommandEmpty>
-                        <CommandGroup>
-                            {data.map((school) => (
-                                <CommandItem
-                                    key={school.value}
-                                    value={school.value}
-                                    onSelect={(currentValue) => {
-                                        setValue(currentValue === value ? "" : currentValue);
-                                        setOpen(false);
-                                    }}
-                                >
-                                    {school.label}
-                                    <Icon
-                                        icon="fluent:checkmark-16-filled"
-                                        className={cn(
-                                            "ml-auto",
-                                            value === school.value ? "opacity-100" : "opacity-0"
-                                        )}
-                                    />
-                                </CommandItem>
-                            ))}
-                        </CommandGroup>
-                    </CommandList>
-                </Command>
-            </PopoverContent>
-        </Popover>
+        <>
+            <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                    <button
+                        role="combobox"
+                        aria-expanded={open}
+                        className="w-full border font-medium flex items-center py-2 px-4 rounded-lg border-gray-300 justify-between"
+                    >
+                        {value
+                            ? data.find((school) => school.value === value)?.label
+                            : "Select school"}
+                        <Icon icon="fluent:chevron-up-down-20-filled" className="opacity-50"/>
+                    </button>
+                </PopoverTrigger>
+                <PopoverContent className="p-0">
+                    <Command filter={filterFunction}>
+                        <CommandInput placeholder="Search school..."/>
+                        <CommandList>
+                            <CommandEmpty>No school found.</CommandEmpty>
+                            <CommandGroup>
+                                {data.map((school) => (
+                                    <CommandItem
+                                        key={school.value}
+                                        value={school.value}
+                                        onSelect={(currentValue) => {
+                                            setValue(currentValue === value ? "" : currentValue);
+                                            setOpen(false);
+                                        }}
+                                    >
+                                        {school.label}
+                                        <Icon
+                                            icon="fluent:checkmark-16-filled"
+                                            className={cn(
+                                                "ml-auto",
+                                                value === school.value ? "opacity-100" : "opacity-0"
+                                            )}
+                                        />
+                                    </CommandItem>
+                                ))}
+                            </CommandGroup>
+                        </CommandList>
+                    </Command>
+                </PopoverContent>
+            </Popover>
+            <input type="hidden" name="school" value={value}/>
+            {value === "Other" &&
+                <div className="mt-4">
+                  <Input label="School (other)" required type="text" name="school-other"/>
+                </div>
+            }
+        </>
     );
 }

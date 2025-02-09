@@ -57,34 +57,30 @@ create table if not exists public.hackathon_applications (
     ),
     year_of_graduation integer not null check (year_of_graduation > 1900 and year_of_graduation < 2100),
     city text not null,
-    dietary_restrictions text not null check (
+    dietary_restrictions text check (
         length(dietary_restrictions) > 0
         and length(dietary_restrictions) < 256
     ),
     number_of_hackathons_attended integer not null check (number_of_hackathons_attended >= 0),
-    github_link text not null check (
+    github_link text check (
         length(github_link) > 0
         and length(github_link) < 256
     ),
-    linkedin_link text not null check (
+    linkedin_link text check (
         length(linkedin_link) > 0
         and length(linkedin_link) < 256
     ),
-    portfolio_link text not null check (
+    portfolio_link text check (
         length(portfolio_link) > 0
         and length(portfolio_link) < 256
     ),
-    resume_link text not null check (
+    resume_link text check (
         length(resume_link) > 0
         and length(resume_link) < 256
     ),
-    emergency_contact_first_name text not null check (
+    emergency_contact_full_name text not null check (
         length(emergency_contact_first_name) > 0
-        and length(emergency_contact_first_name) < 128
-    ),
-    emergency_contact_last_name text not null check (
-        length(emergency_contact_last_name) > 0
-        and length(emergency_contact_last_name) < 128
+        and length(emergency_contact_first_name) < 256
     ),
     emergency_contact_relationship text not null check (
         length(emergency_contact_relationship) > 0

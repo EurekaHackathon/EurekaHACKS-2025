@@ -2,5 +2,9 @@ export const ontarioSchoolsList = ["Other", "AAEC's/e-Learning", "Abbey Park Hig
 export const ontarioCitiesList = ["Other", "Bancroft", "Barrie", "Belleville", "Brampton", "Brantford", "Brockville", "Burlington", "Cambridge", "Chatham", "Chatham-Kent", "Cornwall", "Elliot Lake", "Fort Erie", "Fort Frances", "Gananoque", "Guelph", "Hamilton", "Iroquois Falls", "Kapuskasing", "Kawartha Lakes", "Kenora", "Kingston", "Kirkland Lake", "Kitchener", "Laurentian Hills", "London", "Midland", "Mississauga", "Moose Factory", "Moosonee", "Niagara Falls", "Niagara-on-the-Lake", "North Bay", "Oakville", "Orillia", "Oshawa", "Ottawa", "Parry Sound", "Perth", "Peterborough", "Picton", "Port Colborne", "Saint Catharines", "Saint Thomas", "Sarnia-Clearwater", "Sault Sainte Marie", "Simcoe", "Stratford", "Sudbury", "Temiskaming Shores", "Thorold", "Thunder Bay", "Timmins", "Toronto", "Trenton", "Waterloo", "Welland", "West Nipissing", "Windsor", "Woodstock"];
 export const dietaryRestrictionsList = [
     "Lactose Intolerant",
-    "Halal"
+    "Halal",
+    "Vegetarian",
+    "Vegan",
+    "Gluten Free",
+    "Other"
 ];
