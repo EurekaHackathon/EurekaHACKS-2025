@@ -16,91 +16,91 @@ export default function TeamSection() {
         {
             name: "Yohance",
             role: "Director",
-            image: "person.jpg",
-            url: "https://example.com",
+            image: "yohance.webp",
+            url: "https://www.linkedin.com/in/yohance-pawania-30aa902a4/",
             emoji: "😎"
         },
         {
             name: "Aadya",
             role: "Director",
-            image: "person.jpg",
-            url: "https://example.com",
+            image: "aadya.webp",
+            url: "https://www.linkedin.com/in/aadya-khanna-050342293/",
             emoji: "😎"
         },
         {
             name: "Suri",
             role: "Director",
-            image: "person.jpg",
-            url: "https://example.com",
+            image: "suri.webp",
+            url: "https://www.linkedin.com/in/suri-tian-011b77282/",
             emoji: "😎"
         },
         {
             name: "Selena",
             role: "Logistics & Business",
-            image: "person.jpg",
-            url: "https://example.com",
+            image: "selena.webp",
+            url: "https://www.linkedin.com/in/selena-nguyen-0b7287321/",
             emoji: "😎"
         },
         {
             name: "Nabira",
             role: "Business",
-            image: "person.jpg",
+            image: "nabira.webp",
             url: "https://example.com",
             emoji: "😎"
         },
         {
             name: "Eason",
             role: "Web Dev",
-            image: "person.jpg",
+            image: "eason.webp",
             url: "https://example.com",
             emoji: "😎"
         },
         {
             name: "Naman",
             role: "Web Dev",
-            image: "person.jpg",
-            url: "https://example.com",
+            image: "naman.webp",
+            url: "https://www.linkedin.com/in/naman-sonawane",
             emoji: "😎"
         },
         {
             name: "Aaron",
             role: "Director",
-            image: "person.jpg",
-            url: "https://example.com",
+            image: "aaron.webp",
+            url: "https://www.linkedin.com/in/aaron-ye-7574872a0/",
             emoji: "😎"
         },
         {
             name: "Jake",
             role: "Director",
-            image: "person.jpg",
+            image: "jake.webp",
             url: "https://example.com",
             emoji: "😎"
         },
         {
             name: "Margaret",
             role: "Visual Design",
-            image: "person.jpg",
-            url: "https://example.com",
+            image: "margaret.webp",
+            url: "https://www.linkedin.com/in/margaret-liu-774036318/",
             emoji: "😎"
         },
         {
             name: "Vihaan",
             role: "Business",
-            image: "person.jpg",
+            image: "vihaan.webp",
             url: "https://example.com",
             emoji: "😎"
         },
         {
             name: "Minsun",
             role: "Marketing",
-            image: "person.jpg",
+            image: "minsun.webp",
             url: "https://example.com",
             emoji: "😎"
         },
         {
             name: "Nahyan",
             role: "Marketing",
-            image: "person.jpg",
+            image: "nahyan.webp",
             url: "https://example.com",
             emoji: "😎"
         },
