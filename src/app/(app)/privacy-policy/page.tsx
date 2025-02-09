@@ -9,7 +9,7 @@ export default function PrivacyPolicyPage() {
             <br />
 
             <h2 className="text-lg font-bold">Analytics Data</h2>
-            <p>We gather analytics data from various online platforms, including our website at <a href="https://eurekahacks.ca/" className="underline">https://eurekahacks.ca/</a>, and our Instagram (<a href="https://www.instagram.com/eureka_hacks/" className="underline">@eureka_hacks</a>). This data, which is anonymous, may encompass metrics from our web properties. We may share this information publicly or privately with third parties, presenting it in broad categories such as monthly visitor counts to maintain transparency.</p>
+            <p>We gather analytics data from various online platforms, including our website at <a href="https://eurekahacks.ca/" target="_blank" className="underline">https://eurekahacks.ca/</a>, and our Instagram (<a href="https://www.instagram.com/eureka_hacks/" target="_blank" className="underline">@eureka_hacks</a>). This data, which is anonymous, may encompass metrics from our web properties. We may share this information publicly or privately with third parties, presenting it in broad categories such as monthly visitor counts to maintain transparency.</p>
             <br />
 
             <h2 className="text-lg font-bold">Application and Event Data</h2>
@@ -29,11 +29,11 @@ export default function PrivacyPolicyPage() {
             <br />
 
             <h2 className="text-lg font-bold">Deletion Policy</h2>
-            <p>Upon receiving a written request along with proof of identity via email sent to <a href="mailto:hello@eurekahacks.ca" className="underline">hello@eurekahacks.ca</a>, we will delete all relevant personal data within 30 days. It's important to be aware that your data may persist in our rolling backups beyond this period. However, it will not be utilized, and any restored versions will have the data deleted if required.</p>
+            <p>Upon receiving a written request along with proof of identity via email sent to <a href="mailto:hello@eurekahacks.ca" target="_blank" className="underline">hello@eurekahacks.ca</a>, we will delete all relevant personal data within 30 days. It's important to be aware that your data may persist in our rolling backups beyond this period. However, it will not be utilized, and any restored versions will have the data deleted if required.</p>
             <br />
 
             <h2 className="text-lg font-bold">Questions</h2>
-            <p>Any inquiries regarding the EurekaHACKS privacy policy can be directed to <a href="mailto:hello@eurekahacks.ca" className="underline">hello@eurekahacks.ca</a>. We prioritize your privacy and welcome any feedback or criticism to ensure your comfort with our operational practices.</p>
+            <p>Any inquiries regarding the EurekaHACKS privacy policy can be directed to <a href="mailto:hello@eurekahacks.ca" target="_blank" className="underline">hello@eurekahacks.ca</a>. We prioritize your privacy and welcome any feedback or criticism to ensure your comfort with our operational practices.</p>
             <br />
 
             <p>Credit for this privacy policy is attributed to McHacks.</p>

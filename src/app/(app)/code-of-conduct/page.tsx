@@ -27,7 +27,7 @@ export default function CodeOfConductPage() {
             <p>If you feel uneasy or suspect a potential violation of the code of conduct, please utilize the following reporting methods. All reporters have the option to remain anonymous.</p>
             <br />
 
-            <p>Feel free to reach out to any organizers or the on-duty security guard at any time. For direct communication with the Co-Directors, you can email them at hello@eurekahacks.ca.</p>
+            <p>Feel free to reach out to any organizers or the on-duty security guard at any time. For direct communication with the Co-Directors, you can email them at <a href="mailto:hello@eurekahacks.ca" target="_blank" className="underline">hello@eurekahacks.ca</a>.</p>
             <br />
 
             <p>In case of emergency, please contact the following resources immediately:</p>
@@ -49,8 +49,8 @@ export default function CodeOfConductPage() {
                 <li>JustHack Code of Conduct</li>
             </ul>
             <br />
-            
-            <p>For any inquiries about this code of conduct, please contact <a href="mailto:hello@eurekahacks.ca" className="underline">hello@eurekahacks.ca</a>. EurekaHACKS reserves the right to modify this code of conduct at any time.</p>
+
+            <p>For any inquiries about this code of conduct, please contact <a href="mailto:hello@eurekahacks.ca" target="_blank" className="underline">hello@eurekahacks.ca</a>. EurekaHACKS reserves the right to modify this code of conduct at any time.</p>
         </div>
     )
 }
