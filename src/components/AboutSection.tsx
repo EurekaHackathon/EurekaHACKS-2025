@@ -1,28 +1,42 @@
-import photo1 from "../../public/photos/about1.jpg";
-import photo2 from "../../public/photos/about2.jpg";
-import photo3 from "../../public/photos/about3.jpg";
+"use client"
+import { useEffect, useState } from "react";
+import photo6 from "../../public/photos/about6.jpg";
+import photo7 from "../../public/photos/about7.jpg";
+import photo8 from "../../public/photos/about8.jpg";
 import Image from "next/image";
 
 export function AboutSection() {
+    const images = [photo6, photo7, photo8]; // The images you want to cycle through
+    const [currentImage, setCurrentImage] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+        }, 3000); // Change image every 2 seconds
+
+        // Cleanup the interval on component unmount
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <div id="about"
-            className="flex flex-col lg:flex-row gap-4 2xl:gap-12 justify-center pt-32 2xl:pt-48 mx-4 md:mx-12 2xl:mx-64">
+        <div id="about" className="flex flex-col lg:flex-row gap-4 2xl:gap-12 justify-center pt-32 2xl:pt-48 mx-4 md:mx-12 2xl:mx-64">
+            {/* Left side - Text Section */}
             <div className="lg:w-[45%]">
                 <h1 className="text-4xl md:text-5xl font-semibold text-gray-50">About EurekaHACKS</h1>
                 <p className="mt-2 lg:mt-4 text-xl md:text-2xl font-medium leading-relaxed text-gray-100">
                     Welcome to EurekaHacks! Join us for a 36-hour hackathon filled with creativity, innovation, and fun! Compete, collaborate, and learn through workshops, exciting challenges, and networking opportunities with industry experts. Whether you're a beginner or seasoned hacker, come build, innovate, and network.
                 </p>
             </div>
-            <div className="lg:w-[55%] flex flex-col lg:flex-row items-center gap-4">
-                <div className="flex justify-center lg:justify-end lg:h-full 2xl:h-[120%] items-center">
-                    <Image src={photo1} alt="todo later"
-                        className="w-[80%] lg:w-auto object-cover h-[80%]" />
-                </div>
-                <div className="flex flex-row lg:flex-col gap-4 lg:h-full 2xl:h-[150%]">
-                    <Image src={photo2} alt="todo later"
-                        className="lg:w-auto object-cover w-[50%] lg:h-[200%]" />
-                    <Image src={photo3} alt="todo later"
-                        className="w-[80%]" />
+
+            {/* Right side - Fading Image Section */}
+            <div className="lg:w-[55%] flex justify-center items-center relative w-full">
+                <div className="relative w-full h-96">
+                    <Image
+                        src={images[currentImage]}
+                        alt={`Image ${currentImage}`}
+                        className="absolute w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100"
+                        key={currentImage}
+                    />
                 </div>
             </div>
         </div>
