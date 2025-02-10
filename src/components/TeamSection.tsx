@@ -72,8 +72,8 @@ export default function TeamSection() {
         {
             name: "Jake",
             role: "Director",
-            image: "jake.webp",
-            url: "https://example.com",
+            image: "jake.png",
+            url: "https://www.linkedin.com/in/jake-comay-31571a345/",
             emoji: "😎"
         },
         {

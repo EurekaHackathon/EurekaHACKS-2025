@@ -11,7 +11,9 @@ export default function Layout({
     return (
         <div className="min-h-screen flex flex-col">
             <Navbar />
-            {children}
+            <div className="flex-grow">
+                {children}
+            </div>
             <Footer />
         </div>
     );
