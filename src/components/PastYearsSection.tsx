@@ -11,7 +11,7 @@ const stats = [
 export default function PastYearsSection() {
     return (
         <div id="past" className="text-gray-50 pt-24 md:pt-36 lg:pt-72">
-            <h1 className="text-4xl md:text-6xl lg:text-8xl text-center font-semibold">Last year, we had...</h1>
+            <h1 className="text-4xl md:text-6xl lg:text-8xl text-center font-semibold text-secondary-400">Last year, we had...</h1>
             <div className="hidden lg:flex justify-center gap-16 pt-16 font-medium">
                 {stats.map((stat, index) => (
                     <div key={index} className="text-center">

@@ -16,92 +16,106 @@ export default function TeamSection() {
         {
             name: "Yohance",
             role: "Director",
-            image: "person.jpg",
-            url: "https://example.com",
+            image: "yohance.webp",
+            url: "https://www.linkedin.com/in/yohance-pawania-30aa902a4/",
             emoji: "😎"
         },
         {
             name: "Aadya",
             role: "Director",
-            image: "person.jpg",
-            url: "https://example.com",
-            emoji: "😎"
+            image: "aadya.webp",
+            url: "https://www.linkedin.com/in/aadya-khanna-050342293/",
+            emoji: "💪"
         },
         {
             name: "Suri",
             role: "Director",
-            image: "person.jpg",
-            url: "https://example.com",
-            emoji: "😎"
+            image: "suri.webp",
+            url: "https://www.linkedin.com/in/suri-tian-011b77282/",
+            emoji: "🌝"
         },
         {
             name: "Selena",
             role: "Logistics & Business",
-            image: "person.jpg",
-            url: "https://example.com",
+            image: "selena.webp",
+            url: "https://www.linkedin.com/in/selena-nguyen-0b7287321/",
             emoji: "😎"
         },
         {
             name: "Nabira",
             role: "Business",
-            image: "person.jpg",
-            url: "https://example.com",
-            emoji: "😎"
+            image: "nabira.webp",
+            url: "https://www.linkedin.com/in/nabira-rashid-46338a283/",
+            emoji: "🌟"
         },
         {
             name: "Eason",
             role: "Web Dev",
-            image: "person.jpg",
-            url: "https://example.com",
-            emoji: "😎"
+            image: "eason.png",
+            url: "https://www.linkedin.com/in/eason-huang-647391295/",
+            emoji: "🌵"
         },
         {
             name: "Naman",
             role: "Web Dev",
-            image: "person.jpg",
-            url: "https://example.com",
-            emoji: "😎"
+            image: "naman.webp",
+            url: "https://www.linkedin.com/in/naman-sonawane",
+            emoji: "🤩"
         },
         {
             name: "Aaron",
             role: "Director",
-            image: "person.jpg",
-            url: "https://example.com",
+            image: "aaron.webp",
+            url: "https://www.linkedin.com/in/aaron-ye-7574872a0/",
             emoji: "😎"
         },
         {
             name: "Jake",
             role: "Director",
-            image: "person.jpg",
-            url: "https://example.com",
-            emoji: "😎"
+            image: "jake.png",
+            url: "https://www.linkedin.com/in/jake-comay-31571a345/",
+            emoji: "💪"
         },
         {
             name: "Margaret",
             role: "Visual Design",
-            image: "person.jpg",
-            url: "https://example.com",
-            emoji: "😎"
+            image: "margaret.webp",
+            url: "https://www.linkedin.com/in/margaret-liu-774036318/",
+            emoji: "🦆"
+        },
+        {
+            name: "Minsun",
+            role: "Visual Design",
+            image: "minsun.webp",
+            url: "https://www.linkedin.com/in/minsun-kim-8b62022aa/",
+            emoji: "💗"
         },
         {
             name: "Vihaan",
             role: "Business",
-            image: "person.jpg",
-            url: "https://example.com",
-            emoji: "😎"
+            image: "vihaan.webp",
+            url: "https://www.linkedin.com/in/vihaan-vashishtha-0420a6297",
+            emoji: "🦖"
         },
         {
-            name: "Minsun",
+            name: "Farouk",
             role: "Marketing",
-            image: "person.jpg",
-            url: "https://example.com",
-            emoji: "😎"
+            image: "farouk.webp",
+            url: "https://www.linkedin.com/in/faroukjabsheh/",
+            emoji: "🚀"
         },
         {
             name: "Nahyan",
             role: "Marketing",
-            image: "person.jpg",
-            url: "https://example.com",
+            image: "nahyan.webp",
+            url: "https://www.linkedin.com/in/nahyan-hossain-48143a2a4/",
+            emoji: "🍀"
+        },
+        {
+            name: "Jimin",
+            role: "Marketing",
+            image: "jimin.webp",
+            url: "https://www.linkedin.com/in/jimin-so-1878a2285/",
             emoji: "😎"
         },
     ];
