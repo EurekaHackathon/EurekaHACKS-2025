@@ -25,14 +25,14 @@ export default function TeamSection() {
             role: "Director",
             image: "aadya.webp",
             url: "https://www.linkedin.com/in/aadya-khanna-050342293/",
-            emoji: "😎"
+            emoji: "💪"
         },
         {
             name: "Suri",
             role: "Director",
             image: "suri.webp",
             url: "https://www.linkedin.com/in/suri-tian-011b77282/",
-            emoji: "😎"
+            emoji: "🌝"
         },
         {
             name: "Selena",
@@ -46,14 +46,14 @@ export default function TeamSection() {
             role: "Business",
             image: "nabira.webp",
             url: "https://www.linkedin.com/in/nabira-rashid-46338a283/",
-            emoji: "😎"
+            emoji: "🌟"
         },
         {
             name: "Eason",
             role: "Web Dev",
             image: "eason.png",
             url: "https://www.linkedin.com/in/eason-huang-647391295/",
-            emoji: "😎"
+            emoji: "🌵"
         },
         {
             name: "Naman",
@@ -81,20 +81,34 @@ export default function TeamSection() {
             role: "Visual Design",
             image: "margaret.webp",
             url: "https://www.linkedin.com/in/margaret-liu-774036318/",
-            emoji: "😎"
+            emoji: "🦆"
         },
         {
             name: "Minsun",
             role: "Visual Design",
             image: "minsun.webp",
             url: "https://www.linkedin.com/in/minsun-kim-8b62022aa/",
-            emoji: "😎"
+            emoji: "💗"
         },
         {
             name: "Vihaan",
             role: "Business",
             image: "vihaan.webp",
             url: "https://www.linkedin.com/in/vihaan-vashishtha-0420a6297",
+            emoji: "🦖"
+        },
+        {
+            name: "Farouk",
+            role: "Marketing",
+            image: "farouk.webp",
+            url: "https://www.linkedin.com/in/faroukjabsheh/",
+            emoji: "🚀"
+        },
+        {
+            name: "Nahyan",
+            role: "Marketing",
+            image: "nahyan.webp",
+            url: "https://www.linkedin.com/in/nahyan-hossain-48143a2a4/",
             emoji: "😎"
         },
         {
