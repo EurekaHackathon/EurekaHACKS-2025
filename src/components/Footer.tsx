@@ -88,7 +88,7 @@ export default function Footer() {
             </div>
             <div
                 className="md:hidden flex justify-center text-md items-center gap-12 pt-12 text-gray-300 text-md">
-                <Link href="/terms-of-service" className="font-medium">Terms of Service</Link>
+                <Link href="/code-of-conduct" className="font-medium">Code of Conduct</Link>
                 <Link href="/privacy-policy" className="font-medium">Privacy Policy</Link>
             </div>
             <p className="md:hidden  text-gray-300 text-center font-medium pt-1">Copyright © EurekaHACKS 2025</p>
