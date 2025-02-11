@@ -52,7 +52,7 @@ export default function TeamSection() {
             name: "Eason",
             role: "Web Dev",
             image: "eason.png",
-            url: "https://example.com",
+            url: "https://www.linkedin.com/in/eason-huang-647391295/",
             emoji: "😎"
         },
         {
@@ -60,7 +60,7 @@ export default function TeamSection() {
             role: "Web Dev",
             image: "naman.webp",
             url: "https://www.linkedin.com/in/naman-sonawane",
-            emoji: "😎"
+            emoji: "🤩"
         },
         {
             name: "Aaron",
@@ -84,24 +84,24 @@ export default function TeamSection() {
             emoji: "😎"
         },
         {
+            name: "Minsun",
+            role: "Visual Design",
+            image: "minsun.webp",
+            url: "https://www.linkedin.com/in/minsun-kim-8b62022aa/",
+            emoji: "😎"
+        },
+        {
             name: "Vihaan",
             role: "Business",
             image: "vihaan.webp",
-            url: "https://example.com",
+            url: "https://www.linkedin.com/in/vihaan-vashishtha-0420a6297",
             emoji: "😎"
         },
         {
-            name: "Minsun",
+            name: "Jimin",
             role: "Marketing",
-            image: "minsun.webp",
-            url: "https://example.com",
-            emoji: "😎"
-        },
-        {
-            name: "Nahyan",
-            role: "Marketing",
-            image: "nahyan.webp",
-            url: "https://example.com",
+            image: "jimin.webp",
+            url: "https://www.linkedin.com/in/jimin-so-1878a2285/",
             emoji: "😎"
         },
     ];
