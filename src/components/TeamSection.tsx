@@ -109,7 +109,7 @@ export default function TeamSection() {
             role: "Marketing",
             image: "nahyan.webp",
             url: "https://www.linkedin.com/in/nahyan-hossain-48143a2a4/",
-            emoji: "😎"
+            emoji: "🍀"
         },
         {
             name: "Jimin",
