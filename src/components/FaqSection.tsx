@@ -29,20 +29,28 @@ export default function FaqSection() {
         }
     ];
 
+    const mid = Math.ceil(faqs.length / 2);
+    const left = faqs.slice(0, mid);
+    const right = faqs.slice(mid);
+
     return (
-        <div className="text-gray-50 pt-32" id="faq">
-            <div className="flex justify-center pt-4">
-                <h1 className="xl:w-3/5 md:w-[80%] w-[90%] lg:text-5xl md:text-4xl text-3xl font-semibold ml-4">Frequently
-                    Asked Questions</h1>
-            </div>
-            <div className="flex justify-center pt-12">
-                <div className="xl:w-3/5 md:w-[80%] w-[90%]">
-                    <div className="grid lg:grid-cols-2 lg:gap-x-24 lg:gap-y-8 md:gap-y-6 gap-y-4">
-                        {faqs.map((faq, index) => {
-                            return <FaqDropdown key={index} title={faq.title} description={faq.description} />;
-                        })}
-                    </div>
-                </div>
+
+        <div className="max-w-screen-2xl px-16 m-auto pt-32 flex flex-col items-center" id="faq">
+            <h1 className="text-4xl md:text-6xl font-semibold text-center text-secondary-400">
+                Frequently Asked Questions
+            </h1>
+            <div className="flex gap-4 mt-16 flex-col md:flex-row">
+                {[left, right].map((column, index) => {
+                    return (
+                        <div className="flex flex-col gap-4" key={index}>
+                            {
+                                column.map((faq, index) => {
+                                    return <FaqDropdown key={index} title={faq.title} description={faq.description} />;
+                                })
+                            }
+                        </div>
+                    );
+                })}
             </div>
             <h1 className="text-center py-32 text-2xl">insert some art here or smth</h1>
         </div>
