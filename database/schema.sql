@@ -41,6 +41,13 @@ create table if not exists public.email_verification_tokens (
 create table if not exists public.hackathon_applications (
     id serial primary key,
     user_id integer not null references public.apps_users(id) on delete cascade,
+    status text not null check (
+        status = 'unsubmitted'
+        or status = 'submitted'
+        or status = 'rejected'
+        or status = 'accepted'
+        or status = 'waitlisted'
+    ),
     first_name text not null check (
         length(first_name) > 0
         and length(first_name) < 128
@@ -57,10 +64,7 @@ create table if not exists public.hackathon_applications (
     ),
     year_of_graduation integer not null check (year_of_graduation > 1900 and year_of_graduation < 2100),
     city text not null,
-    dietary_restrictions text check (
-        length(dietary_restrictions) > 0
-        and length(dietary_restrictions) < 256
-    ),
+    dietary_restrictions text[],
     number_of_hackathons_attended integer not null check (number_of_hackathons_attended >= 0),
     github_link text check (
         length(github_link) > 0
@@ -79,8 +83,8 @@ create table if not exists public.hackathon_applications (
         and length(resume_link) < 256
     ),
     emergency_contact_full_name text not null check (
-        length(emergency_contact_first_name) > 0
-        and length(emergency_contact_first_name) < 256
+        length(emergency_contact_full_name) > 0
+        and length(emergency_contact_full_name) < 256
     ),
     emergency_contact_relationship text not null check (
         length(emergency_contact_relationship) > 0
