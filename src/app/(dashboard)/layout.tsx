@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { authorizeSession } from "@/lib/sessions";
 import { DashboardProvider } from "@/components/DashboardProvider";
 import { DashboardNav } from "@/components/DashboardNav";
+import { Toaster } from "@/components/Toaster";
 
 export default async function Layout({
                                          children,
@@ -13,13 +14,17 @@ export default async function Layout({
     const user = await authorizeSession(sessionCookie?.value);
 
     return (
-        <DashboardProvider value={{user}}>
-            <div className="min-h-screen flex flex-row w-full">
-                <DashboardNav />
-                <div className="overflow-hidden flex-grow px-20">
-                    {children}
+        <>
+            <DashboardProvider value={{ user }}>
+                <div className="min-h-screen flex flex-row w-full">
+                    <DashboardNav/>
+                    <div className="overflow-hidden flex-grow px-20">
+                        {children}
+                    </div>
                 </div>
-            </div>
-        </DashboardProvider>
+            </DashboardProvider>
+            <Toaster/>
+        </>
+
     );
 }

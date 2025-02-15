@@ -35,9 +35,9 @@ const filterFunction = (value: string, search: string, keywords: string[] | unde
     return 0;
 };
 
-export function SchoolSelect() {
+export function SchoolSelect({ payload }: { payload: FormData | undefined }) {
     const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState("");
+    const [value, setValue] = React.useState(payload?.get("school") ?? "");
 
     return (
         <>
@@ -84,10 +84,10 @@ export function SchoolSelect() {
                     </Command>
                 </PopoverContent>
             </Popover>
-            <input type="hidden" name="school" value={value}/>
+            <input type="hidden" name="school" value={value as string}/>
             {value === "Other" &&
                 <div className="mt-4">
-                  <Input label="School (other)" required type="text" name="school-other"/>
+                  <Input defaultValue={payload?.get("school-other")} label="School (other)" required type="text" name="school-other"/>
                 </div>
             }
         </>
