@@ -19,9 +19,9 @@ export default function FaqDropdown({ title, description }: { title: string, des
     }, [isOpen]);
 
     return (
-        <div className="group font-sans text-gray-50 max-w-xl bg-primary-600 rounded-xl">
+        <div className="group font-sans text-gray-50 max-w-xl bg-primary-600 rounded-xl cursor-pointer" onClick={handleClick}>
             <div className="bg-secondary-900 group-hover:-translate-y-1 transition ease-in-out duration-200 p-4 rounded-xl">
-                <div className="flex items-center cursor-pointer" onClick={handleClick}>
+                <div className="flex items-center">
                     {!isOpen &&
                         <svg className="pr-2 w-auto h-8" shapeRendering="crispEdges" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24">
