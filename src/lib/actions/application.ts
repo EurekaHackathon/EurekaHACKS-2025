@@ -2,6 +2,11 @@
 
 import { dietaryRestrictionsList } from "@/app/(dashboard)/dashboard/application/data";
 import { applicationSchema } from "@/lib/validation";
+import { createApplication } from "@/lib/sqlc/application_sql";
+import { db } from "@/lib/database";
+import { cookies } from "next/headers";
+import { authorizeSession } from "@/lib/sessions";
+import { redirect } from "next/navigation";
 
 const safeParseNumber = (value: FormDataEntryValue | null) => {
     if (value === null) {
@@ -78,5 +83,72 @@ export const apply = async (_prevState: any, formData: FormData) => {
         };
     }
 
-    return { error: "none", payload: formData };
+    const cookieStores = await cookies();
+    const sessionToken = cookieStores.get("session");
+    if (!sessionToken) {
+        return {
+            error: "You are not logged in.",
+            payload: formData,
+        };
+    }
+    const user = await authorizeSession(sessionToken.value);
+
+    if (!user) {
+        return {
+            error: "You are not logged in.",
+            payload: formData,
+        };
+    }
+
+    const userDietaryRestrictions: string[] = [];
+    if (validationResult.data.lactoseIntolerant) {
+        userDietaryRestrictions.push("lactose intolerant");
+    }
+    if (validationResult.data.halal) {
+        userDietaryRestrictions.push("halal");
+    }
+    if (validationResult.data.vegetarian) {
+        userDietaryRestrictions.push("vegetarian");
+    }
+    if (validationResult.data.vegan) {
+        userDietaryRestrictions.push("vegan");
+    }
+    if (validationResult.data.glutenFree) {
+        userDietaryRestrictions.push("gluten free");
+    }
+    if (validationResult.data.otherDietaryRestrictions) {
+        userDietaryRestrictions.push(validationResult.data.otherDietaryRestrictions);
+    }
+
+    try {
+        await createApplication(db, {
+            userId: user.id,
+            firstName: validationResult.data.firstName,
+            lastName: validationResult.data.lastName,
+            email: validationResult.data.email,
+            age: validationResult.data.age,
+            school: validationResult.data.school,
+            yearOfGraduation: validationResult.data.graduationYear,
+            city: validationResult.data.city,
+            numberOfHackathonsAttended: validationResult.data.numberHackathonsAttended,
+            shortAnswerResponse: validationResult.data.shortAnswer,
+            dietaryRestrictions: userDietaryRestrictions,
+            emergencyContactFullName: validationResult.data.emergencyContactFullName,
+            emergencyContactPhoneNumber: validationResult.data.emergencyContactPhoneNumber,
+            githubLink: validationResult.data.github,
+            linkedinLink: validationResult.data.linkedin,
+            portfolioLink: validationResult.data.portfolio,
+            resumeLink: validationResult.data.resume,
+            status: "submitted"
+        });
+    } catch (error) {
+        console.log(error);
+        return {
+            error: "An error occurred while submitting your application. Please try again later.",
+            payload: formData,
+        };
+    }
+
+    // Workaround to refresh the page
+    redirect("/dashboard/application");
 };

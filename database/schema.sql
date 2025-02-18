@@ -66,29 +66,13 @@ create table if not exists public.hackathon_applications (
     city text not null,
     dietary_restrictions text[],
     number_of_hackathons_attended integer not null check (number_of_hackathons_attended >= 0),
-    github_link text check (
-        length(github_link) > 0
-        and length(github_link) < 256
-    ),
-    linkedin_link text check (
-        length(linkedin_link) > 0
-        and length(linkedin_link) < 256
-    ),
-    portfolio_link text check (
-        length(portfolio_link) > 0
-        and length(portfolio_link) < 256
-    ),
-    resume_link text check (
-        length(resume_link) > 0
-        and length(resume_link) < 256
-    ),
+    github_link text,
+    linkedin_link text,
+    portfolio_link text,
+    resume_link text,
     emergency_contact_full_name text not null check (
         length(emergency_contact_full_name) > 0
         and length(emergency_contact_full_name) < 256
-    ),
-    emergency_contact_relationship text not null check (
-        length(emergency_contact_relationship) > 0
-        and length(emergency_contact_relationship) < 128
     ),
     emergency_contact_phone_number text not null check (
         length(emergency_contact_phone_number) > 0

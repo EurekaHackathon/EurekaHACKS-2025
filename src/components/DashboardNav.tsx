@@ -67,8 +67,8 @@ export function DashboardNav() {
                         route="/dashboard/schedule" />
                     {user.isAdmin &&
                         <DashboardNavItem icon="fluent:people-16-filled" text="Admin" route="/dashboard/admin" />}
-                    <DashboardNavItem icon="fluent:settings-48-filled" text="Settings"
-                        route="/dashboard/settings" />
+                    {/*<DashboardNavItem icon="fluent:settings-48-filled" text="Settings"*/}
+                    {/*    route="/dashboard/settings" />*/}
                 </div>
                 <div className="pb-12">
                     <div className="flex items-center text-gray-600 gap-3 justify-center pt-32">
