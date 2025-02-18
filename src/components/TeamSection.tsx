@@ -67,7 +67,7 @@ export default function TeamSection() {
             role: "Director",
             image: "aaron.webp",
             url: "https://www.linkedin.com/in/aaron-ye-7574872a0/",
-            emoji: "😎"
+            emoji: "🐱"
         },
         {
             name: "Jake",
@@ -148,13 +148,13 @@ export default function TeamSection() {
                     typingID.current = 0;
                     return dn;
                 }
-    
+
                 if (dn === "" || nameRef.current.startsWith(dn)) {
                     return nameRef.current.substring(0, dn.length + 1);
                 } else {
                     return dn.slice(0, -1);
                 }
-            })            
+            });
         }, 40);
     }, [name]);
 
@@ -162,12 +162,13 @@ export default function TeamSection() {
         <div>
             <div id="team" className="text-gray-50 px-4 2xl:px-48 pt-8 pb-16">
                 <h1 className="text- xl md:text-2xl font-semibold text-center">
-                    Made with 
-                    <span className="px-2">♥</span> 
+                    Made with
+                    <span className="px-2">♥</span>
                     by&nbsp;
                     <span id="team-name" className="typewriter">{displayName}</span>
                 </h1>
-                <h2 className="text-center md:text-lg min-h-12 font-semibold pt-4">{currentText}</h2>
+                <h2 className="text-center md:text-lg min-h-12 font-semibold pt-4">{currentText}
+                </h2>
                 <div className="hidden 2xl:flex justify-center gap-8 pt-8">
                     {teamInfo.map((member: TeamMember, index: number) => (
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">

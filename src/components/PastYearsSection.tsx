@@ -1,17 +1,17 @@
 import ImageCarousel from "@/components/ImageCarousel";
 
 const stats = [
-    { value: "$10,000+", label: "in prizes" },
+    { value: "$7,000+", label: "in prizes" },
     { value: "150+", label: "hackers" },
     { value: "30+", label: "projects" },
-    { value: "20+", label: "schools" },
-    { value: "15+", label: "workshops" },
+    { value: "10+", label: "schools" },
+    { value: "5+", label: "workshops" },
 ];
 
 export default function PastYearsSection() {
     return (
         <div id="past" className="text-gray-50 pt-24 md:pt-36 lg:pt-72">
-            <h1 className="text-4xl md:text-6xl lg:text-8xl text-center font-semibold text-secondary-400">Last year, we had...</h1>
+            <h1 className="text-4xl md:text-6xl lg:text-8xl text-center font-semibold text-secondary-200">Last year, we had...</h1>
             <div className="hidden lg:flex justify-center gap-16 pt-16 font-medium">
                 {stats.map((stat, index) => (
                     <div key={index} className="text-center">
@@ -39,7 +39,7 @@ export default function PastYearsSection() {
             <div className="flex justify-center">
                 <ImageCarousel />
             </div>
-            <h1 className="text-center py-32 text-2xl">insert some art here or smth</h1>
+            {/*<h1 className="text-center py-32 text-2xl">insert some art here or smth</h1>*/}
         </div>
     );
 }

@@ -22,7 +22,7 @@ export function AboutSection() {
         <div id="about" className="flex flex-col lg:flex-row gap-4 2xl:gap-12 justify-center pt-32 2xl:pt-48 max-w-screen-2xl mx-auto px-16">
             {/* Left side - Text Section */}
             <div className="lg:w-[45%]">
-                <h1 className="text-4xl md:text-6xl font-bold text-secondary-400">About<br/> EurekaHACKS</h1>
+                <h1 className="text-4xl md:text-6xl font-bold text-secondary-200">About<br/> EurekaHACKS</h1>
                 <p className="mt-4 text-xl md:text-2xl font-medium leading-relaxed text-gray-100">
                     Welcome to EurekaHacks! Join us for a 36-hour hackathon filled with creativity, innovation, and fun! Compete, collaborate, and learn through workshops, exciting challenges, and networking opportunities with industry experts. Whether you're a beginner or seasoned hacker, come build, innovate, and network.
                 </p>

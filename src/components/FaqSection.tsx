@@ -36,7 +36,7 @@ export default function FaqSection() {
     return (
 
         <div className="max-w-screen-2xl px-16 m-auto pt-32 flex flex-col items-center" id="faq">
-            <h1 className="text-4xl md:text-6xl font-semibold text-center text-secondary-400">
+            <h1 className="text-4xl md:text-6xl font-semibold text-center text-secondary-200">
                 Frequently Asked Questions
             </h1>
             <div className="flex gap-4 mt-16 flex-col md:flex-row">
@@ -52,7 +52,7 @@ export default function FaqSection() {
                     );
                 })}
             </div>
-            <h1 className="text-center py-32 text-2xl">insert some art here or smth</h1>
+            {/*<h1 className="text-center py-32 text-2xl">insert some art here or smth</h1>*/}
         </div>
     );
 }
