@@ -56,52 +56,52 @@ export function HeroSectionArt() {
 
     return <div className="pointer-events-none absolute w-[100vw] h-[100vh] overflow-x-clip">
         <Image src={heroBackground} alt="Hero Background" id="bg"
-            className="absolute object-cover h-full landscape:w-full landscape:h-auto" />
+               className="absolute object-cover h-full landscape:w-full landscape:h-auto"/>
         <Image priority src={clouds1} alt="Clouds 1"
-            className="absolute h-full landscape:w-full landscape:h-auto scale-90 clouds1" />
+               className="absolute h-full landscape:w-full landscape:h-auto scale-90 clouds1"/>
         <Image src={clouds2} alt="Clouds 2"
-            className="absolute h-full landscape:w-full landscape:h-auto scale-90 clouds2" />
+               className="absolute h-full landscape:w-full landscape:h-auto scale-90 clouds2"/>
         <Image src={clouds3} alt="Clouds 3"
-            className="absolute h-full landscape:w-full landscape:h-auto scale-90 clouds3" />
+               className="absolute h-full landscape:w-full landscape:h-auto scale-90 clouds3"/>
         <Image src={clouds4} alt="Clouds 4"
-            className="absolute h-full landscape:w-full landscape:h-auto scale-90 clouds4" />
+               className="absolute h-full landscape:w-full landscape:h-auto scale-90 clouds4"/>
         <div className="hidden landscape:block">
-            <Image src={stars1} alt="Stars 1" className="absolute w-full h-auto stars1" />
+            <Image src={stars1} alt="Stars 1" className="absolute w-full h-auto stars1"/>
             {/*Translate it down so it doesn't go behind the navbar*/}
-            <Image src={stars2} alt="Stars 2" className="absolute w-full h-auto stars2 translate-y-12" />
-            <Image src={stars3} alt="Stars 3" className="absolute w-full h-auto stars3" />
-            <Image src={stars4} alt="Stars 4" className="absolute w-full h-auto stars4" />
-            <Image src={stars5} alt="Stars 5" className="absolute w-full h-auto stars5" />
-            <Image src={stars6} alt="Stars 6" className="absolute w-full h-auto stars6" />
-            <Image src={stars7} alt="Stars 7" className="absolute w-full h-auto stars7" />
-            <Image src={stars8} alt="Stars 8" className="absolute w-full h-auto stars8" />
+            <Image src={stars2} alt="Stars 2" className="absolute w-full h-auto stars2 translate-y-12"/>
+            <Image src={stars3} alt="Stars 3" className="absolute w-full h-auto stars3"/>
+            <Image src={stars4} alt="Stars 4" className="absolute w-full h-auto stars4"/>
+            <Image src={stars5} alt="Stars 5" className="absolute w-full h-auto stars5"/>
+            <Image src={stars6} alt="Stars 6" className="absolute w-full h-auto stars6"/>
+            <Image src={stars7} alt="Stars 7" className="absolute w-full h-auto stars7"/>
+            <Image src={stars8} alt="Stars 8" className="absolute w-full h-auto stars8"/>
             {/*Translate it down so it doesn't go behind the navbar*/}
-            <Image src={stars9} alt="Stars 9" className="absolute w-full h-auto stars9 translate-y-8" />
-            <Image src={stars10} alt="Stars 10" className="absolute w-full h-auto stars10" />
-            <Image src={stars11} alt="Stars 11" className="absolute w-full h-auto stars11" />
-            <Image src={stars12} alt="Stars 12" className="absolute w-full h-auto stars12" />
+            <Image src={stars9} alt="Stars 9" className="absolute w-full h-auto stars9 translate-y-8"/>
+            <Image src={stars10} alt="Stars 10" className="absolute w-full h-auto stars10"/>
+            <Image src={stars11} alt="Stars 11" className="absolute w-full h-auto stars11"/>
+            <Image src={stars12} alt="Stars 12" className="absolute w-full h-auto stars12"/>
         </div>
         <svg
             className="fix-load-bug absolute h-full translate-x-[-33%] w-auto md:translate-x-[-25%] landscape:translate-x-0 landscape:w-full landscape:h-auto"
             viewBox="0 0 507.99999 289.45417">
             <mask id="wave-mask">
-                <rect width="100%" height="100%" fill="white" />
-                <path ref={wavePathRef} fill="black" transform="rotate(0.1)" />
+                <rect width="100%" height="100%" fill="white"/>
+                <path ref={wavePathRef} fill="black" transform="rotate(0.1)"/>
             </mask>
             <image ref={duckRef} href={duck.src} width="25" height="25" transform="rotate(0.1)"
-                mask="url(#wave-mask)">
+                   mask="url(#wave-mask)">
                 <animateMotion dur="40s" repeatCount="indefinite"
-                    path="m 345.51252,197.30245 c 0,0 28.93833,4.47135 31.05755,20.11266 1.13149,8.35118 -35.37376,13.99404 -55.46147,18.54195 -17.49136,3.96009 -48.2485,5.28733 -69.2307,11.8133 -20.14434,6.26539 -77.99361,13.31836 -2.94156,72.14139"
+                               path="m 345.51252,197.30245 c 0,0 28.93833,4.47135 31.05755,20.11266 1.13149,8.35118 -35.37376,13.99404 -55.46147,18.54195 -17.49136,3.96009 -48.2485,5.28733 -69.2307,11.8133 -20.14434,6.26539 -77.99361,13.31836 -2.94156,72.14139"
                 />
                 <animateTransform attributeName="transform" type="scale" values="0.2,0.2;1,1" keyTimes="0;1"
-                    dur="40s"
-                    repeatCount="indefinite" additive="sum" />
+                                  dur="40s"
+                                  repeatCount="indefinite" additive="sum"/>
                 <animateTransform attributeName="transform" type="translate" values="-12.5,-12.5;-12.5,-12.5"
-                    keyTimes="0;1" dur="40s"
-                    repeatCount="indefinite" additive="sum" />
+                                  keyTimes="0;1" dur="40s"
+                                  repeatCount="indefinite" additive="sum"/>
             </image>
         </svg>
         <Image src={heroForeground} alt="Hero Foreground"
-            className="absolute object-cover h-full landscape:w-full landscape:h-auto" />
+               className="absolute object-cover h-full landscape:w-full landscape:h-auto"/>
     </div>;
 }

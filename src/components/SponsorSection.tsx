@@ -10,7 +10,7 @@ export function SponsorSection() {
                     Become a part of Canada's premier high school hackathon. Your support helps inspire the next
                     generation of innovators and leaders in technology. Looking to make an impact? Email us at <a
                     className="font-semibold text-accent-300"
-                    href="mailto:sponsorship@eurekahacks.ca">sponsorship@eurekahacks.ca</a>.
+                    href="mailto:sponsorships@eurekahacks.ca">sponsorships@eurekahacks.ca</a>.
                 </p>
             </div>
             <h1 className="text-center text-3xl md:text-5xl lg:text-6xl pt-12">Coming Soon!</h1>

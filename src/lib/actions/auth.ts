@@ -303,8 +303,8 @@ const sendVerificationEmail = async ({ emailVerificationToken, firstName, email 
                 `;
 
     const mailOptions = {
-        from: `"EurekaHACKS" verify@eurekahacks.ca`,
         to: email,
+        from: `"EurekaHACKS" hello@eurekahacks.ca`,
         subject: "Verify your email for EurekaHACKS",
         text: emailText,
         html: emailHTML,
