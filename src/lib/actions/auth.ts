@@ -250,7 +250,7 @@ export const resendEmailVerificationLink = async (prevState: any, formData: Form
     }
 };
 
-const sendMailAsync = (transporter: NodeMailer.Transporter, mailOptions: NodeMailer.SendMailOptions) => {
+export const sendMailAsync = async (transporter: NodeMailer.Transporter, mailOptions: NodeMailer.SendMailOptions) => {
     return new Promise((resolve, reject) => {
         transporter.sendMail(mailOptions, (err, info) => {
             if (err) {

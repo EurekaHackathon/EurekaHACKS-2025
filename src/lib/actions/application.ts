@@ -7,6 +7,10 @@ import { db } from "@/lib/database";
 import { cookies } from "next/headers";
 import { authorizeSession } from "@/lib/sessions";
 import { redirect } from "next/navigation";
+import NodeMailer from "nodemailer";
+import { render } from "@react-email/components";
+import ApplicationSubmittedTemplate from "@/lib/emails/application-submitted";
+import { sendMailAsync } from "@/lib/actions/auth";
 
 const safeParseNumber = (value: FormDataEntryValue | null) => {
     if (value === null) {
@@ -148,6 +152,42 @@ export const apply = async (_prevState: any, formData: FormData) => {
             payload: formData,
         };
     }
+
+    const transporter = NodeMailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: parseInt(process.env.SMTP_PORT || "587"),
+        secure: false,
+        auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASSWORD,
+        },
+        tls: {
+            rejectUnauthorized: false,
+        }
+    });
+
+    const emailText = `
+                Hey ${user.firstName ?? "Hacker"}!
+        
+                Thanks for applying to EurekaHACKS 2025! Your hacker application has been successfully submitted. We will review your application and get back to you soon. If you have any questions or concerns, please contact hello@eurekahacks.ca.
+                
+                Best,
+                The EurekaHACKS Team
+                `;
+
+    const emailHTML = await render(ApplicationSubmittedTemplate({
+        userFirstname: user.firstName ?? "Hacker",
+    }));
+
+    const mailOptions = {
+        to: email as string,
+        from: `"EurekaHACKS" hello@eurekahacks.ca`,
+        subject: "Thanks for applying!",
+        text: emailText,
+        html: emailHTML,
+    };
+
+    await sendMailAsync(transporter, mailOptions);
 
     // Workaround to refresh the page
     redirect("/dashboard/application");
