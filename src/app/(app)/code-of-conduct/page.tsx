@@ -1,6 +1,6 @@
 export default function CodeOfConductPage() {
     return (
-        <div className="py-20 px-20">
+        <div className="py-20 px-20 h-[100vh] overflow-auto">
             <h1 className="text-lg font-bold">Code of Conduct</h1>
             <p>EurekaHACKS strives to create a hackathon environment where every participant and volunteer feels welcome, included, respected, and secure. To uphold this commitment, all attendees, spanning sponsors, students, speakers, judges, volunteers, and organizers, are expected to adhere to the following code of conduct at all times.</p>
             <br />

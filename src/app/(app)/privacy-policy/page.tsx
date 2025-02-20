@@ -1,6 +1,6 @@
 export default function PrivacyPolicyPage() {
     return (
-        <div className="py-20 px-20">
+        <div className="py-20 px-20 h-[100vh] overflow-auto">
             <h1 className="text-xl font-extrabold">Privacy Policy</h1>
             <br />
 
