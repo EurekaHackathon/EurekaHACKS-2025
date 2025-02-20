@@ -139,10 +139,11 @@ export default function ApplicationForm() {
                 {/*Short answer question*/}
                 <div>
                     <label className="block text-lg font-medium">
-                        Short answer question <span className="text-error-600">*</span>
+                        Eureka is defined as “a cry of joy or satisfaction when one finds or discovers something”. Tell
+                        us about one of your “eureka” moments <span className="text-error-600">*</span>
                     </label>
-                    <h3 className="font-medium text-gray-500">Max 300 characters</h3>
-                    <CharacterLimiter defaultValue={state.payload?.get("short-answer")} maxChars={300}
+                    <h3 className="font-medium text-gray-500">Max 900 characters</h3>
+                    <CharacterLimiter defaultValue={state.payload?.get("short-answer")} maxChars={900}
                                       label="Short answer" name="short-answer"/>
                 </div>
                 <div>

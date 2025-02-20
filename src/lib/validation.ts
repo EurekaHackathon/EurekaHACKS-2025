@@ -53,7 +53,7 @@ export const applicationSchema = z.object({
         .max(1000, { message: "Invalid number of hackathons attended." }),
     shortAnswer: z.string()
         .min(1, { message: "Short answer is required." })
-        .max(300, { message: "Short answer must be less than 300 characters or less." }),
+        .max(900, { message: "Short answer must be less than 300 characters or less." }),
     lactoseIntolerant: z.boolean(),
     halal: z.boolean(),
     vegetarian: z.boolean(),
