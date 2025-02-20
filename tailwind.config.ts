@@ -22,7 +22,10 @@ const config: Config = {
     			},
     			"portrait": {
     				"raw": "(orientation: portrait)"
-    			}
+    			},
+				"3xl": {
+					"min": "1800px"
+				}
     		},
     		colors: {
     			"primary": {
