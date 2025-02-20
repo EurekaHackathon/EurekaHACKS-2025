@@ -2,6 +2,8 @@ import { db } from "@/lib/database";
 import { redirect } from "next/navigation";
 import { removeEmailFromMailingList, RemoveEmailFromMailingListRow } from "@/lib/sqlc/mailing_list_sql";
 
+export const dynamic = "force-dynamic";
+
 export default async function UnsubscribeEmailPage({ searchParams, }: {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {

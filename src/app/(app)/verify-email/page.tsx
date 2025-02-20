@@ -7,6 +7,8 @@ import {
     verifyUserEmail
 } from "@/lib/sqlc/auth_sql";
 
+export const dynamic = "force-dynamic";
+
 export default async function VerifyEmailPage({ searchParams, }: {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {

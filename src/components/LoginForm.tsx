@@ -35,7 +35,6 @@ const loginWithGoogle = async () => {
 export default function LoginForm() {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [state, formAction, pending] = useActionState(loginWithEmail, initialState);
-
     return (
         <div
             className="bg-gray-50 p-8 md:p-12 lg:p-16 rounded-2xl text-gray-700 min-w-[40vw] max-w-[90vw] lg:w-[750px]">

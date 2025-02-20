@@ -3,15 +3,16 @@ import { db } from "@/lib/database";
 import { redirect } from "next/navigation";
 import { ResendEmailForm } from "@/components/ResendEmailForm";
 
-export default async function VerifyEmailPage({ searchParams, }: {
+export const dynamic = "force-dynamic";
+
+export default async function VerifyEmailPage({ searchParams }: {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
     let email: string | undefined | null;
     let verificationTokenID: string | string[] | undefined;
     try {
-
-        verificationTokenID = (await searchParams).id;
-        if (!verificationTokenID || typeof verificationTokenID !== "string") {
+        verificationTokenID = (await searchParams).id?.toString().trim();
+        if (!verificationTokenID) {
             redirect("/login");
         }
 
