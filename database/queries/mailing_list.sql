@@ -12,3 +12,6 @@ insert into public.mailing_list (email)
 delete from public.mailing_list
     where id = $1
     returning *;
+
+-- name: GetAllEmailsFromMailingList :many
+select * from public.mailing_list;
