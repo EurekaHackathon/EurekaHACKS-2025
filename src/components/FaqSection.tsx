@@ -21,7 +21,7 @@ export default function FaqSection() {
         },
         {
             title: "What should I bring?",
-            description: "You should bring your laptop, charger, and any other tech or hardware you need to work on your project. We also recommend bringing a water bottle, snacks, and a change of clothes if you plan to stay overnight."
+            description: "You should bring your laptop, charger, and any other tech or hardware you need to work on your project. We also recommend bringing a water bottle, and snacks."
         },
         {
             title: "How do I register?",
