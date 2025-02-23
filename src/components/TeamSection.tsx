@@ -113,10 +113,10 @@ export default function TeamSection() {
         },
         {
             name: "Jimin",
-            role: "Marketing",
+            role: "Director",
             image: "jimin.webp",
             url: "https://www.linkedin.com/in/jimin-so-1878a2285/",
-            emoji: "😎"
+            emoji: "🐋"
         },
     ];
 
