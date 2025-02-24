@@ -74,7 +74,7 @@ export default function TeamSection() {
             role: "Director",
             image: "jake.png",
             url: "https://www.linkedin.com/in/jake-comay-31571a345/",
-            emoji: "💪"
+            emoji: "🫎"
         },
         {
             name: "Margaret",
@@ -113,10 +113,10 @@ export default function TeamSection() {
         },
         {
             name: "Jimin",
-            role: "Marketing",
+            role: "Director",
             image: "jimin.webp",
             url: "https://www.linkedin.com/in/jimin-so-1878a2285/",
-            emoji: "😎"
+            emoji: "🐋"
         },
     ];
 
