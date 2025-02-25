@@ -78,3 +78,18 @@ export async function removeEmailFromMailingList(sql: Sql, args: RemoveEmailFrom
     };
 }
 
+export const getAllEmailsFromMailingListQuery = `-- name: GetAllEmailsFromMailingList :many
+select id, email from public.mailing_list`;
+
+export interface GetAllEmailsFromMailingListRow {
+    id: string;
+    email: string;
+}
+
+export async function getAllEmailsFromMailingList(sql: Sql): Promise<GetAllEmailsFromMailingListRow[]> {
+    return (await sql.unsafe(getAllEmailsFromMailingListQuery, []).values()).map(row => ({
+        id: row[0],
+        email: row[1]
+    }));
+}
+
