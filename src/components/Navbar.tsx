@@ -69,9 +69,9 @@ export default function Navbar() {
                     <a href="https://www.linkedin.com/company/eurekahacks" target="_blank" rel="noopener noreferrer">
                         <Icon icon="mdi:linkedin"/>
                     </a>
-                    <a href="https://discord.gg/ApEmE7g7GB" target="_blank" rel="noopener noreferrer">
-                        <Icon icon="ic:baseline-discord"/>
-                    </a>
+                    {/*<a href="https://discord.gg/ApEmE7g7GB" target="_blank" rel="noopener noreferrer">*/}
+                    {/*    <Icon icon="ic:baseline-discord"/>*/}
+                    {/*</a>*/}
                     <a href="https://github.com/EurekaHackathon" target="_blank" rel="noopener noreferrer">
                         <Icon icon="mdi:github"/>
                     </a>
@@ -117,9 +117,9 @@ export default function Navbar() {
                            rel="noopener noreferrer">
                             <Icon icon="mdi:linkedin"/>
                         </a>
-                        <a href="https://discord.gg/ApEmE7g7GB" target="_blank" rel="noopener noreferrer">
-                            <Icon icon="ic:baseline-discord"/>
-                        </a>
+                        {/*<a href="https://discord.gg/ApEmE7g7GB" target="_blank" rel="noopener noreferrer">*/}
+                        {/*    <Icon icon="ic:baseline-discord"/>*/}
+                        {/*</a>*/}
                         <a href="https://github.com/EurekaHackathon" target="_blank" rel="noopener noreferrer">
                             <Icon icon="mdi:github"/>
                         </a>
