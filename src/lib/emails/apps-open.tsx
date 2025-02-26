@@ -14,13 +14,11 @@ import * as React from "react";
 import Link from "next/link";
 
 interface ApplicationsOpenTemplateProps {
-    recipientFirstname: string;
     applicationLink: string;
     unsubscribeLink: string;
 }
 
 export const ApplicationsOpenTemplate = ({
-                                             recipientFirstname,
                                              applicationLink, unsubscribeLink
                                          }: ApplicationsOpenTemplateProps) => (
     <Html>
@@ -37,7 +35,7 @@ export const ApplicationsOpenTemplate = ({
                     alt="EurekaHACKS logo"
                     style={logo}
                 />
-                <Text style={paragraph}>Hi {recipientFirstname},</Text>
+                <Text style={paragraph}>Hey!</Text>
                 <Text style={paragraph}>
                     We're excited to announce that applications for EurekaHACKS 2025 are now open!
                     Join us on April 5th, 2025 at Abbey Park High School for an unforgettable day of
@@ -64,11 +62,14 @@ export const ApplicationsOpenTemplate = ({
                 <Text style={paragraph}>
                     Can't wait to see what you'll create!
                     <br/>
+                    Best,
+                    <br/>
                     The EurekaHACKS Team
                 </Text>
                 <Hr style={hr}/>
                 <Text style={footer}>
-                    Copyright © EurekaHACKS 2025, All rights reserved. | <Link target="_blank" href={unsubscribeLink}>Unsubscribe</Link>
+                    Copyright © EurekaHACKS 2025, All rights reserved. | <Link target="_blank"
+                                                                               href={unsubscribeLink}>Unsubscribe</Link>
                 </Text>
             </Container>
         </Body>
