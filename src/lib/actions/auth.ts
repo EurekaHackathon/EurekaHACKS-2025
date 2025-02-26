@@ -132,15 +132,15 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
     });
 
     if (!validationResult.success) {
-        return { error: validationResult.error.errors[0].message };
+        return { error: validationResult.error.errors[0].message, payload: formData };
     }
 
     if (password !== confirmPassword) {
-        return { error: "Passwords do not match" };
+        return { error: "Passwords do not match", payload: formData };
     }
 
     if (!email || !password || !firstName || !lastName || typeof email !== "string" || typeof password !== "string") {
-        return { error: "All fields are required" };
+        return { error: "All fields are required", payload: formData };
     }
 
     let emailVerificationTokenRecord;
@@ -150,7 +150,7 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
         });
 
         if (existingUser) {
-            return { error: "An account with this email already exists" };
+            return { error: "An account with this email already exists", payload: formData };
         }
 
         const user = await createUser({
@@ -161,7 +161,7 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
         });
 
         if (!user) {
-            return { error: "Internal server error, please try again later" };
+            return { error: "Internal server error, please try again later", payload: formData };
         }
 
         const emailVerificationToken = await generateEmailVerificationToken();
@@ -175,7 +175,7 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
         });
 
         if (!emailVerificationTokenRecord) {
-            return { error: "Internal server error, please try again later" };
+            return { error: "Internal server error, please try again later", payload: formData };
         }
 
         await sendVerificationEmail({
@@ -186,7 +186,7 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
 
     } catch (error) {
         console.error(error);
-        return { error: "Internal server error, please try again later" };
+        return { error: "Internal server error, please try again later", payload: formData };
     }
     redirect(`/verify-email-prompt?id=${emailVerificationTokenRecord.id}`);
 };

@@ -7,7 +7,8 @@ import { signUpWithEmail } from "@/lib/actions/auth";
 import { redirect } from "next/navigation";
 
 const initialState = {
-    error: ""
+    error: "",
+    payload: new FormData(),
 };
 
 const signUpWithGithub = async () => {
@@ -50,6 +51,7 @@ export default function RegistrationForm() {
                             className="mt-2 rounded-xl py-4 px-6 border-gray-300 border hover:border-secondary-300 focus:outline-none"
                             type="text"
                             required
+                            defaultValue={state.payload.get("first-name")}
                             name="first-name" placeholder="First Name"/>
                     </label>
                     <label className="flex flex-col md:text-lg w-full">
@@ -58,6 +60,7 @@ export default function RegistrationForm() {
                             className="mt-2 rounded-xl py-4 px-6 border-gray-300 border hover:border-secondary-300 focus:outline-none"
                             type="text"
                             required
+                            defaultValue={state.payload.get("last-name")}
                             name="last-name" placeholder="Last Name"/>
                     </label>
                 </div>
@@ -67,6 +70,7 @@ export default function RegistrationForm() {
                         className="mt-2 rounded-xl py-4 px-6 border-gray-300 border hover:border-secondary-300 focus:outline-none"
                         type="email"
                         required
+                        defaultValue={state.payload.get("email")}
                         name="email" placeholder="hello@eurekahacks.ca"/>
                 </label>
                 <div className="pt-4 lg:pt-6 flex flex-col md:flex-row gap-4">
@@ -77,6 +81,7 @@ export default function RegistrationForm() {
                                 required
                                 className="rounded-xl py-4 px-6 border-gray-300 border hover:border-secondary-200 focus:outline-none w-full"
                                 type={passwordVisible ? "text" : "password"}
+                                defaultValue={state.payload.get("password")}
                                 name="password" placeholder="••••••••••••"/>
                             <div className="cursor-pointer">
                                 <Icon onClick={() => setPasswordVisible(!passwordVisible)}
@@ -92,6 +97,7 @@ export default function RegistrationForm() {
                                 required
                                 className="rounded-xl py-4 px-6 border-gray-300 border hover:border-secondary-200 focus:outline-none w-full"
                                 type={confirmPasswordVisible ? "text" : "password"}
+                                defaultValue={state.payload.get("confirm-password")}
                                 name="confirm-password" placeholder="••••••••••••"/>
                             <div className="cursor-pointer">
                                 <Icon onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
