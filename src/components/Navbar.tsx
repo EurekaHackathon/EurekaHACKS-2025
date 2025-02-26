@@ -59,6 +59,7 @@ export default function Navbar() {
                           <Link href="/#sponsors">Sponsors</Link>
                           <Link href="/#faq">FAQ</Link>
                           <Link href="/#team">Team</Link>
+                          <a href="https://2024.eurekahacks.ca" rel="noreferrer" target="_blank">2024</a>
                         </>
                     }
                 </div>
@@ -105,6 +106,7 @@ export default function Navbar() {
                               <Link href="/#sponsors">Sponsors</Link>
                               <Link href="/#faq">FAQ</Link>
                               <Link href="/#team">Team</Link>
+                              <a href="https://2024.eurekahacks.ca" rel="noreferrer" target="_blank">2024</a>
                             </>
                         }
                     </div>
