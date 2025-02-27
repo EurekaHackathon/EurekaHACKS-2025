@@ -36,7 +36,7 @@ export default async function UnsubscribeEmailPage({ searchParams, }: {
     }
 
     return (
-        <div className="bg-secondary-200 flex items-center justify-center py-32 flex-grow h-screen">
+        <div className="bg-secondary-200 flex items-center justify-center p-32 flex-grow min-h-screen">
             <div
                 className="bg-gray-50 p-8 md:p-12 lg:p-16 rounded-2xl text-gray-700 min-w-[40vw] max-w-[90vw] lg:w-[750px]">
                 {!err && mailingListRecord &&

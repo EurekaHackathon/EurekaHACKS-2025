@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@node-rs/argon2": "^2.0.2",
+    "@nuintun/qrcode": "^4.1.13",
     "@oslojs/crypto": "^1.0.1",
     "@oslojs/encoding": "^1.1.0",
     "@radix-ui/react-checkbox": "^1.1.3",
