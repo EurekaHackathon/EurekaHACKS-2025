@@ -13,7 +13,7 @@ import { Icon } from "@iconify/react";
 
 export function DashboardNav() {
     const { user } = useDashboardCtx();
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
 
     if (!user) {
         redirect("/login");
@@ -26,11 +26,11 @@ export function DashboardNav() {
 
     const fullName = (user.firstName) ? user.firstName + " " + user.lastName : "Hacker";
 
-    
+
     // Close navbar when you navigate to a new page
     const path = usePathname();
     useEffect(() => {
-        setOpen(false)
+        setOpen(false);
     }, [path]);
 
     return (
@@ -40,7 +40,7 @@ export function DashboardNav() {
                     <Icon icon="fluent:navigation-16-filled" className={cn(
                         "text-3xl md:text-4xl",
                         open && "translate-x-[-100%]",
-                    )} />
+                    )}/>
                 </button>
             </nav>
             <div className={cn(
@@ -49,24 +49,26 @@ export function DashboardNav() {
             )}>
                 <div className="text-gray-600 px-8 pt-10 flex justify-between lg:justify-center gap-2">
                     <Link href="/" className="flex items-center gap-2">
-                        <Image className="w-12 md:w-16 lg:w-10 h-auto" src={logo} alt="EurekaHACKS Logo" />
+                        <Image className="w-12 md:w-16 lg:w-10 h-auto" src={logo} alt="EurekaHACKS Logo"/>
                         <div className="text-gray-600 text-2xl md:text-3xl lg:text-xl font-bold pr-10">
                             <span>EurekaHACKS</span>
                         </div>
                     </Link>
 
                     <button onClick={() => setOpen(!open)} className="z-10 lg:hidden">
-                        <Icon icon="fluent:dismiss-12-regular" className="text-2xl md:text-4xl" />
+                        <Icon icon="fluent:dismiss-12-regular" className="text-2xl md:text-4xl"/>
                     </button>
                 </div>
                 <div className="flex flex-col px-8 gap-2">
-                    <DashboardNavItem icon="fluent:home-16-filled" text="Home" route="/dashboard" />
+                    <DashboardNavItem icon="fluent:home-16-filled" text="Home" route="/dashboard"/>
                     <DashboardNavItem icon="fluent:form-multiple-48-filled" text="Application"
-                        route="/dashboard/application" />
+                                      route="/dashboard/application"/>
                     <DashboardNavItem icon="fluent:calendar-32-filled" text="Schedule"
-                        route="/dashboard/schedule" />
+                                      route="/dashboard/schedule"/>
+                    <DashboardNavItem icon="fluent:qr-code-28-filled" text="QR Code"
+                                      route="/dashboard/qrcode"/>
                     {user.isAdmin &&
-                        <DashboardNavItem icon="fluent:people-16-filled" text="Admin" route="/dashboard/admin" />}
+                        <DashboardNavItem icon="fluent:people-16-filled" text="Admin" route="/dashboard/admin"/>}
                     {/*<DashboardNavItem icon="fluent:settings-48-filled" text="Settings"*/}
                     {/*    route="/dashboard/settings" />*/}
                 </div>
@@ -83,7 +85,7 @@ export function DashboardNav() {
                         </h1>
                     </div>
                     <div className="pt-4 flex justify-center">
-                        <SignOutForm />
+                        <SignOutForm/>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ export default async function ApplicationPage() {
         //                 loginMethod={user.accountType}/>
         // </div>
         <div className="flex justify-center items-center h-screen">
-            <ComingSoon/>
+            <ComingSoon text="In development"/>
         </div>
     );
 }
