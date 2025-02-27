@@ -61,7 +61,7 @@ export default async function Dashboard() {
                     </div>
                     <DeadlineCountdown/>
                     <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">
-                        Application due on March 23, 2025 at 11:59 PM EST.
+                        Application due on March 22, 2025 at 11:59 PM EST.
                     </p>
                 </div>
                 <div className="border border-gray-300 rounded-lg bg-gray-50 py-8 px-12 flex-1 overflow-hidden">
