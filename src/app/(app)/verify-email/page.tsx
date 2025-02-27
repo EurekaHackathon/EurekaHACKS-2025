@@ -77,7 +77,7 @@ export default async function VerifyEmailPage({ searchParams, }: {
                                   href="/dashboard"> dashboard</Link>
                             .
                         </p>
-                        <SetSessionCookie sessionToken={sessionToken}/>
+                        <SetSessionCookie sessionToken={sessionToken ?? ""}/>
                     </>
                     :
                     <>
