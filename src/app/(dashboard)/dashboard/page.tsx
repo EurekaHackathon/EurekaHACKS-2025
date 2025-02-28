@@ -1,4 +1,4 @@
-import DashboardSkeleton from "@/components/ui/DashboardSkeleton";
+import DashboardSkeleton from "@/components/DashboardSkeleton";
 import { Suspense } from "react";
 import DashboardHome from "@/components/ui/DashboardHome";
 
