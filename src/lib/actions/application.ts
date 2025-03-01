@@ -39,7 +39,8 @@ export const apply = async (_prevState: any, formData: FormData) => {
         city = formData.get("city-other");
     }
     const numberHackathonsAttended = formData.get("number-hackathons-attended");
-    const shortAnswer = formData.get("short-answer");
+    // Quick fix for removing the short answer
+    const shortAnswer = "none";
     const dietaryRestrictions: Record<string, FormDataEntryValue | null> = {};
     for (const restriction of dietaryRestrictionsList) {
         dietaryRestrictions[restriction] = formData.get(restriction);
