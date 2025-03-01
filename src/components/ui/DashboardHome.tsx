@@ -1,23 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import { DeadlineCountdown } from "@/components/DeadlineCountdown";
-import { cookies } from "next/headers";
-import { authorizeSession } from "@/lib/sessions";
-import { redirect } from "next/navigation";
-import { getApplicationStatus } from "@/lib/sqlc/application_sql";
-import { db } from "@/lib/database";
+import { useDashboardCtx } from "@/lib/dashboard-ctx";
 
-export default async function DashboardHome() {
-    const cookiesStore = await cookies();
-    const sessionToken = cookiesStore.get("session");
-    const user = await authorizeSession(sessionToken?.value);
-    if (!user) {
-        redirect("/login");
-    }
-    const applicationStatus = await getApplicationStatus(db, {
-        userId: user.id
-    });
+export default function DashboardHome() {
+    const { user, applicationStatus } = useDashboardCtx();
 
     const firstName = user?.firstName ? user?.firstName : "Hacker";
     return (
