@@ -3,7 +3,7 @@ create table if not exists public.mailing_list (
     email text unique not null
 );
 
-create table if not exists public.apps_users (
+create table if not exists public.app_users (
     id serial primary key,
     first_name text,
     last_name text,
@@ -23,7 +23,7 @@ create table if not exists public.apps_users (
 
 create table if not exists public.user_sessions (
     id text not null primary key,
-    user_id integer not null references public.apps_users(id) on delete cascade,
+    user_id integer not null references public.app_users(id) on delete cascade,
     expires_at timestamptz not null,
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()
@@ -31,7 +31,7 @@ create table if not exists public.user_sessions (
 
 create table if not exists public.email_verification_tokens (
     id uuid primary key default uuid_generate_v4(),
-    user_id integer not null references public.apps_users(id) on delete cascade,
+    user_id integer not null references public.app_users(id) on delete cascade,
     token text not null,
     expires_at timestamptz not null,
     created_at timestamptz not null default now(),
@@ -40,7 +40,7 @@ create table if not exists public.email_verification_tokens (
 
 create table if not exists public.hackathon_applications (
     id serial primary key,
-    user_id integer not null references public.apps_users(id) on delete cascade,
+    user_id integer not null references public.app_users(id) on delete cascade,
     status text not null check (
         status = 'unsubmitted'
         or status = 'submitted'

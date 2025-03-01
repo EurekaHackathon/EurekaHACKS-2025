@@ -79,7 +79,7 @@ export async function updateUserSessionExpiresAt(sql: Sql, args: UpdateUserSessi
 }
 
 export const createEmailUserQuery = `-- name: CreateEmailUser :one
-insert into public.apps_users (first_name, last_name, email, password, account_type)
+insert into public.app_users (first_name, last_name, email, password, account_type)
 values ($1, $2, $3, $4, 'email')
 returning id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at`;
 
@@ -126,7 +126,7 @@ export async function createEmailUser(sql: Sql, args: CreateEmailUserArgs): Prom
 }
 
 export const createGithubUserQuery = `-- name: CreateGithubUser :one
-insert into public.apps_users (first_name, last_name, oauth_id, account_type, email_verified)
+insert into public.app_users (first_name, last_name, oauth_id, account_type, email_verified)
 values ($1, $2, $3, 'github', true)
 returning id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at`;
 
@@ -172,7 +172,7 @@ export async function createGithubUser(sql: Sql, args: CreateGithubUserArgs): Pr
 }
 
 export const createGoogleUserQuery = `-- name: CreateGoogleUser :one
-insert into public.apps_users (first_name, last_name, oauth_id, account_type, email_verified)
+insert into public.app_users (first_name, last_name, oauth_id, account_type, email_verified)
 values ($1, $2, $3, 'google', true)
 returning id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at`;
 
@@ -218,7 +218,7 @@ export async function createGoogleUser(sql: Sql, args: CreateGoogleUserArgs): Pr
 }
 
 export const updateDBUserPasswordQuery = `-- name: UpdateDBUserPassword :exec
-update public.apps_users set password = $2 where id = $1`;
+update public.app_users set password = $2 where id = $1`;
 
 export interface UpdateDBUserPasswordArgs {
     id: number;
@@ -230,7 +230,7 @@ export async function updateDBUserPassword(sql: Sql, args: UpdateDBUserPasswordA
 }
 
 export const getUserByEmailQuery = `-- name: GetUserByEmail :one
-select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.apps_users where email = $1 and account_type = 'email'`;
+select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.app_users where email = $1 and account_type = 'email'`;
 
 export interface GetUserByEmailArgs {
     email: string | null;
@@ -272,7 +272,7 @@ export async function getUserByEmail(sql: Sql, args: GetUserByEmailArgs): Promis
 }
 
 export const getUserByGithubIDQuery = `-- name: GetUserByGithubID :one
-select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.apps_users where oauth_id = $1 and account_type = 'github'`;
+select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.app_users where oauth_id = $1 and account_type = 'github'`;
 
 export interface GetUserByGithubIDArgs {
     oauthId: string | null;
@@ -314,7 +314,7 @@ export async function getUserByGithubID(sql: Sql, args: GetUserByGithubIDArgs): 
 }
 
 export const getUserByGoogleIDQuery = `-- name: GetUserByGoogleID :one
-select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.apps_users where oauth_id = $1 and account_type = 'google'`;
+select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.app_users where oauth_id = $1 and account_type = 'google'`;
 
 export interface GetUserByGoogleIDArgs {
     oauthId: string | null;
@@ -356,7 +356,7 @@ export async function getUserByGoogleID(sql: Sql, args: GetUserByGoogleIDArgs): 
 }
 
 export const getUserByIDQuery = `-- name: GetUserByID :one
-select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.apps_users where id = $1`;
+select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.app_users where id = $1`;
 
 export interface GetUserByIDArgs {
     id: number;
@@ -477,7 +477,7 @@ export async function getEmailVerificationTokenByToken(sql: Sql, args: GetEmailV
 }
 
 export const getEmailByVerificationTokenIDQuery = `-- name: GetEmailByVerificationTokenID :one
-select email from public.apps_users where id = (select user_id from public.email_verification_tokens where public.email_verification_tokens.id = $1)`;
+select email from public.app_users where id = (select user_id from public.email_verification_tokens where public.email_verification_tokens.id = $1)`;
 
 export interface GetEmailByVerificationTokenIDArgs {
     id: string;
@@ -499,7 +499,7 @@ export async function getEmailByVerificationTokenID(sql: Sql, args: GetEmailByVe
 }
 
 export const verifyUserEmailQuery = `-- name: VerifyUserEmail :exec
-update public.apps_users set email_verified = true where id = $1`;
+update public.app_users set email_verified = true where id = $1`;
 
 export interface VerifyUserEmailArgs {
     id: number;
