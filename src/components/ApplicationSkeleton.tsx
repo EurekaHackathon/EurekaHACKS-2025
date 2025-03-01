@@ -1,8 +1,4 @@
 import { cn } from "@/lib/utils";
-import { Input } from "@/components/Input";
-import { SchoolSelect } from "@/components/SchoolSelect";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/Select";
-import { CitySelect } from "@/components/CitySelect";
 import { dietaryRestrictionsList } from "@/app/(dashboard)/dashboard/application/data";
 import React from "react";
 
@@ -16,9 +12,6 @@ function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>)
 }
 
 export default function ApplicationSkeleton() {
-    let state = {
-        payload: new Map<string, string>()
-    };
     return (
         <div className="self-center flex flex-col items-stretch py-[10vh] px-8 xl:px-16">
             <Skeleton className="h-12 w-full md:w-96"/>
