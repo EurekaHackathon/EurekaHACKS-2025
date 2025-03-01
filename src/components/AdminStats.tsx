@@ -14,7 +14,7 @@ export default async function AdminStats() {
     const numberOfPendingApplications = await getNumberOfPendingHackerApplications(db);
 
     return (
-        <div className="grid grid-cols-3 gap-4 mt-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
             <AdminDashboardStat statName="Registered users" statValue={numberRegisteredUsers?.count ?? 0} icon="test"/>
             <AdminDashboardStat statName="Applications" statValue={numberOfHackerApplications?.count ?? 0} icon="test"/>
             <AdminDashboardStat statName="Accepted applications" statValue={numberOfAcceptedApplications?.count ?? 0}
