@@ -1,7 +1,6 @@
 import FaqDropdown from "@/components/FaqDropdown";
 
 export default function FaqSection() {
-    // TODO: Add proper FAQs instead of GPTed ones
     const faqs = [
         {
             title: "What is a hackathon?",

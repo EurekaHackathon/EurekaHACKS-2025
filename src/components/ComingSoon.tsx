@@ -1,4 +1,3 @@
-// TODO: Make responsive on mobile
 export default function ComingSoon({ text }: { text: string }) {
     return (
         <div className="text-gray-700">
