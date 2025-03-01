@@ -11,7 +11,7 @@ function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>)
 
 export default function DashboardSkeleton() {
     return (
-        <div className="self-center flex flex-col items-stretch py-[10vh] px-8">
+        <div className="self-center flex flex-col items-stretch py-[10vh] px-8 xl:px-16">
             <Skeleton className="h-12 w-full md:w-96"/>
             <div className="border border-gray-300 mt-12 rounded-lg bg-gray-50 py-8 px-12">
                 <Skeleton className="h-6 w-full sm:w-64"/>

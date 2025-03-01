@@ -21,7 +21,7 @@ export default async function DashboardHome() {
 
     const firstName = user?.firstName ? user?.firstName : "Hacker";
     return (
-        <div className="self-center flex flex-col items-stretch py-[10vh] px-8">
+        <div className="flex flex-col items-stretch py-[10vh] px-8 xl:px-16">
             <h1 className="text-5xl font-bold text-gray-700">
                 Welcome,&nbsp;
                 <span className="block md:inline text-secondary-600">{firstName}</span>
