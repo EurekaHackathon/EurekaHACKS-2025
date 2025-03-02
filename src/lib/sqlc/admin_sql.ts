@@ -90,3 +90,31 @@ export async function getNumberOfPendingHackerApplications(sql: Sql): Promise<Ge
     };
 }
 
+export const getApplicationsPaginatedQuery = `-- name: GetApplicationsPaginated :many
+select id, first_name, last_name, school, status, created_at from public.hackathon_applications order by id desc limit $1 offset $2`;
+
+export interface GetApplicationsPaginatedArgs {
+    limit: string;
+    offset: string;
+}
+
+export interface GetApplicationsPaginatedRow {
+    id: number;
+    firstName: string;
+    lastName: string;
+    school: string;
+    status: string;
+    createdAt: Date;
+}
+
+export async function getApplicationsPaginated(sql: Sql, args: GetApplicationsPaginatedArgs): Promise<GetApplicationsPaginatedRow[]> {
+    return (await sql.unsafe(getApplicationsPaginatedQuery, [args.limit, args.offset]).values()).map(row => ({
+        id: row[0],
+        firstName: row[1],
+        lastName: row[2],
+        school: row[3],
+        status: row[4],
+        createdAt: row[5]
+    }));
+}
+

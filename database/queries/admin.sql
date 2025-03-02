@@ -12,3 +12,6 @@ select count(*) as count from public.hackathon_applications where status = 'reje
 
 -- name: GetNumberOfPendingHackerApplications :one
 select count(*) as count from public.hackathon_applications where status = 'submitted';
+
+-- name: GetApplicationsPaginated :many
+select id, first_name, last_name, school, status, created_at from public.hackathon_applications order by id desc limit $1 offset $2;
