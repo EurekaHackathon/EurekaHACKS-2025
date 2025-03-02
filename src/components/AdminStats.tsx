@@ -15,15 +15,15 @@ export default async function AdminStats() {
 
     return (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
-            <AdminDashboardStat statName="Registered users" statValue={numberRegisteredUsers?.count ?? 0} icon="test"/>
-            <AdminDashboardStat statName="Applications" statValue={numberOfHackerApplications?.count ?? 0} icon="test"/>
+            <AdminDashboardStat statName="Registered users" statValue={numberRegisteredUsers?.count ?? 0} icon="fluent:person-12-filled"/>
+            <AdminDashboardStat statName="Applications" statValue={numberOfHackerApplications?.count ?? 0} icon="fluent:form-multiple-20-filled"/>
             <AdminDashboardStat statName="Accepted applications" statValue={numberOfAcceptedApplications?.count ?? 0}
-                                icon="test"/>
+                                icon="fluent:people-checkmark-20-filled"/>
             <AdminDashboardStat statName="Rejected applications" statValue={numberOfRejectedApplications?.count ?? 0}
-                                icon="test"/>
+                                icon="fluent:person-delete-20-filled"/>
             <AdminDashboardStat statName="Pending review" statValue={numberOfPendingApplications?.count ?? 0}
-                                icon="test"/>
-            <AdminDashboardStat statName="Checked-in hackers" statValue={0} icon="test"/>
+                                icon="fluent:person-clock-16-filled"/>
+            <AdminDashboardStat statName="Checked-in hackers" statValue={0} icon="fluent:calendar-checkmark-16-filled"/>
         </div>
     );
 }
