@@ -41,7 +41,7 @@ export function SponsorSection() {
                 <SponsorTier
                     sponsorsPerRow={4}
                     sponsorInfo={[
-                        { fileName: "leading-aces-academy.png", name: "Leading Aces Academy", url: "https://www.leadingaces.com/com" },
+                        { fileName: "leading-aces-academy.png", name: "Leading Aces Academy", url: "https://www.leadingaces.com/" },
                         { fileName: "basecamp-climbing.png", name: "Basecamp Climbing", url: "https://basecampclimbing.ca/" },
                         { fileName: "art-of-problem-solving.png", name: "Art of Problem Solving", url: "https://artofproblemsolving.com/" },
                     ]}
