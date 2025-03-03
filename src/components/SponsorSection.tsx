@@ -13,43 +13,41 @@ export function SponsorSection() {
                     href="mailto:sponsorships@eurekahacks.ca">sponsorships@eurekahacks.ca</a>.
                 </p>
             </div>
-            <h1 className="text-center text-3xl md:text-5xl lg:text-6xl pt-12">Coming Soon!</h1>
-            {/*<div className="w-full flex flex-col items-center lg:pt-12 md:pt-8 pt-6 text-bla`ck">*/}
-            {/*    <SponsorTier*/}
-            {/*        sponsorsPerRow={1}*/}
-            {/*        sponsorInfo={[*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*        ]}*/}
-            {/*    />*/}
-            {/*    <SponsorTier*/}
-            {/*        sponsorsPerRow={2}*/}
-            {/*        sponsorInfo={[*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*        ]}*/}
-            {/*    />*/}
-            {/*    <SponsorTier*/}
-            {/*        sponsorsPerRow={3}*/}
-            {/*        sponsorInfo={[*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*        ]}*/}
-            {/*    />*/}
-            {/*    <SponsorTier*/}
-            {/*        sponsorsPerRow={4}*/}
-            {/*        sponsorInfo={[*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*            { fileName: "google.png", name: "Google", url: "https://google.ca" },*/}
-            {/*        ]}*/}
-            {/*    />*/}
-            {/*</div>*/}
-            {/*<h1 className="text-center text-xl md:text-3xl lg:text-4xl pt-12">...and more to come!</h1>*/}
+            <div className="w-full flex flex-col items-center lg:pt-12 md:pt-8 pt-6 text-bla`ck">
+                {/*Diamond tier*/}
+                <SponsorTier
+                    sponsorsPerRow={1}
+                    sponsorInfo={[
+                        { fileName: "dorahacks.png", name: "DoraHacks", url: "https://dorahacks.io/" },
+                    ]}
+                />
+                {/*Gold tier*/}
+                <SponsorTier
+                    sponsorsPerRow={2}
+                    sponsorInfo={[
+                        { fileName: "mathnasium.png", name: "Mathnasium Oakville", url: "https://www.instagram.com/mathnasium_oakville/" },
+                    ]}
+                />
+                {/*Silver tier*/}
+                <SponsorTier
+                    sponsorsPerRow={3}
+                    sponsorInfo={[
+                        { fileName: "algorithmics.png", name: "Algorithmics Oakville", url: "https://westoakville.alg.academy/" },
+                        { fileName: "perimeter-institute.webp", name: "Perimeter Institute", url: "https://perimeterinstitute.ca/" },
+                        { fileName: "codecrafters.png", name: "CodeCrafters", url: "https://codecrafters.io/" },
+                    ]}
+                />
+                {/*Bronze tier*/}
+                <SponsorTier
+                    sponsorsPerRow={4}
+                    sponsorInfo={[
+                        { fileName: "leading-aces-academy.png", name: "Leading Aces Academy", url: "https://www.leadingaces.com/com" },
+                        { fileName: "basecamp-climbing.png", name: "Basecamp Climbing", url: "https://basecampclimbing.ca/" },
+                        { fileName: "art-of-problem-solving.png", name: "Art of Problem Solving", url: "https://artofproblemsolving.com/" },
+                    ]}
+                />
+            </div>
+            <h1 className="text-center text-xl md:text-3xl lg:text-4xl pt-12">...and more to come!</h1>
         </div>
     );
 }
