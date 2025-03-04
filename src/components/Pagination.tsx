@@ -1,14 +1,15 @@
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 
-export default function Pagination({ currentPage, numberOfCurrentItems, numberOfTotalItems }: {
+export default function Pagination({ currentPage, numberOfCurrentItems, numberOfTotalItems, className }: {
     currentPage: number,
     numberOfCurrentItems: number,
-    numberOfTotalItems: number
+    numberOfTotalItems: number,
+    className?: string | undefined
 }) {
     const lastPage = Math.ceil(numberOfTotalItems / 10);
     return (
-        <div className="flex justify-between">
+        <div className={"flex justify-between w-full " + className}>
             <p className="font-medium text-gray-500">
                 Showing {currentPage * 10 - 9}–{(currentPage - 1) * 10 + numberOfCurrentItems} of {numberOfTotalItems} applications
             </p>

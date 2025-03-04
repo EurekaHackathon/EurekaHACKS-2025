@@ -29,8 +29,8 @@ export default async function ApplicationsTable({ searchParams, }: {
     };
 
     return (
-        <div className="overflow-x-auto">
-            <table className="w-full border min-w-[600px]">
+        <div className="overflow-x-auto grid">
+            <table className="w-full border">
                 <thead>
                 <tr className="text-sm 2xl:text-base text-gray-500 hover:bg-gray-100 duration-75">
                     <th className="text-start border-b py-4 pl-4 mr-12">First Name</th>
@@ -45,14 +45,26 @@ export default async function ApplicationsTable({ searchParams, }: {
                 {applications.map((application, index) => (
                     <tr className="text-gray-700 2xl:text-lg font-semibold hover:bg-gray-100 duration-75"
                         key={application.id}>
-                        <td className={`pr-12 text-start py-6 pl-4 ${index !== applications.length - 1 ? "border-b" : ""}`}>{application.firstName}</td>
-                        <td className={`pr-12 text-start ${index !== applications.length - 1 ? "border-b" : ""}`}>{application.lastName}</td>
-                        <td className={`pr-12 text-start text-nowrap ${index !== applications.length - 1 ? "border-b" : ""}`}>{application.school}</td>
-                        <td className={`pr-12 text-start capitalize ${index !== applications.length - 1 ? "border-b" : ""}`}>
+                        <td className={`pr-4 text-start py-6 pl-4 ${index !== applications.length - 1 ? "border-b" : ""}`}>
+                            <div className="w-24 text-nowrap overflow-x-auto">
+                                {application.firstName}
+                            </div>
+                        </td>
+                        <td className={`pr-4 text-start ${index !== applications.length - 1 ? "border-b" : ""}`}>
+                            <div className="w-24 text-nowrap overflow-x-auto">
+                                {application.lastName}
+                            </div>
+                        </td>
+                        <td className={`pr-4 text-start ${index !== applications.length - 1 ? "border-b" : ""}`}>
+                            <div className="w-96 text-nowrap overflow-x-auto">
+                                {application.school}
+                            </div>
+                        </td>
+                        <td className={`pr-4 text-start capitalize ${index !== applications.length - 1 ? "border-b" : ""}`}>
                             <StatusBadge status={application.status}/>
                         </td>
                         <td className={`text-start ${index !== applications.length - 1 ? "border-b" : ""}`}>{formatDate(application.createdAt)}</td>
-                        <td className={`pr-12 text-start ${index !== applications.length - 1 ? "border-b" : ""}`}>
+                        <td className={`pr-4 text-start ${index !== applications.length - 1 ? "border-b" : ""}`}>
                             <Link className="border py-1 px-2 rounded-lg bg-white hover:bg-gray-200 duration-75"
                                   href={`/dashboard/admin/applications/${application.id}`}>View</Link>
                         </td>
@@ -60,10 +72,8 @@ export default async function ApplicationsTable({ searchParams, }: {
                 ))}
                 </tbody>
             </table>
-            <div className="mt-4">
-                <Pagination currentPage={page} numberOfCurrentItems={applications.length}
-                            numberOfTotalItems={isNaN(parseInt(numberOfApplications?.count ?? "0")) ? 0 : parseInt(numberOfApplications?.count ?? "0")}/>
-            </div>
+            <Pagination className="w-full mt-4" currentPage={page} numberOfCurrentItems={applications.length}
+                        numberOfTotalItems={isNaN(parseInt(numberOfApplications?.count ?? "0")) ? 0 : parseInt(numberOfApplications?.count ?? "0")}/>
         </div>
     );
 }
