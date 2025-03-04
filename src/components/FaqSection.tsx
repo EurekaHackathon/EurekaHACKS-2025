@@ -24,7 +24,7 @@ export default function FaqSection() {
         },
         {
             title: "How do I register?",
-            description: "Registration for EurekaHacks will open soon! Check our website and social media for updates on registration dates and deadlines"
+            description: "Registration for EurekaHacks is now open! Create an account to access our hacker portal to apply!"
         }
     ];
 
