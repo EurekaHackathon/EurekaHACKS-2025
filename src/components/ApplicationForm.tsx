@@ -216,6 +216,7 @@ export default function ApplicationForm() {
 
                 <div className="mb-6">
                     <h2 className="text-3xl font-semibold mt-8">Emergency Contact Information</h2>
+                    <h3 className="font-medium text-gray-500">Include your parent/guardian's information here</h3>
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-4">
