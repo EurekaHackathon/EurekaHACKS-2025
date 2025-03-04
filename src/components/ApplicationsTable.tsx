@@ -1,12 +1,27 @@
 import { db } from "@/lib/database";
-import { getApplicationsPaginated } from "@/lib/sqlc/admin_sql";
+import { getApplicationsPaginated, getNumberOfHackerApplications } from "@/lib/sqlc/admin_sql";
 import StatusBadge from "@/components/StatusBadge";
 import Link from "next/link";
+import Pagination from "@/components/Pagination";
 
-export default async function ApplicationsTable() {
+const clamp = (value: number, min: number, max: number) => {
+    return Math.min(Math.max(value, min), max);
+};
+
+export default async function ApplicationsTable({ searchParams, }: {
+    searchParams: Promise<{ [key: string]: string | undefined }>
+}) {
+    const numberOfApplications = await getNumberOfHackerApplications(db);
+
+    const params = await searchParams;
+    let page = params.page ? clamp(parseInt(params.page), 1, Math.max(Math.ceil(parseInt(numberOfApplications?.count ?? "1") / 10), 1)) : 1;
+    if (isNaN(page)) {
+        page = 1;
+    }
+
     const applications = await getApplicationsPaginated(db, {
         limit: "10",
-        offset: "0"
+        offset: ((page - 1) * 10).toString(),
     });
 
     const formatDate = (date: Date) => {
@@ -45,6 +60,10 @@ export default async function ApplicationsTable() {
                 ))}
                 </tbody>
             </table>
+            <div className="mt-4">
+                <Pagination currentPage={page} numberOfCurrentItems={applications.length}
+                            numberOfTotalItems={isNaN(parseInt(numberOfApplications?.count ?? "0")) ? 0 : parseInt(numberOfApplications?.count ?? "0")}/>
+            </div>
         </div>
     );
 }
