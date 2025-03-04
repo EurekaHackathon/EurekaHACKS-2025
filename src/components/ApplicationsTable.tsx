@@ -61,12 +61,20 @@ export default async function ApplicationsTable({ searchParams, }: {
                             </div>
                         </td>
                         <td className={`pr-4 text-start capitalize ${index !== applications.length - 1 ? "border-b" : ""}`}>
-                            <StatusBadge status={application.status}/>
+                            <div className="w-32">
+                                <StatusBadge status={application.status}/>
+                            </div>
                         </td>
-                        <td className={`text-start ${index !== applications.length - 1 ? "border-b" : ""}`}>{formatDate(application.createdAt)}</td>
+                        <td className={`text-start ${index !== applications.length - 1 ? "border-b" : ""}`}>
+                            <div className="w-32">
+                                {formatDate(application.createdAt)}
+                            </div>
+                        </td>
                         <td className={`pr-4 text-start ${index !== applications.length - 1 ? "border-b" : ""}`}>
-                            <Link className="border py-1 px-2 rounded-lg bg-white hover:bg-gray-200 duration-75"
-                                  href={`/dashboard/admin/applications/${application.id}`}>View</Link>
+                            <div className="w-16">
+                                <Link className="border py-1 px-2 rounded-lg bg-white hover:bg-gray-200 duration-75"
+                                      href={`/dashboard/admin/applications/${application.id}`}>View</Link>
+                            </div>
                         </td>
                     </tr>
                 ))}

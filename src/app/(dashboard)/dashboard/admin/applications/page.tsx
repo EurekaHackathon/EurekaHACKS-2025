@@ -1,4 +1,6 @@
 import ApplicationsTable from "@/components/ApplicationsTable";
+import { Suspense } from "react";
+import ApplicationTableSkeleton from "@/components/ApplicationTableSkeleton";
 
 export const dynamic = "force-dynamic";
 
@@ -7,7 +9,9 @@ export default async function AdminApplicationView({ searchParams, }: {
 }) {
     return (
         <div className="mt-12">
-            <ApplicationsTable searchParams={searchParams}/>
+            <Suspense fallback={<ApplicationTableSkeleton/>} key={(await searchParams).page}>
+                <ApplicationsTable searchParams={searchParams}/>
+            </Suspense>
         </div>
     );
 }
