@@ -26,6 +26,7 @@ export function SponsorSection() {
                     sponsorsPerRow={2}
                     sponsorInfo={[
                         { fileName: "mathnasium.png", name: "Mathnasium Oakville", url: "https://www.instagram.com/mathnasium_oakville/" },
+                        { fileName: "beeceptor.png", name: "Beeceptor", url: "https://beeceptor.com/" },
                     ]}
                 />
                 {/*Silver tier*/}
