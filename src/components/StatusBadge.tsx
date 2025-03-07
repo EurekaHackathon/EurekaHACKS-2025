@@ -1,4 +1,4 @@
-export default function StatusBadge({ status }: { status: string }) {
+export default function StatusBadge({ status, className }: { status: string, className?: string }) {
     const getGetStatusColor = (status: string) => {
         if (status === "accepted") {
             return "bg-green-500";
@@ -14,6 +14,6 @@ export default function StatusBadge({ status }: { status: string }) {
 
     return (
         <div
-            className={`text-base text-center capitalize text-white rounded-full py-1 px-4 w-32 ${getGetStatusColor(status)}`}>{status}</div>
+            className={`${className} text-base text-center capitalize text-white rounded-full py-1 px-4 w-32 ${getGetStatusColor(status)}`}>{status}</div>
     );
 }
