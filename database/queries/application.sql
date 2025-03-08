@@ -41,3 +41,6 @@ insert into hackathon_applications (
 
 -- name: GetApplicationStatus :one
 select status from hackathon_applications where user_id = $1;
+
+-- name: UpdateApplicationStatus :exec
+update hackathon_applications set status = $2 where id = $1;

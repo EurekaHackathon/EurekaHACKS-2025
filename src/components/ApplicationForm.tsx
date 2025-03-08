@@ -35,6 +35,7 @@ export default function ApplicationForm() {
         );
         if (state.error) {
             toast({
+                variant: "error",
                 title: "Error",
                 description: state.error,
             });

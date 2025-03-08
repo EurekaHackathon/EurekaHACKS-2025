@@ -112,3 +112,15 @@ export async function getApplicationStatus(sql: Sql, args: GetApplicationStatusA
     };
 }
 
+export const updateApplicationStatusQuery = `-- name: UpdateApplicationStatus :exec
+update hackathon_applications set status = $2 where id = $1`;
+
+export interface UpdateApplicationStatusArgs {
+    id: number;
+    status: string;
+}
+
+export async function updateApplicationStatus(sql: Sql, args: UpdateApplicationStatusArgs): Promise<void> {
+    await sql.unsafe(updateApplicationStatusQuery, [args.id, args.status]);
+}
+
