@@ -33,7 +33,7 @@ export default function DashboardHome() {
                       </Link>
                     </>
                 }
-                {applicationStatus?.status === "submitted" &&
+                {applicationStatus?.status &&
                     <>
                       <h1 className="text-secondary-600 font-bold text-5xl pt-6">Submitted</h1>
                       <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">

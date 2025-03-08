@@ -11,7 +11,7 @@ export default function ApplicationPage() {
 
     return (
         <>
-            {applicationStatus?.status === "submitted" &&
+            {applicationStatus?.status &&
                 <SubmittedApplication/>
             }
             {(applicationStatus === null || applicationStatus.status === "unsubmitted") &&
