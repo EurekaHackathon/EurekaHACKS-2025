@@ -23,7 +23,7 @@ export default function DashboardHome() {
                 </div>
                 {(applicationStatus?.status === "unsubmitted" || !applicationStatus) &&
                     <>
-                      <h1 className="text-secondary-600 font-bold text-5xl pt-6">Not submitted</h1>
+                      <h1 className="text-secondary-600 font-bold text-4xl md:text-5xl pt-6">Not submitted</h1>
                       <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">
                         You haven't started your application yet. Click the button below to start your application.
                       </p>
@@ -35,7 +35,7 @@ export default function DashboardHome() {
                 }
                 {applicationStatus?.status &&
                     <>
-                      <h1 className="text-secondary-600 font-bold text-5xl pt-6">Submitted</h1>
+                      <h1 className="text-secondary-600 font-bold text-4xl md:text-5xl pt-6">Submitted</h1>
                       <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">
                         Your application has been submitted. We will review your application and get back to you
                         soon.
