@@ -102,6 +102,8 @@ export const loginWithEmail = async (prevState: any, formData: FormData) => {
                 httpOnly: true,
                 secure: process.env.DEV !== "true",
                 sameSite: "lax",
+                // 30 days
+                expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
             });
         }
 

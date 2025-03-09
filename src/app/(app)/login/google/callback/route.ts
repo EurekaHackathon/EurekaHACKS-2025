@@ -55,6 +55,8 @@ export async function GET(request: Request): Promise<Response> {
             httpOnly: true,
             secure: process.env.DEV !== "true",
             sameSite: "lax",
+            // 30 days
+            expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
         });
 
         return new Response(null, {
@@ -84,6 +86,8 @@ export async function GET(request: Request): Promise<Response> {
         httpOnly: true,
         secure: process.env.DEV !== "true",
         sameSite: "lax",
+        // 30 days
+        expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
     });
 
     return new Response(null, {
