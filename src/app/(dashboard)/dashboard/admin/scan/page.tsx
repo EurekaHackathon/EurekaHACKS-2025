@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { binarize, Decoder, Detector, grayscale } from "@nuintun/qrcode";
 import Webcam from "react-webcam";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/Select";
-import { decryptAES } from "@/lib/encryption";
 import { toast } from "@/hooks/use-toast";
 
 const decodeQRCode = (dataURL: string): Promise<string | null> => {
