@@ -57,16 +57,28 @@ export default function AdminQRCodeScanner() {
     const webcamRef = useRef<Webcam>(null);
 
     useEffect(() => {
-        navigator.mediaDevices.enumerateDevices().then(devices => {
-            const videoDevices = devices.filter(device => device.kind === "videoinput");
-            const backCamera = videoDevices.find(device => device.label.toLowerCase().includes("back"));
-            if (!backCamera) {
-                setVideoConstraints({
-                    facingMode: "user"
-                });
-            }
-        });
+        const checkForCamera = () => {
+            navigator.mediaDevices.enumerateDevices().then(devices => {
+                const videoDevices = devices.filter(device => device.kind === "videoinput");
+                if (videoDevices.length > 0) {
+                    const backCamera = videoDevices.find(device => device.label.toLowerCase().includes("back"));
+                    setVideoConstraints({
+                        facingMode: backCamera ? "environment" : "user"
+                    });
+                    setCameraError(false);
+                } else {
+                    setCameraError(true);
+                }
+            });
+        };
 
+        checkForCamera();
+        const cameraCheckInterval = setInterval(checkForCamera, 1000);
+
+        return () => clearInterval(cameraCheckInterval);
+    }, []);
+
+    useEffect(() => {
         const interval = setInterval(async () => {
             const imageSrc = webcamRef.current?.getScreenshot();
             if (imageSrc) {
