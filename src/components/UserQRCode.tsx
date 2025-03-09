@@ -24,7 +24,6 @@ export default async function UserQRCode() {
         foreground: [20, 12, 51],
         margin: 0
     }).replace(/^data:image\/gif;base64,/, "data:image/png;base64,");
-
     return (
         <div className="flex p-12 justify-center items-center min-h-screen">
             <div
