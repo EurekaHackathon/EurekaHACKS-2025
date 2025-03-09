@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { authorizeSession } from "@/lib/sessions";
-import { updateApplicationStatus } from "@/lib/sqlc/application_sql";
+import { getApplicationStatus } from "@/lib/sqlc/application_sql";
 import { db } from "@/lib/database";
 import { createUserEvent, getUserEvent } from "@/lib/sqlc/events_sql";
 import { decryptAES } from "@/lib/encryption";
@@ -33,6 +33,14 @@ export async function POST(request: Request) {
     const decryptedId = decryptAES(process.env.QR_CODE_SECRET_KEY ?? "", encryptedId);
 
     try {
+        // Check if user is accepted
+        const userApplicationStatus = await getApplicationStatus(db, {
+            userId: parseInt(decryptedId)
+        });
+        if (userApplicationStatus?.status !== "accepted") {
+            return new Response("User is not accepted", { status: 403 });
+        }
+
         // Check if user already scanned into this event
         const existingEvent = await getUserEvent(db, {
             userId: parseInt(decryptedId),

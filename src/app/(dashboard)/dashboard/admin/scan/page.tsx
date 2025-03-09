@@ -116,6 +116,12 @@ export default function AdminQRCodeScanner() {
                                         title: "Error",
                                         description: "User already scanned into this event."
                                     });
+                                } else if (response.status === 403) {
+                                    toast({
+                                        variant: "error",
+                                        title: "Error",
+                                        description: "User is not an accepted hacker."
+                                    });
                                 } else {
                                     toast({
                                         variant: "error",
