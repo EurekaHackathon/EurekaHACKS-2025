@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import { authorizeSession } from "@/lib/sessions";
 import { updateApplicationStatus } from "@/lib/sqlc/application_sql";
 import { db } from "@/lib/database";
-import { revalidatePath } from "next/cache";
 
 export async function POST(request: Request) {
     const cookieStore = await cookies();

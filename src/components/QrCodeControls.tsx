@@ -1,18 +1,15 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-
 import {
     Dialog,
-    DialogClose,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import Image from "next/image";
+import NextImage from "next/image";
 
 export function QrCodeControls({ dataURL }: { dataURL: string }) {
     const downloadQrCode = () => {
@@ -22,7 +19,7 @@ export function QrCodeControls({ dataURL }: { dataURL: string }) {
         link.click();
     };
 
-    return <div className="flex w-full justify-end mt-4 md:mt-6 gap-4">
+    return <div className="flex flex-row w-full justify-end mt-4 md:mt-6 gap-4">
         <button onClick={downloadQrCode}
                 className="bg-secondary-600 text-white min-h-9 min-w-9 px-2 py-2 rounded-md hover:bg-secondary-700">
             <Icon icon={"fluent:arrow-download-16-filled"} className="text-xl"/>
@@ -43,7 +40,7 @@ export function QrCodeControls({ dataURL }: { dataURL: string }) {
                     </DialogDescription>
                 </DialogHeader>
                 <div className="flex justify-center items-center">
-                    <Image
+                    <NextImage
                         id="qrcode"
                         className="[image-rendering:pixelated] p-6 md:p-10 lg:p-12 bg-secondary-100 rounded-xl"
                         src={dataURL} width={38 * 20} height={38 * 20}

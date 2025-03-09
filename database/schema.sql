@@ -86,3 +86,10 @@ create table if not exists public.hackathon_applications (
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()
 );
+
+create table if not exists public.events (
+    id serial primary key,
+    user_id integer not null references public.app_users(id) on delete cascade,
+    name text not null,
+    created_at timestamptz not null default now()
+);
