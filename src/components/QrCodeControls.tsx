@@ -21,13 +21,13 @@ export function QrCodeControls({ dataURL }: { dataURL: string }) {
 
     return <div className="flex flex-row w-full justify-end mt-4 md:mt-6 gap-4">
         <button onClick={downloadQrCode}
-                className="bg-secondary-600 text-white min-h-9 min-w-9 px-2 py-2 rounded-md hover:bg-secondary-700">
+                className="bg-secondary-600 text-white min-h-9 min-w-9 px-2 py-2 rounded-md hover:bg-secondary-700 duration-75">
             <Icon icon={"fluent:arrow-download-16-filled"} className="text-xl"/>
         </button>
         <Dialog>
             <DialogTrigger asChild>
                 <button
-                    className="bg-secondary-600 text-white min-h-9 min-w-9 px-2 py-2 rounded-md hover:bg-secondary-700">
+                    className="bg-secondary-600 text-white min-h-9 min-w-9 px-2 py-2 rounded-md hover:bg-secondary-700 duration-75">
                     <Icon icon={"fluent:full-screen-zoom-24-filled"} className="text-xl"/>
                 </button>
             </DialogTrigger>
