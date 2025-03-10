@@ -12,6 +12,8 @@ export default function Pagination({
     numberOfTotalItems: number;
     className?: string;
 }) {
+    numberOfTotalItems = 100;
+
     const lastPage = Math.ceil(numberOfTotalItems / 10);
     const pages = new Set<number>();
     pages.add(1);
