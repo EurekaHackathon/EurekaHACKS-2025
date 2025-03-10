@@ -30,9 +30,9 @@ export async function POST(request: Request) {
         return new Response("Invalid event", { status: 400 });
     }
 
-    const decryptedId = decryptAES(process.env.QR_CODE_SECRET_KEY ?? "", encryptedId);
-
     try {
+        const decryptedId = decryptAES(process.env.QR_CODE_SECRET_KEY ?? "", encryptedId);
+
         // Check if user is accepted
         const userApplicationStatus = await getApplicationStatus(db, {
             userId: parseInt(decryptedId)
