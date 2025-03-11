@@ -37,6 +37,7 @@ export function SponsorSection() {
                         { fileName: "algorithmics.png", name: "Algorithmics Oakville", url: "https://westoakville.alg.academy/" },
                         { fileName: "perimeter-institute.webp", name: "Perimeter Institute", url: "https://perimeterinstitute.ca/" },
                         { fileName: "codecrafters.png", name: "CodeCrafters", url: "https://codecrafters.io/" },
+                        { fileName: "gotcha.png", name: "Gotcha Bubble Tea", url: "https://www.gotchabubbletea.ca/" },
                     ]}
                 />
                 {/*Bronze tier*/}
@@ -47,6 +48,7 @@ export function SponsorSection() {
                         { fileName: "basecamp-climbing.png", name: "Basecamp Climbing", url: "https://basecampclimbing.ca/" },
                         { fileName: "art-of-problem-solving.png", name: "Art of Problem Solving", url: "https://artofproblemsolving.com/" },
                         { fileName: "jane-street.png", name: "Jane Street", url: "https://www.janestreet.com/" },
+                        { fileName: "escape-from-the-6.png", name: "Escape From The 6", url: "https://escapefromthe6.com/" },
                     ]}
                 />
             </div>
