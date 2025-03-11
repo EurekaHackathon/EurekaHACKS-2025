@@ -27,6 +27,7 @@ export function SponsorSection() {
                     sponsorInfo={[
                         { fileName: "mathnasium.png", name: "Mathnasium Oakville", url: "https://www.instagram.com/mathnasium_oakville/" },
                         { fileName: "beeceptor.png", name: "Beeceptor", url: "https://beeceptor.com/" },
+                        { fileName: "vectara.png", name: "Vectara", url: "https://www.vectara.com/" },
                     ]}
                 />
                 {/*Silver tier*/}
@@ -45,6 +46,7 @@ export function SponsorSection() {
                         { fileName: "leading-aces-academy.png", name: "Leading Aces Academy", url: "https://www.leadingaces.com/" },
                         { fileName: "basecamp-climbing.png", name: "Basecamp Climbing", url: "https://basecampclimbing.ca/" },
                         { fileName: "art-of-problem-solving.png", name: "Art of Problem Solving", url: "https://artofproblemsolving.com/" },
+                        { fileName: "jane-street.png", name: "Jane Street", url: "https://www.janestreet.com/" },
                     ]}
                 />
             </div>
