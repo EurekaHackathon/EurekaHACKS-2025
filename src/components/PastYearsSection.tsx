@@ -4,8 +4,8 @@ const stats = [
     { value: "$7,000+", label: "in prizes" },
     { value: "150+", label: "hackers" },
     { value: "30+", label: "projects" },
-    { value: "10+", label: "schools" },
-    { value: "5+", label: "workshops" },
+    { value: "40+", label: "schools" },
+    { value: "15+", label: "workshops" },
 ];
 
 export default function PastYearsSection() {
