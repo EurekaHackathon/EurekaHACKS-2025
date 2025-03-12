@@ -49,6 +49,7 @@ export function SponsorSection() {
                         { fileName: "art-of-problem-solving.png", name: "Art of Problem Solving", url: "https://artofproblemsolving.com/" },
                         { fileName: "jane-street.png", name: "Jane Street", url: "https://www.janestreet.com/" },
                         { fileName: "escape-from-the-6.png", name: "Escape From The 6", url: "https://escapefromthe6.com/" },
+                        { fileName: "baskin-robbins.png", name: "Baskin Robbins", url: "https://www.baskinrobbins.ca/" },
                     ]}
                 />
             </div>
