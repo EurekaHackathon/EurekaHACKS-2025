@@ -50,6 +50,7 @@ export function SponsorSection() {
                         { fileName: "jane-street.png", name: "Jane Street", url: "https://www.janestreet.com/" },
                         { fileName: "escape-from-the-6.png", name: "Escape From The 6", url: "https://escapefromthe6.com/" },
                         { fileName: "baskin-robbins.png", name: "Baskin Robbins", url: "https://www.baskinrobbins.ca/" },
+                        { fileName: "interview-cake.png", name: "Interview Cake", url: "https://www.interviewcake.com/" },
                     ]}
                 />
             </div>
