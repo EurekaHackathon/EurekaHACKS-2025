@@ -18,39 +18,76 @@ export function SponsorSection() {
                 <SponsorTier
                     sponsorsPerRow={1}
                     sponsorInfo={[
-                        { fileName: "dorahacks.png", name: "DoraHacks", url: "https://dorahacks.io/" },
+                        {fileName: "dorahacks.png", name: "DoraHacks", url: "https://dorahacks.io/"},
                     ]}
                 />
                 {/*Gold tier*/}
                 <SponsorTier
                     sponsorsPerRow={2}
                     sponsorInfo={[
-                        { fileName: "mathnasium.png", name: "Mathnasium Oakville", url: "https://www.instagram.com/mathnasium_oakville/" },
-                        { fileName: "beeceptor.png", name: "Beeceptor", url: "https://beeceptor.com/?utm_source=eurekahacks.ca" },
-                        { fileName: "vectara.png", name: "Vectara", url: "https://www.vectara.com/" },
+                        {
+                            fileName: "mathnasium.png",
+                            name: "Mathnasium Oakville",
+                            url: "https://www.instagram.com/mathnasium_oakville/"
+                        },
+                        {
+                            fileName: "beeceptor.png",
+                            name: "Beeceptor",
+                            url: "https://beeceptor.com/?utm_source=eurekahacks.ca"
+                        },
+                        {fileName: "vectara.png", name: "Vectara", url: "https://www.vectara.com/"},
                     ]}
                 />
                 {/*Silver tier*/}
                 <SponsorTier
                     sponsorsPerRow={3}
                     sponsorInfo={[
-                        { fileName: "algorithmics.png", name: "Algorithmics Oakville", url: "https://westoakville.alg.academy/" },
-                        { fileName: "perimeter-institute.webp", name: "Perimeter Institute", url: "https://perimeterinstitute.ca/" },
-                        { fileName: "codecrafters.png", name: "CodeCrafters", url: "https://codecrafters.io/" },
-                        { fileName: "gotcha.png", name: "Gotcha Bubble Tea", url: "https://www.gotchabubbletea.ca/" },
+                        {
+                            fileName: "algorithmics.png",
+                            name: "Algorithmics Oakville",
+                            url: "https://westoakville.alg.academy/"
+                        },
+                        {
+                            fileName: "perimeter-institute.webp",
+                            name: "Perimeter Institute",
+                            url: "https://perimeterinstitute.ca/"
+                        },
+                        {fileName: "codecrafters.png", name: "CodeCrafters", url: "https://codecrafters.io/"},
+                        {fileName: "gotcha.png", name: "Gotcha Bubble Tea", url: "https://www.gotchabubbletea.ca/"},
                     ]}
                 />
                 {/*Bronze tier*/}
                 <SponsorTier
                     sponsorsPerRow={4}
                     sponsorInfo={[
-                        { fileName: "leading-aces-academy.png", name: "Leading Aces Academy", url: "https://www.leadingaces.com/" },
-                        { fileName: "basecamp-climbing.png", name: "Basecamp Climbing", url: "https://basecampclimbing.ca/" },
-                        { fileName: "art-of-problem-solving.png", name: "Art of Problem Solving", url: "https://artofproblemsolving.com/" },
-                        { fileName: "jane-street.png", name: "Jane Street", url: "https://www.janestreet.com/" },
-                        { fileName: "escape-from-the-6.png", name: "Escape From The 6", url: "https://escapefromthe6.com/" },
-                        { fileName: "baskin-robbins.png", name: "Baskin Robbins", url: "https://www.baskinrobbins.ca/" },
-                        { fileName: "interview-cake.png", name: "Interview Cake", url: "https://www.interviewcake.com/" },
+                        {
+                            fileName: "leading-aces-academy.png",
+                            name: "Leading Aces Academy",
+                            url: "https://www.leadingaces.com/"
+                        },
+                        {
+                            fileName: "basecamp-climbing.png",
+                            name: "Basecamp Climbing",
+                            url: "https://basecampclimbing.ca/"
+                        },
+                        {
+                            fileName: "art-of-problem-solving.png",
+                            name: "Art of Problem Solving",
+                            url: "https://artofproblemsolving.com/"
+                        },
+                        {fileName: "jane-street.png", name: "Jane Street", url: "https://www.janestreet.com/"},
+                        {
+                            fileName: "escape-from-the-6.png",
+                            name: "Escape From The 6",
+                            url: "https://escapefromthe6.com/"
+                        },
+                        {fileName: "baskin-robbins.png", name: "Baskin Robbins", url: "https://www.baskinrobbins.ca/"},
+                        {fileName: "interview-cake.png", name: "Interview Cake", url: "https://www.interviewcake.com/"},
+                        {
+                            fileName: "hint-hunt.png",
+                            name: "Hint Hunt",
+                            url: "https://hinthuntcanada.com/?gad_source=1&gclid=Cj0KCQjwhMq-BhCFARIsAGvo0Kd-ZxO-oD_5J8aIy8XcwjnFx4iK0or0Wq3gY6fuLeDRlCbevSdy5JsaAjRfEALw_wcB"
+                        },
                     ]}
                 />
             </div>
