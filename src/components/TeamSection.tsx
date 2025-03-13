@@ -118,6 +118,13 @@ export default function TeamSection() {
             url: "https://www.linkedin.com/in/jimin-so-1878a2285/",
             emoji: "🐋"
         },
+        {
+            name: "The Gu",
+            role: "Business",
+            image: "gregory.png",
+            url: "https://ca.linkedin.com/in/gregory-gu",
+            emoji: "🐒"
+        },
     ];
 
     // Display name is whatever is being currently displayed, name is the one we want it to display. Name ref because react states is silly
