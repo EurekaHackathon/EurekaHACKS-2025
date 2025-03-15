@@ -89,6 +89,10 @@ export function SponsorSection() {
                             name: "Hint Hunt",
                             url: "https://hinthuntcanada.com/?gad_source=1&gclid=Cj0KCQjwhMq-BhCFARIsAGvo0Kd-ZxO-oD_5J8aIy8XcwjnFx4iK0or0Wq3gY6fuLeDRlCbevSdy5JsaAjRfEALw_wcB"
                         },
+                        {fileName: "wolfram.png", name: "Wolfram", url: "https://www.wolframalpha.com/"},
+                        {fileName: "cupids.png", name: "Cupid's Gourmet Bakery", url: "https://www.cupidsgourmetbakery.ca/"},
+                        {fileName: "cobs.png", name: "Cobs Bread", url: "https://www.cobsbread.com/"},
+                        {fileName: "nordvpn.png", name: "NordVPN", url: "https://nordvpn.com/"},
                     ]}
                 />
             </div>
