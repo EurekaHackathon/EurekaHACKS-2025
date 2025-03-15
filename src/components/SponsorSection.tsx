@@ -19,6 +19,7 @@ export function SponsorSection() {
                     sponsorsPerRow={1}
                     sponsorInfo={[
                         {fileName: "dorahacks.png", name: "DoraHacks", url: "https://dorahacks.io/"},
+                        {fileName: "icp.png", name: "ICP", url: "https://internetcomputer.org/"},
                     ]}
                 />
                 {/*Gold tier*/}
