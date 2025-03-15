@@ -1,31 +1,40 @@
 import FaqDropdown from "@/components/FaqDropdown";
 
 export default function FaqSection() {
+    // TODO: Add proper FAQs instead of GPTed ones
     const faqs = [
         {
             title: "What is a hackathon?",
-            description: "A hackathon is an event where participants collaborate intensively to create innovative solutions or prototypes in a short time, usually 24–48 hours. It’s focused on coding, problem-solving, and creativity, often around a specific challenge or theme."
+            description: "A hackathon is an event where participants collaborate intensively to create innovative solutions or prototypes💡 It’s focused on coding, problem-solving, and creativity around a specific challenge or theme 🎯"
         },
         {
             title: "Who can participate?",
-            description: "EurekaHacks is open to all high school students, regardless of experience level. Whether you’re a seasoned hacker or a first-time coder, we welcome you to join us for a weekend of learning, building, and fun!"
+            description: "EurekaHacks is open exclusively to high school students, no prior experience required!. Whether you’re a seasoned hacker or a first-time coder, we welcome you to join us for a day of learning, building, and fun! 🤗🤗"
         },
         {
             title: "What if I don’t know how to code?",
-            description: "No problem! Hackathons are a great place to learn new skills, meet new people, and have fun. We’ll have workshops, mentors, and resources available to help you get started and build your project."
+            description: "No problem! Hackathons are a great place to learn new skills, meet new people 🤝🏼, and have fun. We’ll have workshops 📝, mentors 🎓, and resources available to help you get started and build your project."
+        },
+        {
+            title: "What if I don’t have a team?",
+            description: "Don't worry! We'll have team building activities to help you find your coding squad! There is a limit of four people per team 👨‍👩‍👧‍👦"
         },
         {
             title: "How much does it cost?",
-            description: "EurekaHacks is completely free for all participants! We’ll provide everything you need to participate, including workshops, mentors, and prizes."
+            description: "EurekaHacks is completely free for all participants 🎉! We’ll provide everything you need to participate, including workshops, mentors, and of course, free food!! 🍕🍕🍕"
         },
         {
             title: "What should I bring?",
-            description: "You should bring your laptop, charger, and any other tech or hardware you need to work on your project. We also recommend bringing a water bottle, and snacks."
+            description: "You should bring your laptop 💻, charger 🔋, and any other tech or hardware you need to work on your project. We also recommend bringing a water bottle and snacks 🍫"
         },
         {
             title: "How do I register?",
-            description: "Registration for EurekaHacks is now open! Create an account to access our hacker portal to apply!"
-        }
+            description: "Registration for EurekaHacks is now open! Apply now on our website 🌐! Check our website and social media for updates on registration dates and deadlines ⏰"
+        },
+        {
+            title: "What's in it for me?",
+            description: "You'll have the opportunity to meet some of the coolest people ever😎! There'll be workshops, fun events 🎉, free food 🍕, swag 🎁, and epic prizes 🏆!"
+        },
     ];
 
     const mid = Math.ceil(faqs.length / 2);
