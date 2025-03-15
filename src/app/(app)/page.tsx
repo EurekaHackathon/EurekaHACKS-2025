@@ -5,6 +5,7 @@ import PastYearsSection from "@/components/PastYearsSection";
 import { SponsorSection } from "@/components/SponsorSection";
 import FaqSection from "@/components/FaqSection";
 import TeamSection from "@/components/TeamSection";
+import { PartnerSection } from "@/components/PartnerSection";
 
 export default async function Home() {
     return (
@@ -16,6 +17,7 @@ export default async function Home() {
                     <AboutSection/>
                     <PastYearsSection/>
                     <SponsorSection/>
+                    <PartnerSection/>
                     <FaqSection/>
                     <TeamSection/>
                 </div>
