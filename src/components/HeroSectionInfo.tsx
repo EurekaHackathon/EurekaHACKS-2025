@@ -64,7 +64,7 @@ export function HeroSectionInfo() {
 
             {/* Date and Location (for small screens) */}
             <h1
-                className="md:hidden font-semibold mt-2"
+                className="md:hidden mt-2"
             >
                 April 5th, 2024 | Abbey Park High School
             </h1>
