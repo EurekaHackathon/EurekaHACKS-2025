@@ -8,7 +8,7 @@ export default function PrizesSneakPeek() {
             <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-gray-300 pt-1">Over $11,500 in prizes to be won</h2>
             <div className="flex flex-col items-center bg-gray-200 rounded-xl p-4 bg-opacity-75 mt-8 hover:scale-105 hover:bg-opacity-80 duration-300 ease-in-out">
                 <Image className="w-64 md:w-96 lg:w-[500px]" src={Prize} alt="Bambu Labs A1 Mini"/>
-                <h1 className="text-2xl lg:text-4xl text-gray-800 font-semibold pt-2">Bambu Lab A1 mini x4</h1>
+                <h1 className="text-2xl lg:text-4xl text-secondary-800 font-semibold pt-2">Bambu Lab A1 mini x4</h1>
             </div>
         </div>
     );
