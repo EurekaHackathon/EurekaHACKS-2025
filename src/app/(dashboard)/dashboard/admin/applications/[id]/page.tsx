@@ -99,6 +99,7 @@ export default async function Application({
                                             link={application.resumeLink ?? "None"}/>
                     </div>
                 </div>
+                <hr className="mt-8 border-secondary-200"/>
                 {/*Actions*/}
                 <ApplicationActionsForm id={application.id}/>
             </div>
