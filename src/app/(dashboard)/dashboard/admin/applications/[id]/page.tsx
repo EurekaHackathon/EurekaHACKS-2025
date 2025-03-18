@@ -90,7 +90,13 @@ export default async function Application({
                 </div>
                 <div className="mt-2 text-gray-500">
                     <h1>
-                        Submitted: {application.createdAt.toLocaleDateString("en-CA")} at {application.createdAt.toLocaleTimeString("it-IT")} ({formatTimeAgo(application.createdAt)} ago)
+                        Submitted: {application.createdAt.toLocaleDateString("en-CA")} at {new Intl.DateTimeFormat("en-CA", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                        hour12: false,
+                        timeZone: "America/Toronto",
+                    }).format(application.createdAt)} ({formatTimeAgo(application.createdAt)} ago)
                     </h1>
                 </div>
                 <div className="grid md:grid-cols-2 xl:grid-cols-3 mt-8 gap-4">
