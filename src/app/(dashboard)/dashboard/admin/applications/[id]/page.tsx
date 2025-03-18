@@ -8,14 +8,47 @@ import ApplicationItem from "@/components/ApplicationItem";
 import ApplicationLinkBox from "@/components/ApplicationLinkBox";
 import { ApplicationActionsForm } from "@/components/ApplicationActionsForm";
 
+const formatTimeAgo = (date: Date) => {
+    const now = new Date();
+    const diff = now.getTime() - date.getTime();
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const months = Math.floor(days / 30);
+    const years = Math.floor(months / 12);
+
+    if (years > 0) {
+        return years + " year" + (years > 1 ? "s" : "");
+    }
+
+    if (months > 0) {
+        return months + " month" + (months > 1 ? "s" : "");
+    }
+
+    if (days > 0) {
+        return days + " day" + (days > 1 ? "s" : "");
+    }
+
+    if (hours > 0) {
+        return hours + " hour" + (hours > 1 ? "s" : "");
+    }
+
+    if (minutes > 0) {
+        return minutes + " minute" + (minutes > 1 ? "s" : "");
+    }
+
+    return seconds + " second" + (seconds > 1 ? "s" : "");
+};
+
 export default async function Application({
                                               params, searchParams
                                           }: {
     params: Promise<{ id: string }>,
     searchParams: Promise<{ [key: string]: string | undefined }>
 }) {
-    const { id } = await params;
-    const { from } = await searchParams;
+    const {id} = await params;
+    const {from} = await searchParams;
     // If id is not a number, go back
     if (isNaN(parseInt(id))) {
         redirect("/dashboard/admin/applications");
@@ -56,7 +89,9 @@ export default async function Application({
                     <StatusBadge className="font-semibold" status={application.status}/>
                 </div>
                 <div className="mt-2 text-gray-500">
-                    <h1>Submitted: {application.createdAt.toLocaleDateString("en-CA", {})}</h1>
+                    <h1>
+                        Submitted: {application.createdAt.toLocaleDateString("en-CA")} at {application.createdAt.toLocaleTimeString("it-IT")} ({formatTimeAgo(application.createdAt)} ago)
+                    </h1>
                 </div>
                 <div className="grid md:grid-cols-2 xl:grid-cols-3 mt-8 gap-4">
                     <ApplicationItem label="Full name" icon="icon-park-outline:edit-name"
