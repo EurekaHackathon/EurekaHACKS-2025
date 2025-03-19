@@ -230,7 +230,7 @@ export async function updateDBUserPassword(sql: Sql, args: UpdateDBUserPasswordA
 }
 
 export const getUserByEmailQuery = `-- name: GetUserByEmail :one
-select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.app_users where email = $1 and account_type = 'email'`;
+select id, first_name, last_name, email, password, email_verified, account_type, oauth_id, is_admin, created_at, updated_at from public.app_users where email ILIKE $1 and account_type = 'email'`;
 
 export interface GetUserByEmailArgs {
     email: string | null;

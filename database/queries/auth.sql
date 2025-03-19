@@ -33,7 +33,7 @@ returning *;
 update public.app_users set password = $2 where id = $1;
 
 -- name: GetUserByEmail :one
-select * from public.app_users where email = $1 and account_type = 'email';
+select * from public.app_users where email ILIKE $1 and account_type = 'email';
 
 -- name: GetUserByGithubID :one
 select * from public.app_users where oauth_id = $1 and account_type = 'github';
