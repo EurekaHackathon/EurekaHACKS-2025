@@ -180,3 +180,21 @@ export async function getApplicationById(sql: Sql, args: GetApplicationByIdArgs)
     };
 }
 
+export const getApplicationCountPerDayQuery = `-- name: GetApplicationCountPerDay :many
+select date(created_at at time zone 'America/Toronto') as date, count(*) as count
+from public.hackathon_applications
+group by date(created_at at time zone 'America/Toronto')
+order by date(created_at at time zone 'America/Toronto') asc`;
+
+export interface GetApplicationCountPerDayRow {
+    date: Date;
+    count: string;
+}
+
+export async function getApplicationCountPerDay(sql: Sql): Promise<GetApplicationCountPerDayRow[]> {
+    return (await sql.unsafe(getApplicationCountPerDayQuery, []).values()).map(row => ({
+        date: row[0],
+        count: row[1]
+    }));
+}
+

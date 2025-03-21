@@ -18,3 +18,9 @@ select id, first_name, last_name, school, status, created_at from public.hackath
 
 -- name: GetApplicationById :one
 select * from public.hackathon_applications where id = $1 limit 1;
+
+-- name: GetApplicationCountPerDay :many
+select date(created_at at time zone 'America/Toronto') as date, count(*) as count
+from public.hackathon_applications
+group by date(created_at at time zone 'America/Toronto')
+order by date(created_at at time zone 'America/Toronto') asc;
