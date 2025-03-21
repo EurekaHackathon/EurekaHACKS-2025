@@ -11,20 +11,16 @@ import {
     Text,
 } from "@react-email/components";
 import * as React from "react";
-import Link from "next/link";
 
 interface ApplicationsOpenTemplateProps {
-    applicationLink: string;
-    unsubscribeLink: string;
+    firstName: string;
 }
 
-export const ApplicationsDueTemplate = ({
-                                             applicationLink, unsubscribeLink
-                                         }: ApplicationsOpenTemplateProps) => (
+export const ApplicationsDueTemplate = ({firstName}: ApplicationsOpenTemplateProps) => (
     <Html>
         <Head/>
         <Preview>
-            🚨 EurekaHACKS 2025 applications are due in 3 days! 🚨
+            🚨 EurekaHACKS 2025 applications are due tomorrow! 🚨
         </Preview>
         <Body style={main}>
             <Container style={container}>
@@ -35,30 +31,18 @@ export const ApplicationsDueTemplate = ({
                     alt="EurekaHACKS logo"
                     style={logo}
                 />
-                <Text style={paragraph}>Hey!</Text>
+                <Text style={paragraph}>Hey {firstName}!</Text>
                 <Text style={paragraph}>
-                    We're excited to announce that applications for EurekaHACKS 2025 are now open!
-                    Join us on April 5th, 2025 at Abbey Park High School for an unforgettable day of
-                    innovation, learning, and fun.
+                    We saw that you created a EurekaHACKS account but haven’t submitted an application yet! Applications
+                    are due on Saturday, March 22, 2025 at 11:59 PM EST. Applying only takes <strong>3</strong> minutes—no short answer
+                    responses required. Don't miss out on free food, $11,000 in prizes
+                    (including four 3D printers), and a ton of fun!
                 </Text>
-                <Section style={highlightBox}>
-                    <Text style={highlightText}>
-                        📍 Location: Abbey Park High School<br/>
-                        📅 Date: April 5th, 2025<br/>
-                        ⏰ Duration: 12 hours<br/>
-                        💻 Open to all high school students
-                    </Text>
-                </Section>
                 <Section style={btnContainer}>
-                    <Button style={button} href={applicationLink}>
+                    <Button style={button} href={"https://eurekahacks.ca/dashboard/application"}>
                         Apply Now
                     </Button>
                 </Section>
-                <Text style={paragraph}>
-                    Questions? Feel free to reach out to us at <Link href="mailto:hello@eurekahacks.ca">
-                    hello@eurekahacks.ca
-                </Link>!
-                </Text>
                 <Text style={paragraph}>
                     Can't wait to see what you'll create!
                     <br/>
@@ -76,9 +60,7 @@ export const ApplicationsDueTemplate = ({
 );
 
 ApplicationsDueTemplate.PreviewProps = {
-    recipientFirstname: "John",
-    applicationLink: "http://localhost:3000/dashboard",
-    unsubscribeLink: "http://localhost:3000/unsubscribe?id=abcdefg",
+    firstName: "John",
 } as ApplicationsOpenTemplateProps;
 
 export default ApplicationsDueTemplate;

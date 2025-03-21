@@ -3,8 +3,9 @@ import { getAllEmailsFromMailingList, GetAllEmailsFromMailingListRow } from "@/l
 import NodeMailer from "nodemailer";
 import "dotenv/config";
 import { render } from "@react-email/components";
-import ApplicationsOpenTemplate from "@/lib/emails/apps-open";
+import AppsDueSoonTemplate from "@/lib/emails/apps-due-soon";
 import { sendMailAsync } from "@/lib/actions/auth";
+import { getUserByEmail, getUserByID } from "@/lib/sqlc/auth_sql";
 
 const emails = await getAllEmailsFromMailingList(db);
 
@@ -26,35 +27,31 @@ const transporter = NodeMailer.createTransport({
 });
 
 for (const email of uniqueEmails) {
+
     const emailText = `
                 Hey!
 
-                We're excited to announce that applications for EurekaHACKS 2025 are now open!
-                Join us on April 5th, 2025 at Abbey Park High School for an unforgettable day of
-                innovation, learning, and fun.
-                
-                📍 Location: Abbey Park High School
-                📅 Date: April 5th, 2025
-                ⏰ Duration: 12 hours
-                💻 Open to all high school students
-                
-                Apply here: https://eurekahacks.ca/
-                
-                Questions? Feel free to reach out to us at hello@eurekahacks.ca!
-
+                We saw that you created a EurekaHACKS account but haven’t submitted an application yet! Applications
+                    are due on Saturday, March 22, 2025 at 11:59 PM EST. Applying only takes <strong>3</strong> minutes—no short answer
+                    responses required. Don't miss out on free food, $11,000 in prizes
+                    (including four 3D printers), and a ton of fun!
+                    
                 Best,
                 The EurekaHACKS Team
                 `;
 
-    const emailHTML = await render(ApplicationsOpenTemplate({
-        unsubscribeLink: "https://eurekahacks.ca/unsubscribe?id=" + email.id,
-        applicationLink: "https://eurekahacks.ca/dashboard",
+    const user = await getUserByEmail(db, {
+        email: email.email,
+    });
+
+    const emailHTML = await render(AppsDueSoonTemplate({
+        firstName: user?.firstName || "hacker",
     }));
 
     const mailOptions = {
         to: email.email,
         from: `"EurekaHACKS" hello@eurekahacks.ca`,
-        subject: "Applications for EurekaHACKS 2025 are now open!",
+        subject: "🚨 EurekaHACKS 2025 applications are due tomorrow! 🚨",
         text: emailText,
         html: emailHTML,
     };
