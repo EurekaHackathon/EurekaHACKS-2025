@@ -78,7 +78,7 @@ export default function ApplicationCountGraph({applicationCountData}: {
 
     return (
         <ResponsiveContainer width="100%" height={400}>
-            <AreaChart width={1200} height={400} data={fullData} margin={{top: 5, right: 5, left: 5, bottom: 30}}>
+            <AreaChart width={1200} height={400} data={fullData} margin={{top: 5, right: 40, left: 5, bottom: 30}}>
                 <CartesianGrid strokeDasharray="12 12" stroke="#ccc"/>
                 <Area name="Cumulative count" type="linear" dataKey="cumulativeCount" fill="#38bdf8" stroke="#38bdf8"
                       strokeWidth={2}/>
