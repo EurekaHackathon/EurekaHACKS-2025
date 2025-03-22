@@ -2,16 +2,18 @@
 
 import { createContext, useContext } from "react";
 import { authorizeSession } from "./sessions";
-import { getApplicationStatus } from "@/lib/sqlc/application_sql";
+import { getApplicationStatus, getRsvpStatus } from "@/lib/sqlc/application_sql";
 
 export type DashboardCtxType = {
     user: Awaited<ReturnType<typeof authorizeSession>> | null,
-    applicationStatus: Awaited<ReturnType<typeof getApplicationStatus>> | null
+    applicationStatus: Awaited<ReturnType<typeof getApplicationStatus>> | null,
+    rsvpStatus: Awaited<ReturnType<typeof getRsvpStatus>> | null
 }
 
 export const DashboardCtx = createContext<DashboardCtxType>({
     user: null,
-    applicationStatus: null
+    applicationStatus: null,
+    rsvpStatus: null
 });
 
 export const useDashboardCtx = () => useContext(DashboardCtx);

@@ -93,3 +93,9 @@ create table if not exists public.events (
     name text not null,
     created_at timestamptz not null default now()
 );
+
+create table if not exists public.rsvps (
+    id serial primary key,
+    user_id integer not null references public.app_users(id) on delete cascade,
+    created_at timestamptz not null default now()
+);

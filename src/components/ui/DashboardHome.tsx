@@ -5,9 +5,64 @@ import { Icon } from "@iconify/react";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import { DeadlineCountdown } from "@/components/DeadlineCountdown";
 import { useDashboardCtx } from "@/lib/dashboard-ctx";
+import { useState } from "react";
+import { toast } from "@/hooks/use-toast";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function DashboardHome() {
-    const { user, applicationStatus } = useDashboardCtx();
+    const {user, applicationStatus, rsvpStatus} = useDashboardCtx();
+    const [rsvpLoading, setRsvpLoading] = useState(false);
+    const router = useRouter();
+
+
+    const rsvp = async () => {
+        setRsvpLoading(true);
+
+        const response = await fetch("/api/rsvp", {
+            method: "POST",
+        });
+
+        setRsvpLoading(false);
+
+        if (response.ok) {
+            router.refresh();
+            toast({
+                variant: "success",
+                title: "Success",
+                description: "RSVP successful",
+            });
+        } else {
+            toast({
+                variant: "error",
+                title: "Error",
+                description: "Failed to RSVP",
+            });
+        }
+    };
+
+    const cancelRsvp = async () => {
+        setRsvpLoading(true);
+
+        const response = await fetch("/api/cancel-rsvp", {
+            method: "POST",
+        });
+
+        if (response.ok) {
+            router.refresh();
+            toast({
+                variant: "success",
+                title: "Success",
+                description: "RSVP canceled",
+            });
+        } else {
+            toast({
+                variant: "error",
+                title: "Error",
+                description: "Failed to cancel RSVP",
+            });
+        }
+        setRsvpLoading(false);
+    };
 
     const firstName = user?.firstName ? user?.firstName : "Hacker";
     return (
@@ -23,23 +78,53 @@ export default function DashboardHome() {
                 </div>
                 {(applicationStatus?.status === "unsubmitted" || !applicationStatus) &&
                     <>
-                      <h1 className="text-secondary-600 font-bold text-4xl md:text-5xl pt-6">Not submitted</h1>
-                      <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">
-                        You haven't started your application yet. Click the button below to start your application.
-                      </p>
-                      <Link href="/dashboard/application"
-                            className="bg-secondary-600 text-xl py-2 px-4 rounded-lg text-gray-100 font-medium hover:bg-[#815eeb] duration-200">
-                        Open application
-                      </Link>
+                        <h1 className="text-secondary-600 font-bold text-4xl md:text-5xl pt-6">Not submitted</h1>
+                        <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">
+                            You haven't started your application yet. Click the button below to start your application.
+                        </p>
+                        <Link href="/dashboard/application"
+                              className="bg-secondary-600 text-xl py-2 px-4 rounded-lg text-gray-100 font-medium hover:bg-[#815eeb] duration-200">
+                            Open application
+                        </Link>
                     </>
                 }
-                {applicationStatus?.status &&
+                {applicationStatus?.status === "submitted" &&
                     <>
-                      <h1 className="text-secondary-600 font-bold text-4xl md:text-5xl pt-6">Submitted</h1>
-                      <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">
-                        Your application has been submitted. We will review your application and get back to you
-                        soon.
-                      </p>
+                        <h1 className="text-secondary-600 font-bold text-4xl md:text-5xl pt-6">Submitted</h1>
+                        <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">
+                            Your application has been submitted. We will review your application and get back to you
+                            soon.
+                        </p>
+                    </>
+                }
+                {applicationStatus?.status === "accepted" &&
+                    <>
+                        <h1 className="text-secondary-600 font-bold text-4xl md:text-5xl pt-6">Accepted</h1>
+                        <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">
+                            Congratulations! Your application has been accepted. Please RSVP to confirm your spot.
+                        </p>
+                        {rsvpStatus &&
+                            <button onClick={cancelRsvp} disabled={rsvpLoading}
+                                    className="flex justify-center items-center bg-secondary-600 text-xl py-2 px-4 h-12 w-40 rounded-lg text-gray-100 font-medium hover:bg-[#815eeb] duration-200">
+                                {!rsvpLoading && "Cancel RSVP"}
+                                {rsvpLoading && <Icon icon="eos-icons:loading" className="text-2xl animate-spin"/>}
+                            </button>
+                        }
+                        {!rsvpStatus &&
+                            <button onClick={rsvp} disabled={rsvpLoading}
+                                    className="flex justify-center items-center bg-secondary-600 text-xl py-2 px-4 h-12 w-40 rounded-lg text-gray-100 font-medium hover:bg-[#815eeb] duration-200">
+                                {!rsvpLoading && "RSVP"}
+                                {rsvpLoading && <Icon icon="eos-icons:loading" className="text-2xl animate-spin"/>}
+                            </button>
+                        }
+                    </>
+                }
+                {applicationStatus?.status === "rejected" &&
+                    <>
+                        <h1 className="text-secondary-600 font-bold text-4xl md:text-5xl pt-6">Rejected</h1>
+                        <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">
+                            We're sorry, but your application has been rejected.
+                        </p>
                     </>
                 }
             </div>

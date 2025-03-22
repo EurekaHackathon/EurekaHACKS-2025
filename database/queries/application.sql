@@ -44,3 +44,15 @@ select status from hackathon_applications where user_id = $1;
 
 -- name: UpdateApplicationStatus :exec
 update hackathon_applications set status = $2 where id = $1;
+
+-- name: RsvpUser :exec
+insert into rsvps (user_id) values ($1);
+
+-- name: CancelRsvp :exec
+delete from rsvps where user_id = $1;
+
+-- name: GetRsvpCount :one
+select count(*) from rsvps;
+
+-- name: GetRsvpStatus :one
+select * from rsvps where user_id = $1;

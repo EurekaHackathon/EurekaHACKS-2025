@@ -3,7 +3,7 @@ import { authorizeSession } from "@/lib/sessions";
 import { DashboardProvider } from "@/components/DashboardProvider";
 import { DashboardNav } from "@/components/DashboardNav";
 import { Toaster } from "@/components/Toaster";
-import { getApplicationStatus } from "@/lib/sqlc/application_sql";
+import { getApplicationStatus, getRsvpStatus } from "@/lib/sqlc/application_sql";
 import { db } from "@/lib/database";
 
 export default async function Layout({
@@ -17,9 +17,12 @@ export default async function Layout({
     const applicationStatus = await getApplicationStatus(db, {
         userId: user.id
     });
+    const rsvpStatus = await getRsvpStatus(db, {
+        userId: user.id
+    });
     return (
         <>
-            <DashboardProvider value={{ user, applicationStatus }}>
+            <DashboardProvider value={{user, applicationStatus, rsvpStatus}}>
                 <div className="min-h-screen flex flex-row w-full">
                     <DashboardNav/>
                     <div className="overflow-hidden w-full lg:px-20">

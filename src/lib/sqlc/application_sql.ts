@@ -124,3 +124,69 @@ export async function updateApplicationStatus(sql: Sql, args: UpdateApplicationS
     await sql.unsafe(updateApplicationStatusQuery, [args.id, args.status]);
 }
 
+export const rsvpUserQuery = `-- name: RsvpUser :exec
+insert into rsvps (user_id) values ($1)`;
+
+export interface RsvpUserArgs {
+    userId: number;
+}
+
+export async function rsvpUser(sql: Sql, args: RsvpUserArgs): Promise<void> {
+    await sql.unsafe(rsvpUserQuery, [args.userId]);
+}
+
+export const cancelRsvpQuery = `-- name: CancelRsvp :exec
+delete from rsvps where user_id = $1`;
+
+export interface CancelRsvpArgs {
+    userId: number;
+}
+
+export async function cancelRsvp(sql: Sql, args: CancelRsvpArgs): Promise<void> {
+    await sql.unsafe(cancelRsvpQuery, [args.userId]);
+}
+
+export const getRsvpCountQuery = `-- name: GetRsvpCount :one
+select count(*) from rsvps`;
+
+export interface GetRsvpCountRow {
+    count: string;
+}
+
+export async function getRsvpCount(sql: Sql): Promise<GetRsvpCountRow | null> {
+    const rows = await sql.unsafe(getRsvpCountQuery, []).values();
+    if (rows.length !== 1) {
+        return null;
+    }
+    const row = rows[0];
+    return {
+        count: row[0]
+    };
+}
+
+export const getRsvpStatusQuery = `-- name: GetRsvpStatus :one
+select id, user_id, created_at from rsvps where user_id = $1`;
+
+export interface GetRsvpStatusArgs {
+    userId: number;
+}
+
+export interface GetRsvpStatusRow {
+    id: number;
+    userId: number;
+    createdAt: Date;
+}
+
+export async function getRsvpStatus(sql: Sql, args: GetRsvpStatusArgs): Promise<GetRsvpStatusRow | null> {
+    const rows = await sql.unsafe(getRsvpStatusQuery, [args.userId]).values();
+    if (rows.length !== 1) {
+        return null;
+    }
+    const row = rows[0];
+    return {
+        id: row[0],
+        userId: row[1],
+        createdAt: row[2]
+    };
+}
+
