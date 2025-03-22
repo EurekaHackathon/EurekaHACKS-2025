@@ -24,3 +24,6 @@ select date(created_at at time zone 'America/Toronto') as date, count(*) as coun
 from public.hackathon_applications
 group by date(created_at at time zone 'America/Toronto')
 order by date(created_at at time zone 'America/Toronto') asc;
+
+-- name: GetEmailsOfUnappliedUsers :many
+select email from public.app_users where email not in (select email from public.hackathon_applications);

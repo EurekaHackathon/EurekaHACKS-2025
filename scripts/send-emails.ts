@@ -6,12 +6,14 @@ import { render } from "@react-email/components";
 import AppsDueSoonTemplate from "@/lib/emails/apps-due-soon";
 import { sendMailAsync } from "@/lib/actions/auth";
 import { getUserByEmail, getUserByID } from "@/lib/sqlc/auth_sql";
+import { getEmailsOfUnappliedUsers, GetEmailsOfUnappliedUsersRow } from "@/lib/sqlc/admin_sql";
 
-const emails = await getAllEmailsFromMailingList(db);
+const alreadySentEmails = await getAllEmailsFromMailingList(db);
+const unappliedEmails = await getEmailsOfUnappliedUsers(db);
 
 // Get rid of duplicates
-const uniqueEmails = new Set<GetAllEmailsFromMailingListRow>();
-emails.forEach((email) => uniqueEmails.add(email));
+const uniqueEmails = new Set<GetEmailsOfUnappliedUsersRow>();
+unappliedEmails.forEach((email) => uniqueEmails.add(email));
 
 const transporter = NodeMailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -25,9 +27,16 @@ const transporter = NodeMailer.createTransport({
         rejectUnauthorized: false,
     }
 });
-
+let first = true;
 for (const email of uniqueEmails) {
-
+    if (!email.email || alreadySentEmails.find((e) => e.email === email.email)) {
+        continue;
+    }
+    console.log("Sending email to", email.email);
+    if (first) {
+        first = false;
+        await new Promise((resolve) => setTimeout(resolve, 2));
+    }
     const emailText = `
                 Hey!
 
@@ -57,7 +66,6 @@ for (const email of uniqueEmails) {
     };
 
     try {
-        console.log("Sending email to", email.email);
         await sendMailAsync(transporter, mailOptions);
         console.log("Sent email to", email.email);
     } catch (e) {

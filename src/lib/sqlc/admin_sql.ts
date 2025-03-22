@@ -198,3 +198,16 @@ export async function getApplicationCountPerDay(sql: Sql): Promise<GetApplicatio
     }));
 }
 
+export const getEmailsOfUnappliedUsersQuery = `-- name: GetEmailsOfUnappliedUsers :many
+select email from public.app_users where email not in (select email from public.hackathon_applications)`;
+
+export interface GetEmailsOfUnappliedUsersRow {
+    email: string | null;
+}
+
+export async function getEmailsOfUnappliedUsers(sql: Sql): Promise<GetEmailsOfUnappliedUsersRow[]> {
+    return (await sql.unsafe(getEmailsOfUnappliedUsersQuery, []).values()).map(row => ({
+        email: row[0]
+    }));
+}
+
