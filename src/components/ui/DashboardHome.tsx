@@ -170,11 +170,19 @@ export default function DashboardHome() {
                     <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">
                         Join our Discord to connect with hackers and receive important announcements.
                     </p>
-                    <a href="https://discord.gg/ApEmE7g7GB" target="_blank" rel="noopener noreferrer"
-                       aria-disabled="true" tabIndex={-1}
-                       className="pointer-events-none bg-secondary-300 text-xl py-2 px-4 rounded-lg text-gray-100 font-medium hover:bg-[#815eeb] duration-200">
-                        Coming soon
-                    </a>
+                    {applicationStatus?.status === "accepted" &&
+                        <a href="https://discord.gg/ApEmE7g7GB" target="_blank" rel="noopener noreferrer"
+                           className="bg-secondary-600 text-xl py-2 px-4 rounded-lg text-gray-100 font-medium hover:bg-[#815eeb] duration-200">
+                            Discord
+                        </a>
+                    }
+                    {applicationStatus?.status !== "accepted" &&
+                        <a href="https://discord.gg/ApEmE7g7GB" target="_blank" rel="noopener noreferrer"
+                           aria-disabled="true" tabIndex={-1}
+                           className="pointer-events-none bg-secondary-300 text-xl py-2 px-4 rounded-lg text-gray-100 font-medium hover:bg-[#815eeb] duration-200">
+                            Coming soon
+                        </a>
+                    }
                 </div>
                 <div className="border border-gray-300 rounded-lg bg-gray-50 py-8 px-12 flex-1 overflow-hidden">
                     <div className="flex justify-between">
