@@ -7,13 +7,13 @@ import { getApplicationStatus, getRsvpStatus } from "@/lib/sqlc/application_sql"
 export type DashboardCtxType = {
     user: Awaited<ReturnType<typeof authorizeSession>> | null,
     applicationStatus: Awaited<ReturnType<typeof getApplicationStatus>> | null,
-    rsvpStatus: Awaited<ReturnType<typeof getRsvpStatus>> | null
+    rsvpStatus: boolean
 }
 
 export const DashboardCtx = createContext<DashboardCtxType>({
     user: null,
     applicationStatus: null,
-    rsvpStatus: null
+    rsvpStatus: false
 });
 
 export const useDashboardCtx = () => useContext(DashboardCtx);

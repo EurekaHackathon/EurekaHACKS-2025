@@ -7,12 +7,11 @@ import { DeadlineCountdown } from "@/components/DeadlineCountdown";
 import { useDashboardCtx } from "@/lib/dashboard-ctx";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
-import { useRouter, useSearchParams } from "next/navigation";
 
 export default function DashboardHome() {
-    const {user, applicationStatus, rsvpStatus} = useDashboardCtx();
+    const {user, applicationStatus} = useDashboardCtx();
+    const [rsvpStatus, setRsvpStatus] = useState(useDashboardCtx().rsvpStatus);
     const [rsvpLoading, setRsvpLoading] = useState(false);
-    const router = useRouter();
 
 
     const rsvp = async () => {
@@ -25,7 +24,7 @@ export default function DashboardHome() {
         setRsvpLoading(false);
 
         if (response.ok) {
-            router.refresh();
+            setRsvpStatus(true);
             toast({
                 variant: "success",
                 title: "Success",
@@ -48,7 +47,7 @@ export default function DashboardHome() {
         });
 
         if (response.ok) {
-            router.refresh();
+            setRsvpStatus(false);
             toast({
                 variant: "success",
                 title: "Success",
