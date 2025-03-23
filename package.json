@@ -10,6 +10,7 @@
     "email": "email dev --dir src/lib/emails"
   },
   "dependencies": {
+    "@neoconfetti/react": "^1.0.0",
     "@node-rs/argon2": "^2.0.2",
     "@nuintun/qrcode": "^4.1.13",
     "@oslojs/crypto": "^1.0.1",

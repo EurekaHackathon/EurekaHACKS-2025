@@ -7,12 +7,16 @@ import { DeadlineCountdown } from "@/components/DeadlineCountdown";
 import { useDashboardCtx } from "@/lib/dashboard-ctx";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { Confetti } from "@neoconfetti/react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function DashboardHome() {
     const {user, applicationStatus} = useDashboardCtx();
     const [rsvpStatus, setRsvpStatus] = useState(useDashboardCtx().rsvpStatus);
+    const initialRsvpStatus = useDashboardCtx().rsvpStatus;
     const [rsvpLoading, setRsvpLoading] = useState(false);
-
+    const playConfetti = useSearchParams().get("play") !== "false";
+    const router = useRouter();
 
     const rsvp = async () => {
         setRsvpLoading(true);
@@ -25,6 +29,7 @@ export default function DashboardHome() {
 
         if (response.ok) {
             setRsvpStatus(true);
+            router.refresh();
             toast({
                 variant: "success",
                 title: "Success",
@@ -48,6 +53,8 @@ export default function DashboardHome() {
 
         if (response.ok) {
             setRsvpStatus(false);
+            router.replace("/dashboard?play=false");
+            router.refresh();
             toast({
                 variant: "success",
                 title: "Success",
@@ -99,6 +106,13 @@ export default function DashboardHome() {
                 {applicationStatus?.status === "accepted" &&
                     <>
                         <h1 className="text-secondary-600 font-bold text-4xl md:text-5xl pt-6">Accepted</h1>
+                        {!initialRsvpStatus && playConfetti &&
+                            <>
+                                <div className="flex justify-center w-40">
+                                    <Confetti particleCount={200} force={1}/>
+                                </div>
+                            </>
+                        }
                         <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">
                             Congratulations! Your application has been accepted. Please RSVP to confirm your spot.
                         </p>
