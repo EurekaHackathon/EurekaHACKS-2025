@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 export function DeadlineCountdown() {
-    const deadline = new Date("2025-03-22T23:59:59-05:00").getTime();
+    const deadline = new Date("2025-04-01T23:59:59-05:00").getTime();
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
     function calculateTimeLeft() {
