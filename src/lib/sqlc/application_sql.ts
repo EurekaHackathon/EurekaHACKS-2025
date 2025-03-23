@@ -165,7 +165,7 @@ export async function getRsvpCount(sql: Sql): Promise<GetRsvpCountRow | null> {
 }
 
 export const getRsvpStatusQuery = `-- name: GetRsvpStatus :one
-select id, user_id, created_at from rsvps where user_id = $1`;
+select id, user_id, created_at from rsvps where user_id = $1 limit 1`;
 
 export interface GetRsvpStatusArgs {
     userId: number;

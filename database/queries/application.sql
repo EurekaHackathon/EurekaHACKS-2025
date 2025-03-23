@@ -55,4 +55,4 @@ delete from rsvps where user_id = $1;
 select count(*) from rsvps;
 
 -- name: GetRsvpStatus :one
-select * from rsvps where user_id = $1;
+select * from rsvps where user_id = $1 limit 1;
