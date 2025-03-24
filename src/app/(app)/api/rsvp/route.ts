@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { authorizeSession } from "@/lib/sessions";
-import { getApplicationStatus, rsvpUser } from "@/lib/sqlc/application_sql";
+import { getApplicationStatus, getRsvpStatus, rsvpUser } from "@/lib/sqlc/application_sql";
 import { db } from "@/lib/database";
 
 export async function POST(request: Request) {
@@ -21,9 +21,16 @@ export async function POST(request: Request) {
             return new Response("Unauthorized", {status: 401});
         }
 
-        await rsvpUser(db, {
+        // Check if user has already rsvped
+        const rsvpRow = await getRsvpStatus(db, {
             userId: user.id
         });
+
+        if (rsvpRow === null) {
+            await rsvpUser(db, {
+                userId: user.id
+            });
+        }
 
     } catch (error) {
         return new Response("Failed to rsvp user", {status: 500});
