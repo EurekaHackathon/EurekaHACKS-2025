@@ -20,6 +20,11 @@ export function SponsorSection() {
                     sponsorInfo={[
                         {fileName: "dorahacks.png", name: "DoraHacks", url: "https://dorahacks.io/"},
                         {fileName: "icp.png", name: "ICP", url: "https://internetcomputer.org/"},
+                        {
+                            fileName: "ultimate-coders.png",
+                            name: "Ultimate Coders",
+                            url: "https://www.ultimatecoders.ca/oakville-on-ca"
+                        },
                     ]}
                 />
                 {/*Gold tier*/}
@@ -90,7 +95,11 @@ export function SponsorSection() {
                             url: "https://hinthuntcanada.com/?gad_source=1&gclid=Cj0KCQjwhMq-BhCFARIsAGvo0Kd-ZxO-oD_5J8aIy8XcwjnFx4iK0or0Wq3gY6fuLeDRlCbevSdy5JsaAjRfEALw_wcB"
                         },
                         {fileName: "wolfram.png", name: "Wolfram", url: "https://www.wolframalpha.com/"},
-                        {fileName: "cupids.png", name: "Cupid's Gourmet Bakery", url: "https://www.cupidsgourmetbakery.ca/"},
+                        {
+                            fileName: "cupids.png",
+                            name: "Cupid's Gourmet Bakery",
+                            url: "https://www.cupidsgourmetbakery.ca/"
+                        },
                         {fileName: "cobs.png", name: "Cobs Bread", url: "https://www.cobsbread.com/"},
                         {fileName: "nordvpn.png", name: "NordVPN", url: "https://nordvpn.com/"},
                     ]}

@@ -7,7 +7,6 @@ export function PartnerSection() {
             <h1 className="text-center font-semibold text-4xl md:text-6xl lg:text-6xl text-secondary-200">Our
                 Partners</h1>
             <div className="w-full flex flex-col items-center lg:pt-10 md:pt-6 pt-4 text-bla`ck">
-                {/*Diamond tier*/}
                 <PartnerTier
                     partnersPerRow={2}
                     partnerInfo={[
