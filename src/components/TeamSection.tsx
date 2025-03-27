@@ -91,13 +91,6 @@ export default function TeamSection() {
             emoji: "💗"
         },
         {
-            name: "Vihaan",
-            role: "Business",
-            image: "vihaan.webp",
-            url: "https://www.linkedin.com/in/vihaan-vashishtha-0420a6297",
-            emoji: "🦖"
-        },
-        {
             name: "Farouk",
             role: "Marketing",
             image: "farouk.webp",
@@ -195,7 +188,7 @@ export default function TeamSection() {
                     ))}
                 </div>
                 <div className="3xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-8">
-                    {teamInfo.slice(0, 4).map((member: TeamMember, index: number) => (
+                    {teamInfo.slice(0, 5).map((member: TeamMember, index: number) => (
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
                                 <Image src={`/team/${member.image}`} alt={member.name} width={80} height={80}
@@ -213,7 +206,7 @@ export default function TeamSection() {
                     ))}
                 </div>
                 <div className="3xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-4">
-                    {teamInfo.slice(4, 8).map((member: TeamMember, index: number) => (
+                    {teamInfo.slice(5, 10).map((member: TeamMember, index: number) => (
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
                                 <Image src={`/team/${member.image}`} alt={member.name} width={80} height={80}
@@ -231,7 +224,7 @@ export default function TeamSection() {
                     ))}
                 </div>
                 <div className="3xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-4">
-                    {teamInfo.slice(8, 12).map((member: TeamMember, index: number) => (
+                    {teamInfo.slice(10, 15).map((member: TeamMember, index: number) => (
                         <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
                             <div className="flex flex-col items-center">
                                 <Image src={`/team/${member.image}`} alt={member.name} width={80} height={80}
@@ -248,24 +241,24 @@ export default function TeamSection() {
                         </a>
                     ))}
                 </div>
-                <div className="3xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-4">
-                    {teamInfo.slice(12).map((member: TeamMember, index: number) => (
-                        <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">
-                            <div className="flex flex-col items-center">
-                                <Image src={`/team/${member.image}`} alt={member.name} width={80} height={80}
-                                       onMouseEnter={() => {
-                                           setCurrentText(`${member.name}, ${member.role} ${member.emoji}`);
-                                           setName(member.name);
-                                       }}
-                                       onMouseLeave={() => {
-                                           setCurrentText("");
-                                           setName("the EurekaHACKS Team");
-                                       }}
-                                       className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-cover rounded-full border-4 border-gray-300 hover:border-accent-300 duration-100"/>
-                            </div>
-                        </a>
-                    ))}
-                </div>
+                {/*<div className="3xl:hidden flex justify-center gap-4 md:gap-6 lg:gap-8 pt-4">*/}
+                {/*    {teamInfo.slice(12).map((member: TeamMember, index: number) => (*/}
+                {/*        <a href={member.url} key={index} target="_blank" rel="noopener noreferrer">*/}
+                {/*            <div className="flex flex-col items-center">*/}
+                {/*                <Image src={`/team/${member.image}`} alt={member.name} width={80} height={80}*/}
+                {/*                       onMouseEnter={() => {*/}
+                {/*                           setCurrentText(`${member.name}, ${member.role} ${member.emoji}`);*/}
+                {/*                           setName(member.name);*/}
+                {/*                       }}*/}
+                {/*                       onMouseLeave={() => {*/}
+                {/*                           setCurrentText("");*/}
+                {/*                           setName("the EurekaHACKS Team");*/}
+                {/*                       }}*/}
+                {/*                       className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-cover rounded-full border-4 border-gray-300 hover:border-accent-300 duration-100"/>*/}
+                {/*            </div>*/}
+                {/*        </a>*/}
+                {/*    ))}*/}
+                {/*</div>*/}
             </div>
         </div>
     );
