@@ -15,7 +15,7 @@ export default function TeamSection() {
     const teamInfo: TeamMember[] = [
         {
             name: "Yohance",
-            role: "Director",
+            role: "President",
             image: "yohance.webp",
             url: "https://www.linkedin.com/in/yohance-pawania-30aa902a4/",
             emoji: "😎"
