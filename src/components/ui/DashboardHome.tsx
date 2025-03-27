@@ -114,7 +114,8 @@ export default function DashboardHome() {
                             </>
                         }
                         <p className="text-gray-600 text-lg pt-2 pb-8 font-medium">
-                            Congratulations! Your application has been accepted. Please RSVP to confirm your spot.
+                            Congratulations! Your application has been
+                            accepted. {rsvpStatus ? "You have RSVP'd and your spot is confirmed." : "Please RSVP to confirm your spot."}
                         </p>
                         {rsvpStatus &&
                             <button onClick={cancelRsvp} disabled={rsvpLoading}
