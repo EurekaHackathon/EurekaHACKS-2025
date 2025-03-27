@@ -15,21 +15,21 @@ export default function TeamSection() {
     const teamInfo: TeamMember[] = [
         {
             name: "Yohance",
-            role: "Director",
+            role: "President",
             image: "yohance.webp",
             url: "https://www.linkedin.com/in/yohance-pawania-30aa902a4/",
             emoji: "😎"
         },
         {
             name: "Aadya",
-            role: "Director",
+            role: "Logistics",
             image: "aadya.webp",
             url: "https://www.linkedin.com/in/aadya-khanna-050342293/",
             emoji: "💪"
         },
         {
             name: "Suri",
-            role: "Director",
+            role: "Logistics",
             image: "suri.webp",
             url: "https://www.linkedin.com/in/suri-tian-011b77282/",
             emoji: "🌝"
@@ -64,14 +64,14 @@ export default function TeamSection() {
         },
         {
             name: "Aaron",
-            role: "Director",
+            role: "Web Dev",
             image: "aaron.webp",
             url: "https://www.linkedin.com/in/aaron-ye-7574872a0/",
             emoji: "🐱"
         },
         {
             name: "Jake",
-            role: "Director",
+            role: "Web Dev",
             image: "jake.png",
             url: "https://www.linkedin.com/in/jake-comay-31571a345/",
             emoji: "🫎"
@@ -106,7 +106,7 @@ export default function TeamSection() {
         },
         {
             name: "Jimin",
-            role: "Director",
+            role: "Visual Design",
             image: "jimin.webp",
             url: "https://www.linkedin.com/in/jimin-so-1878a2285/",
             emoji: "🐋"
