@@ -34,7 +34,7 @@ export function SponsorSection() {
                         {
                             fileName: "mathnasium.png",
                             name: "Mathnasium Oakville",
-                            url: "https://www.instagram.com/mathnasium_oakville/"
+                            url: "https://www.mathnasium.com/ca/math-centres/oakvillesouth"
                         },
                         {
                             fileName: "beeceptor.png",
