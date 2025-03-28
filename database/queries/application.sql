@@ -56,3 +56,9 @@ select count(*) from rsvps;
 
 -- name: GetRsvpStatus :one
 select * from rsvps where user_id = $1 limit 1;
+
+-- name: GetAllAcceptedApplications :many
+select * from hackathon_applications where status = 'accepted';
+
+-- name: CreateDecisionEmailRecord :exec
+insert into sent_decision_emails (user_id, status) values ($1, $2);

@@ -99,3 +99,14 @@ create table if not exists public.rsvps (
     user_id integer not null references public.app_users(id) on delete cascade,
     created_at timestamptz not null default now()
 );
+
+create table if not exists public.sent_decision_emails (
+    id serial primary key,
+    user_id integer not null references public.app_users(id) on delete cascade,
+    status text not null check (
+        status = 'accepted'
+        or status = 'waitlisted'
+        or status = 'rejected'
+    ),
+    created_at timestamptz not null default now()
+);

@@ -1,19 +1,12 @@
 import { db } from "@/lib/database";
-import { getAllEmailsFromMailingList, GetAllEmailsFromMailingListRow } from "@/lib/sqlc/mailing_list_sql";
 import NodeMailer from "nodemailer";
 import "dotenv/config";
 import { render } from "@react-email/components";
-import AppsDueSoonTemplate from "@/lib/emails/apps-due-soon";
+import AcceptanceEmailTemplate from "@/lib/emails/acceptance";
 import { sendMailAsync } from "@/lib/actions/auth";
-import { getUserByEmail, getUserByID } from "@/lib/sqlc/auth_sql";
-import { getEmailsOfUnappliedUsers, GetEmailsOfUnappliedUsersRow } from "@/lib/sqlc/admin_sql";
+import { createDecisionEmailRecord, getAllAcceptedApplications } from "@/lib/sqlc/application_sql";
 
-const alreadySentEmails = await getAllEmailsFromMailingList(db);
-const unappliedEmails = await getEmailsOfUnappliedUsers(db);
-
-// Get rid of duplicates
-const uniqueEmails = new Set<GetEmailsOfUnappliedUsersRow>();
-unappliedEmails.forEach((email) => uniqueEmails.add(email));
+const usersList = await getAllAcceptedApplications(db);
 
 const transporter = NodeMailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -27,49 +20,65 @@ const transporter = NodeMailer.createTransport({
         rejectUnauthorized: false,
     }
 });
-let first = true;
-for (const email of uniqueEmails) {
-    if (!email.email || alreadySentEmails.find((e) => e.email === email.email)) {
-        continue;
-    }
-    console.log("Sending email to", email.email);
-    if (first) {
-        first = false;
-        await new Promise((resolve) => setTimeout(resolve, 2));
-    }
+for (const userRow of usersList) {
+    console.log("Sending email to", userRow.email);
+
     const emailText = `
                 Hey!
 
-                We saw that you created a EurekaHACKS account but haven’t submitted an application yet! Applications
-                    are due on Saturday, March 22, 2025 at 11:59 PM EST. Applying only takes <strong>3</strong> minutes—no short answer
-                    responses required. Don't miss out on free food, $11,000 in prizes
-                    (including four 3D printers), and a ton of fun!
+                    We’re excited to have you as a hacker for EurekaHACKS 2025, our third hackathon iteration! (You are
+                    one step closer to the Bambu). Join us from 8:00 AM to 9:30 PM on April 5th 2025 at 1455 Glen
+                    Abbey Gate, Oakville to take part in a memorable day filled with fun workshops, exciting activities
+                    and free food!
+                    
+                    Here’s a sneak peek into this years event:
+                    🌟 $11,000+ prize pool including 4 Bambu Lab A1 minis
+
+                    🍎 Free lunch and dinner for all hackers!
+
+                    🛠 Take part in fun workshops!
+
+                    Date: Saturday April 5th
+                    Time: 8:00 AM - 10:00 PM
+                    Venue address: 1455 Glen Abbey Gate, Oakville
+                    
+                    Please RSVP to confirm your spot at EurekaHACKS 2025 if you have not already! We’ll be sending
+                    you more details about the event
+                    in the following days, so stay tuned!
+                    
+                    RSVP here: https://eurekahacks.ca/dashboard
                     
                 Best,
                 The EurekaHACKS Team
                 `;
 
-    const user = await getUserByEmail(db, {
-        email: email.email,
-    });
-
-    const emailHTML = await render(AppsDueSoonTemplate({
-        firstName: user?.firstName || "hacker",
+    const emailHTML = await render(AcceptanceEmailTemplate({
+        firstName: userRow?.firstName || "hacker",
     }));
 
     const mailOptions = {
-        to: email.email,
+        to: userRow.email,
         from: `"EurekaHACKS" hello@eurekahacks.ca`,
-        subject: "🚨 EurekaHACKS 2025 applications are due tomorrow! 🚨",
+        subject: "Congratulations 🎉, See You At EurekaHACKS 2025!",
         text: emailText,
         html: emailHTML,
     };
 
     try {
         await sendMailAsync(transporter, mailOptions);
-        console.log("Sent email to", email.email);
+        console.log("Sent email to", userRow.email);
     } catch (e) {
-        console.log("Failed to send email to", email.email);
+        console.log("Failed to send email to", userRow.email);
+    }
+
+    try {
+        await createDecisionEmailRecord(db, {
+            userId: userRow.userId,
+            status: "accepted",
+        });
+        console.log("Created decision email record for", userRow.email);
+    } catch (e) {
+        console.log("Failed to create decision email record for", userRow.email);
     }
 
     // Wait 2 seconds
