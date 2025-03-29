@@ -1,87 +1,87 @@
 const workshops = [
     {
-        name: "Linkedin Masterclass (Lakshya Jain)",
+        name: "Git & Team Finding Session",
         color: "var(--terminal-blue)",
         start: {
-            hour: 8,
-            minute: 0,
+            hour: 9,
+            minute: 15,
         },
-        column: 2,
-        duration: 20,
+        column: 3,
+        duration: 15,
         images : undefined,
-        description: "Be a Linkedin warrior - a satirical take on Linkedin Maxing your way to friends, fame and internships.",
-    },
-    {
-        name: "How to be a normal human being (a guide to sunshine, sleep, showers and socializing)",
-        color: "var(--terminal-blue)",
-        start: {
-            hour: 8,
-            minute: 0,
-        },
-        column: 2,
-        duration: 20,
-        images : undefined,
-        description: "Victor the cow, a Waterloo CS fourth year student, talks about everything you need to know about life in tech- nothing about coding, leetcode, or interviews, just life in general.",
-    },
-    {
-        name: "Fireside Chat w/ Nicholas Tao",
-        color: "var(--terminal-blue)",
-        start: {
-            hour: 8,
-            minute: 0,
-        },
-        column: 2,
-        duration: 20,
-        images : undefined,
-        description: "IRL podcast ahh... A unique opportunity to meet Nicholas Tao - known for having 150k+ subs on his Youtube channel and regularly receiving millions of views on his videos - he’s a UW CS student who’s had 7+ internships.",
+        description: "Learn the basics of how to use Git for project submission, and find cool team members to hack with!",
     },
     {
         name: "From Prototype to Product",
         color: "var(--terminal-blue)",
         start: {
-            hour: 8,
+            hour: 11,
             minute: 0,
         },
-        column: 2,
-        duration: 20,
+        column: 3,
+        duration: 45,
         images : undefined,
         description: "Want to learn about potential pathways post secondary? Join us for a chat with Christopher Anand (Associate Professor at McMaster) and Christopher Venitus (Angel Investor at GTAN & Entrepreneurship Coach at McMaster). They'll share insights on turning ideas into reality—whether in research or startups. Bring your business ideas, be ready for hands-on activities, and to talk about innovation!",
     },
     {
-        name: "Factful – Lessons from Building an AI B2B SAAS in High School (Moiz Hashmi)",
+        name: "Fireside Chat w/ Nicholas Tao",
         color: "var(--terminal-blue)",
         start: {
-            hour: 8,
-            minute: 0,
+            hour: 12,
+            minute: 30,
         },
-        column: 2,
-        duration: 20,
+        column: 3,
+        duration: 45,
         images : undefined,
-        description: "",
+        description: "IRL podcast ahh... A unique opportunity to meet Nicholas Tao - known for having 150k+ subs on his Youtube channel and regularly receiving millions of views on his videos - he’s a UW CS student who’s had 7+ internships.",
     },
     {
-        name: "Arch + Hyperland Install + Rice Session (Eason)",
+        name: "How to be a normal human being (a guide to sunshine, sleep, showers and socializing)",
         color: "var(--terminal-blue)",
         start: {
-            hour: 8,
+            hour: 14,
             minute: 0,
         },
-        column: 2,
-        duration: 20,
+        column: 4,
+        duration: 45,
         images : undefined,
-        description: "Fellow Linux nerd? Network with other Linux nerds, share your rice, or get help installing. ",
+        description: "Victor the cow, a Waterloo CS fourth year student, talks about everything you need to know about life in tech- nothing about coding, leetcode, or interviews, just life in general.",
     },
     {
         name: "Make Your Own Programming Language",
         color: "var(--terminal-blue)",
         start: {
-            hour: 8,
-            minute: 0,
+            hour: 15,
+            minute: 15,
         },
-        column: 2,
-        duration: 20,
+        column: 4,
+        duration: 30,
         images : undefined,
         description: "Ever wondered how to make your own programming language? Let us walk you through the basics of parsing, lexing and execution and make your own brain rot language. ",
+    },
+    {
+        name: "Linkedin Masterclass (Lakshya Jain)",
+        color: "var(--terminal-blue)",
+        start: {
+            hour: 16,
+            minute: 45,
+        },
+        column: 4,
+        duration: 30,
+        images : undefined,
+        description: "Be a Linkedin warrior - a satirical take on Linkedin Maxing your way to friends, fame and internships.",
+    },
+    {
+        name: "Factful – Lessons from Building an AI B2B SAAS in High School (Moiz Hashmi)",
+        color: "var(--terminal-blue)",
+        start: {
+            hour: 19,
+            minute: 45,
+        },
+        column: 4,
+        duration: 15,
+        images : undefined,
+        description: "",
     },
 ]
 
@@ -170,7 +170,6 @@ const funEvents = [
         images : undefined,
         description: "May the smartest win",
     },
-
     {
         name: "Poker Tournament",
         color: "var(--terminal-red)",
@@ -184,18 +183,29 @@ const funEvents = [
         description: "May the best gambler win – prize: Jane Street Cards",
     },
     {
-        name: "",
-        color: "var(--terminal-blue)",
+        name: "Karaoke",
+        color: "var(--terminal-red)",
         start: {
-            hour: 8,
+            hour: 19,
+            minute: 30,
+        },
+        column: 3,
+        duration: 75,
+        images : undefined,
+        description: "Show off your beautiful voice!",
+    },
+    {
+        name: "Resume Roast",
+        color: "var(--terminal-red)",
+        start: {
+            hour: 20,
             minute: 0,
         },
-        column: 2,
-        duration: 20,
+        column: 4,
+        duration: 30,
         images : undefined,
-        description: "",
+        description: "Think you have a good resume? Get your resume torn apart and be cooked, roasted and fried in front of a live audience. Can you survive?",
     },
-
 ]
 
 export const timeTableData = {
@@ -216,7 +226,8 @@ export const timeTableData = {
         "Activity Room (220-221)",
     ],
     events: [
-        ...funEvents
+        ...funEvents,
+        ...workshops
     ]
 }
 
