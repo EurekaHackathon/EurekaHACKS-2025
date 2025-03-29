@@ -55,7 +55,7 @@ export default function Navbar() {
                     {usePathname() === "/" &&
                         <>
                           <Link href="/#about">About</Link>
-                          {/*<Link href="/schedule">Schedule</Link>*/}
+                          <Link href="/schedule">Schedule</Link>
                           <Link href="/#past">Past Years</Link>
                           <Link href="/#sponsors">Sponsors</Link>
                           <Link href="/#faq">FAQ</Link>

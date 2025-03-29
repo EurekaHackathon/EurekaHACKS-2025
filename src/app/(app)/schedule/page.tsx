@@ -17,7 +17,7 @@ export default function SchedulePage() {
                 </div>
                 <div className="flex flex-row gap-2 items-center justify-center">
                     <div className="bg-terminal-red w-6 h-6 rounded-md"></div>
-                    <span>Fun Activitites</span>
+                    <span>Fun Activities</span>
                 </div>
                 <div className="flex flex-row gap-2 items-center justify-center">
                     <div className="bg-terminal-yellow w-6 h-6 rounded-md"></div>

@@ -208,9 +208,85 @@ const funEvents = [
     },
 ]
 
+const importantEvents = [
+    {
+        name: "Registration",
+        color: "var(--terminal-green)",
+        start: {
+            hour: 7,
+            minute: 30,
+        },
+        column: 3,
+        duration: 30,
+        images : undefined,
+        description: "Hacker registractions start! Find us in the foyer!",
+    },
+    {
+        name: "Opening Ceremony",
+        color: "var(--terminal-green)",
+        start: {
+            hour: 8,
+            minute: 0,
+        },
+        column: 3,
+        duration: 30,
+        images : undefined,
+        description: "",
+    },
+    {
+        name: "Mandatory ICP Session",
+        color: "var(--terminal-green)",
+        start: {
+            hour: 8,
+            minute: 30,
+        },
+        column: 3,
+        duration: 45,
+        images : undefined,
+        description: "",
+    },
+    {
+        name: "LUNCH",
+        color: "var(--terminal-green)",
+        start: {
+            hour: 12,
+            minute: 15,
+        },
+        column: 2,
+        duration: 60,
+        images : undefined,
+        description: "Lunch will be served in the cafetria. First come first serve. Have yoour QR code ready.",
+    },
+    {
+        name: "DINNER",
+        color: "var(--terminal-green)",
+        start: {
+            hour: 19,
+            minute: 15,
+        },
+        column: 2,
+        duration: 60,
+        images : undefined,
+        description: "Dinner will be served in the cafetria. First come first serve. Have yoour QR code ready.",
+    },
+    {
+        name: "Closing Ceremony",
+        color: "var(--terminal-green)",
+        start: {
+            hour: 20,
+            minute: 45,
+        },
+        column: 3,
+        duration: 30,
+        images : undefined,
+        description: "",
+    },
+    
+]
+
 export const timeTableData = {
     startTime: {
-        hour: 8,
+        hour: 7,
         minute: 0,
     },
     endTime: {
@@ -227,7 +303,8 @@ export const timeTableData = {
     ],
     events: [
         ...funEvents,
-        ...workshops
+        ...workshops,
+        ...importantEvents
     ]
 }
 
