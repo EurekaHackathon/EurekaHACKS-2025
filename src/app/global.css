@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    @apply bg-secondary-50;
+}
+
 @font-face {
     font-family: "Manrope";
     src: url("../../public/Manrope-VariableFont_wght.ttf") format('truetype');

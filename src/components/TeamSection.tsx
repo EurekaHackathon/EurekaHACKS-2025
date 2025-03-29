@@ -140,7 +140,7 @@ export default function TeamSection() {
         // for some reason the states don't keep up??
         nameRef.current = name;
 
-        // @ts-ignore typescript is convinced that it's nodejs setInterval and not webjs
+        // @ts-expect-error typescript is convinced that it's nodejs setInterval and not webjs
         typingID.current = setInterval(() => {
             setDisplayName((dn) => {
                 if (nameRef.current === dn) {

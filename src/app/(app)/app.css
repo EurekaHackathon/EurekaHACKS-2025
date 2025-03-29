@@ -1,3 +1,10 @@
+:root {
+    --terminal-green: #24c68d;
+    --terminal-blue: #8ed3ec;
+    --terminal-red: #ec3b54;
+    --terminal-yellow: #ffdf63;
+}
+
 .typewriter {
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: .15em solid white; /* The typwriter cursor */

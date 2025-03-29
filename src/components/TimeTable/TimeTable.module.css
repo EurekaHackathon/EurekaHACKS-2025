@@ -1,0 +1,142 @@
+.table {
+    display: grid;
+    grid-template-columns: auto repeat(5, 1fr);
+    gap: 4px 2em;
+    overflow-x: auto;
+}
+
+.columnName {
+    text-align: center;
+    padding-bottom: 2em;
+    font-family: "Manrope";
+}
+
+.marker,
+.divider {
+    grid-column: 1;
+    height: 40px;
+}
+
+.marker {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.marker > p {
+    font-size: 1em;
+    margin: -1rem 0 0 0;
+    align-self: start;
+}
+
+.isHour {
+    color: var(--lighter-text-color);
+}
+
+.isMinute {
+    color: #605c73;
+}
+
+.divider {
+    position: relative;
+}
+
+.divider::after {
+    content: "";
+    position: absolute;
+    width: 82rem;
+    z-index: -10;
+    height: 1.5px;
+    left: calc(50% + 40px);
+    top: calc(50% - 67px);
+    background-color: #605c7383;
+}
+
+@media (max-width: 768px) {
+    .divider::after {
+        width: 41rem;
+    }
+}
+
+.divider:nth-child(4n)::after {
+    background-color: #5c5c70;
+    height: 2px;
+}
+
+.divider:nth-child(56)::after {
+    background-color: var(--terminal-yellow);
+    height: 6px;
+    border-radius: 6px;
+}
+
+.slot {
+    border-radius: 0.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    flex-direction: column;
+}
+
+.slot > p {
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.filter {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: background-color 2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.opened {
+    display: flex;
+    z-index: 10;
+    background-color: var(--light-main-color);
+    border-radius: 0.5em;
+    max-width: 32rem;
+    height: auto;
+    padding: 0.2rem 1rem;
+    border-top: solid 0.5em;
+    flex-direction: column;
+    background-color: white;
+}
+
+@media (max-width: 768px) {
+    .opened {
+        max-width: 21rem;
+    }
+}
+
+.opened > h3 {
+    margin: 0.3em 0;
+}
+
+.text {
+    font-size: 1em;
+    margin: 0;
+    font-weight: 300;
+}
+
+.time {
+    margin-top: 1em;
+    text-align: center;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5em;
+    margin: 1em auto 0 auto;
+}
