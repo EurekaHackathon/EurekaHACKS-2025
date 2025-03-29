@@ -7,8 +7,10 @@
 
 .columnName {
     text-align: center;
-    padding-bottom: 2em;
+    padding-bottom: 2rem;
     font-family: "Manrope";
+    font-size: 1.5rem;
+    font-weight: 900;
 }
 
 .marker,

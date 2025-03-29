@@ -20,11 +20,15 @@ import stars10 from "../../public/hero/stars/10.svg";
 import stars11 from "../../public/hero/stars/11.svg";
 import stars12 from "../../public/hero/stars/12.svg";
 import duck from "../../public/hero/duck.svg";
+import duck_happy from "../../public/hero/duck_happy.svg";
+import duck_thinking from "../../public/hero/duck_thinking.svg";
 import heroForeground from "../../public/hero/foreground.svg";
 
 export function HeroSectionArt() {
     const wavePathRef = useRef<SVGPathElement>(null);
     const duckRef = useRef<SVGImageElement>(null);
+    const duckHappyRef = useRef<SVGImageElement>(null);
+    const duckThinkingRef = useRef<SVGImageElement>(null);
 
     useEffect(() => {
         let t = 0;
@@ -97,6 +101,30 @@ export function HeroSectionArt() {
                                   dur="40s"
                                   repeatCount="indefinite" additive="sum"/>
                 <animateTransform attributeName="transform" type="translate" values="-12.5,-12.5;-12.5,-12.5"
+                                  keyTimes="0;1" dur="40s"
+                                  repeatCount="indefinite" additive="sum"/>
+            </image>
+            <image ref={duckHappyRef} href={duck_happy.src} width="25" height="25" transform="rotate(0.1) scale(-3, 3)"
+                   mask="url(#wave-mask)">
+                <animateMotion begin="5s" dur="40s" repeatCount="indefinite"
+                               path="m 345.51252,197.30245 c 0,0 28.93833,4.47135 31.05755,20.11266 1.13149,8.35118 -35.37376,13.99404 -55.46147,18.54195 -17.49136,3.96009 -48.2485,5.28733 -69.2307,11.8133 -20.14434,6.26539 -77.99361,13.31836 -2.94156,72.14139"
+                />
+                <animateTransform begin="5s" attributeName="transform" type="scale" values="0.2,0.2;1,1" keyTimes="0;1"
+                                  dur="40s"
+                                  repeatCount="indefinite" additive="sum"/>
+                <animateTransform begin="5s" attributeName="transform" type="translate" values="-12.5,-12.5;-12.5,-12.5"
+                                  keyTimes="0;1" dur="40s"
+                                  repeatCount="indefinite" additive="sum"/>
+            </image>
+            <image ref={duckThinkingRef} href={duck_thinking.src} width="25" height="25" transform="rotate(0.1) scale(-3, 3)"
+                   mask="url(#wave-mask)">
+                <animateMotion begin="10s" dur="40s" repeatCount="indefinite"
+                               path="m 345.51252,197.30245 c 0,0 28.93833,4.47135 31.05755,20.11266 1.13149,8.35118 -35.37376,13.99404 -55.46147,18.54195 -17.49136,3.96009 -48.2485,5.28733 -69.2307,11.8133 -20.14434,6.26539 -77.99361,13.31836 -2.94156,72.14139"
+                />
+                <animateTransform begin="10s" attributeName="transform" type="scale" values="0.2,0.2;1,1" keyTimes="0;1"
+                                  dur="40s"
+                                  repeatCount="indefinite" additive="sum"/>
+                <animateTransform begin="10s" attributeName="transform" type="translate" values="-12.5,-12.5;-12.5,-12.5"
                                   keyTimes="0;1" dur="40s"
                                   repeatCount="indefinite" additive="sum"/>
             </image>
