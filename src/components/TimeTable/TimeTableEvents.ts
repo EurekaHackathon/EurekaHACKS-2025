@@ -1,3 +1,226 @@
+const workshops = [
+    {
+        name: "Linkedin Masterclass (Lakshya Jain)",
+        color: "var(--terminal-blue)",
+        start: {
+            hour: 8,
+            minute: 0,
+        },
+        column: 2,
+        duration: 20,
+        images : undefined,
+        description: "Be a Linkedin warrior - a satirical take on Linkedin Maxing your way to friends, fame and internships.",
+    },
+    {
+        name: "How to be a normal human being (a guide to sunshine, sleep, showers and socializing)",
+        color: "var(--terminal-blue)",
+        start: {
+            hour: 8,
+            minute: 0,
+        },
+        column: 2,
+        duration: 20,
+        images : undefined,
+        description: "Victor the cow, a Waterloo CS fourth year student, talks about everything you need to know about life in tech- nothing about coding, leetcode, or interviews, just life in general.",
+    },
+    {
+        name: "Fireside Chat w/ Nicholas Tao",
+        color: "var(--terminal-blue)",
+        start: {
+            hour: 8,
+            minute: 0,
+        },
+        column: 2,
+        duration: 20,
+        images : undefined,
+        description: "IRL podcast ahh... A unique opportunity to meet Nicholas Tao - known for having 150k+ subs on his Youtube channel and regularly receiving millions of views on his videos - he’s a UW CS student who’s had 7+ internships.",
+    },
+    {
+        name: "From Prototype to Product",
+        color: "var(--terminal-blue)",
+        start: {
+            hour: 8,
+            minute: 0,
+        },
+        column: 2,
+        duration: 20,
+        images : undefined,
+        description: "Want to learn about potential pathways post secondary? Join us for a chat with Christopher Anand (Associate Professor at McMaster) and Christopher Venitus (Angel Investor at GTAN & Entrepreneurship Coach at McMaster). They'll share insights on turning ideas into reality—whether in research or startups. Bring your business ideas, be ready for hands-on activities, and to talk about innovation!",
+    },
+    {
+        name: "Factful – Lessons from Building an AI B2B SAAS in High School (Moiz Hashmi)",
+        color: "var(--terminal-blue)",
+        start: {
+            hour: 8,
+            minute: 0,
+        },
+        column: 2,
+        duration: 20,
+        images : undefined,
+        description: "",
+    },
+    {
+        name: "Arch + Hyperland Install + Rice Session (Eason)",
+        color: "var(--terminal-blue)",
+        start: {
+            hour: 8,
+            minute: 0,
+        },
+        column: 2,
+        duration: 20,
+        images : undefined,
+        description: "Fellow Linux nerd? Network with other Linux nerds, share your rice, or get help installing. ",
+    },
+    {
+        name: "Make Your Own Programming Language",
+        color: "var(--terminal-blue)",
+        start: {
+            hour: 8,
+            minute: 0,
+        },
+        column: 2,
+        duration: 20,
+        images : undefined,
+        description: "Ever wondered how to make your own programming language? Let us walk you through the basics of parsing, lexing and execution and make your own brain rot language. ",
+    },
+]
+
+const funEvents = [
+    {
+        name: "Brawl Stars Tournament",
+        color: "var(--terminal-red)",
+        start: {
+            hour: 10,
+            minute: 15,
+        },
+        column: 5,
+        duration: 30,
+        images : undefined,
+        description: "May the best brawler win – prize: bubble tea",
+    },
+    {
+        name: "Mario Kart Tournament",
+        color: "var(--terminal-red)",
+        start: {
+            hour: 10,
+            minute: 45,
+        },
+        column: 5,
+        duration: 30,
+        images : undefined,
+        description: "May the best mario karter win – prize: bubble tea",
+    },
+    {
+        name: "Python One Liners (15 minutes)",
+        color: "var(--terminal-red)",
+        start: {
+            hour: 11,
+            minute: 30,
+        },
+        column: 4,
+        duration: 30,
+        images : undefined,
+        description: "Solve a series of programming challenges in one line of python code. Be the first to finish and win bubble tea.",
+    },
+        {
+        name: "Geoguessr Tournament",
+        color: "var(--terminal-red)",
+        start: {
+            hour: 13,
+            minute: 15,
+        },
+        column: 5,
+        duration: 30,
+        images : undefined,
+        description: "May the best geoguessr win – prize: bubble tea",
+    },
+    {
+        name: "Arch + Hyperland Install + Rice Session",
+        color: "var(--terminal-red)",
+        start: {
+            hour: 14,
+            minute: 45,
+        },
+        column: 5,
+        duration: 30,
+        images : undefined,
+        description: "Fellow Linux nerd? Network with other Linux nerds, share your rice, or get help installing. ",
+    },
+    {
+        name: "Type Racer Tournament",
+        color: "var(--terminal-red)",
+        start: {
+            hour: 15,
+            minute: 30,
+        },
+        column: 5,
+        duration: 20,
+        images : undefined,
+        description: "May the fastest typer win",
+    },
+    {
+        name: "Trivia Tournament",
+        color: "var(--terminal-red)",
+        start: {
+            hour: 16,
+            minute: 15,
+        },
+        column: 5,
+        duration: 30,
+        images : undefined,
+        description: "May the smartest win",
+    },
+
+    {
+        name: "Poker Tournament",
+        color: "var(--terminal-red)",
+        start: {
+            hour: 17,
+            minute: 30,
+        },
+        column: 5,
+        duration: 30,
+        images : undefined,
+        description: "May the best gambler win – prize: Jane Street Cards",
+    },
+    {
+        name: "",
+        color: "var(--terminal-blue)",
+        start: {
+            hour: 8,
+            minute: 0,
+        },
+        column: 2,
+        duration: 20,
+        images : undefined,
+        description: "",
+    },
+
+]
+
+export const timeTableData = {
+    startTime: {
+        hour: 8,
+        minute: 0,
+    },
+    endTime: {
+        hour: 22,
+        minute: 0,
+    },
+    timeInc: 30,
+    columnNames: [
+        "Time",
+        "Cafeteria",
+        "Theatre",
+        "Library",
+        "Activity Room (220-221)",
+    ],
+    events: [
+        ...funEvents
+    ]
+}
+
+/*
 export const timeTableData = {
     startTime: {
         hour: 8,
@@ -318,3 +541,4 @@ export const timeTableData = {
         },
     ],
 };
+*/

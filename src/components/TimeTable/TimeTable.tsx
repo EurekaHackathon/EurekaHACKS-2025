@@ -204,7 +204,7 @@ export default function TimeTable({
                                 -
                                 {events[selectedEvent - 1].start.minute +
                                     (events[selectedEvent - 1].duration % 60) >=
-                                60
+                                    60
                                     ? events[selectedEvent - 1].start.hour +
                                       Math.floor(
                                           events[selectedEvent - 1].duration /

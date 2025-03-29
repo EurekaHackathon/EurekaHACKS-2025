@@ -1,6 +1,6 @@
 .table {
     display: grid;
-    grid-template-columns: auto repeat(5, 1fr);
+    grid-template-columns: auto repeat(4, 1fr);
     gap: 4px 2em;
     overflow-x: auto;
 }

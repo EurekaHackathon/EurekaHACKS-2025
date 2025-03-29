@@ -79,7 +79,11 @@ const config: Config = {
     				"800": "#a01445",
     				"900": "#86153e",
     				"950": "#520520"
-    			}
+    			},
+				"terminal-green": "var(--terminal-green)",
+				"terminal-blue": "var(--terminal-blue)",
+				"terminal-red": "var(--terminal-red)",
+				"terminal-yellow": "var(--terminal-yellow)",
     		},
     	}
     },
