@@ -8,7 +8,6 @@ import {
 } from "@/lib/sqlc/auth_sql";
 import { generateSessionToken } from "@/lib/auth";
 import { createSession } from "@/lib/sessions";
-import { cookies } from "next/headers";
 import SetSessionCookie from "@/components/SetSessionCookie";
 
 export const dynamic = "force-dynamic";

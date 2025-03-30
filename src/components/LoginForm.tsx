@@ -64,6 +64,9 @@ export default function LoginForm() {
                         </div>
                     </div>
                 </label>
+                <div className="w-full flex justify-end">
+                    <Link href="/request-password-reset" className="mt-2 font-semibold underline duration-100 hover:text-gray-500">Forgot your password?</Link>
+                </div>
                 <p className="mt-6 min-h-6 text-red-400 font-semibold break-words">
                     {!pending && state?.error}
                 </p>
@@ -91,7 +94,7 @@ export default function LoginForm() {
                 Log in with Github
             </button>
             <h2 className="pt-8 text-center text-sm md:text-lg">Don't have an account? <Link
-                className="font-semibold underline"
+                className="font-semibold underline duration-100 hover:text-gray-500"
                 href="/register">Sign up</Link></h2>
         </div>
     );

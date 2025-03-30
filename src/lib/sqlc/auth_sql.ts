@@ -509,3 +509,116 @@ export async function verifyUserEmail(sql: Sql, args: VerifyUserEmailArgs): Prom
     await sql.unsafe(verifyUserEmailQuery, [args.id]);
 }
 
+export const changePasswordQuery = `-- name: ChangePassword :exec
+update public.app_users set password = $2 where id = $1`;
+
+export interface ChangePasswordArgs {
+    id: number;
+    password: string | null;
+}
+
+export async function changePassword(sql: Sql, args: ChangePasswordArgs): Promise<void> {
+    await sql.unsafe(changePasswordQuery, [args.id, args.password]);
+}
+
+export const createPasswordResetTokenQuery = `-- name: CreatePasswordResetToken :one
+insert into public.password_reset_tokens (user_id, token, expires_at)
+values ($1, $2, $3)
+returning id, user_id, token, expires_at, created_at, updated_at`;
+
+export interface CreatePasswordResetTokenArgs {
+    userId: number;
+    token: string;
+    expiresAt: Date;
+}
+
+export interface CreatePasswordResetTokenRow {
+    id: string;
+    userId: number;
+    token: string;
+    expiresAt: Date;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export async function createPasswordResetToken(sql: Sql, args: CreatePasswordResetTokenArgs): Promise<CreatePasswordResetTokenRow | null> {
+    const rows = await sql.unsafe(createPasswordResetTokenQuery, [args.userId, args.token, args.expiresAt]).values();
+    if (rows.length !== 1) {
+        return null;
+    }
+    const row = rows[0];
+    return {
+        id: row[0],
+        userId: row[1],
+        token: row[2],
+        expiresAt: row[3],
+        createdAt: row[4],
+        updatedAt: row[5]
+    };
+}
+
+export const getEmailByPasswordResetTokenIDQuery = `-- name: GetEmailByPasswordResetTokenID :one
+select email from public.app_users where id = (select user_id from public.password_reset_tokens where public.password_reset_tokens.id = $1)`;
+
+export interface GetEmailByPasswordResetTokenIDArgs {
+    id: string;
+}
+
+export interface GetEmailByPasswordResetTokenIDRow {
+    email: string | null;
+}
+
+export async function getEmailByPasswordResetTokenID(sql: Sql, args: GetEmailByPasswordResetTokenIDArgs): Promise<GetEmailByPasswordResetTokenIDRow | null> {
+    const rows = await sql.unsafe(getEmailByPasswordResetTokenIDQuery, [args.id]).values();
+    if (rows.length !== 1) {
+        return null;
+    }
+    const row = rows[0];
+    return {
+        email: row[0]
+    };
+}
+
+export const getPasswordResetTokenByTokenQuery = `-- name: GetPasswordResetTokenByToken :one
+select id, user_id, token, expires_at, created_at, updated_at from public.password_reset_tokens where token = $1`;
+
+export interface GetPasswordResetTokenByTokenArgs {
+    token: string;
+}
+
+export interface GetPasswordResetTokenByTokenRow {
+    id: string;
+    userId: number;
+    token: string;
+    expiresAt: Date;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export async function getPasswordResetTokenByToken(sql: Sql, args: GetPasswordResetTokenByTokenArgs): Promise<GetPasswordResetTokenByTokenRow | null> {
+    const rows = await sql.unsafe(getPasswordResetTokenByTokenQuery, [args.token]).values();
+    if (rows.length !== 1) {
+        return null;
+    }
+    const row = rows[0];
+    return {
+        id: row[0],
+        userId: row[1],
+        token: row[2],
+        expiresAt: row[3],
+        createdAt: row[4],
+        updatedAt: row[5]
+    };
+}
+
+export const deleteAllPasswordResetTokensByUserIDQuery = `-- name: DeleteAllPasswordResetTokensByUserID :exec
+delete from public.password_reset_tokens where user_id = $1`;
+
+export interface DeleteAllPasswordResetTokensByUserIDArgs {
+    userId: number;
+}
+
+export async function deleteAllPasswordResetTokensByUserID(sql: Sql, args: DeleteAllPasswordResetTokensByUserIDArgs): Promise<void> {
+    await sql.unsafe(deleteAllPasswordResetTokensByUserIDQuery, [args.userId]);
+}
+

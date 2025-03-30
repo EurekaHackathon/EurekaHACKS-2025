@@ -2,11 +2,16 @@
 
 import {
     createUser,
-    generateEmailVerificationToken,
-    generateSessionToken
+    generateToken,
+    generateSessionToken, hashPassword
 } from "@/lib/auth";
 import {
-    createEmailVerificationToken, deleteAllEmailVerificationTokensByUserID, getUserByEmail
+    changePassword,
+    createEmailVerificationToken,
+    createPasswordResetToken,
+    deleteAllEmailVerificationTokensByUserID, deleteAllPasswordResetTokensByUserID,
+    getPasswordResetTokenByToken,
+    getUserByEmail
 } from "@/lib/sqlc/auth_sql";
 import { db } from "@/lib/database";
 import NodeMailer from "nodemailer";
@@ -17,7 +22,8 @@ import { VerifyEmailTemplate } from "@/lib/emails/verify-email";
 import { cookies } from "next/headers";
 import { verify } from "@node-rs/argon2";
 import { createSession, invalidateSession } from "@/lib/sessions";
-import { loginSchema, signUpSchema } from "../validation";
+import { loginSchema, resetPasswordSchema, signUpSchema } from "../validation";
+import ResetPasswordTemplate from "@/lib/emails/reset-password";
 
 
 export const logout = async (prevState: any, formData: FormData) => {
@@ -47,11 +53,11 @@ export const loginWithEmail = async (prevState: any, formData: FormData) => {
     });
 
     if (!validationResult.success) {
-        return { error: validationResult.error.errors[0].message };
+        return {error: validationResult.error.errors[0].message};
     }
 
     if (!email || !password || typeof email !== "string" || typeof password !== "string") {
-        return { error: "All fields are required" };
+        return {error: "All fields are required"};
     }
 
     let emailVerificationTokenRecord;
@@ -62,12 +68,12 @@ export const loginWithEmail = async (prevState: any, formData: FormData) => {
         });
 
         if (!user || !user.password || !user.email) {
-            return { error: "Invalid email or password" };
+            return {error: "Invalid email or password"};
         }
 
         const passwordMatches = await verify(user.password, password);
         if (!passwordMatches) {
-            return { error: "Invalid email or password" };
+            return {error: "Invalid email or password"};
         }
 
         if (!user.emailVerified) {
@@ -76,7 +82,7 @@ export const loginWithEmail = async (prevState: any, formData: FormData) => {
                 userId: user.id,
             });
 
-            const emailVerificationToken = await generateEmailVerificationToken();
+            const emailVerificationToken = await generateToken();
             // 15 minutes
 
             const tokenExpiry = new Date(Date.now() + 15 * 60 * 1000);
@@ -109,7 +115,7 @@ export const loginWithEmail = async (prevState: any, formData: FormData) => {
 
     } catch (error) {
         console.error(error);
-        return { error: "Internal server error, please try again later" };
+        return {error: "Internal server error, please try again later"};
     }
     if (emailVerified) {
         redirect("/dashboard");
@@ -134,15 +140,15 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
     });
 
     if (!validationResult.success) {
-        return { error: validationResult.error.errors[0].message, payload: formData };
+        return {error: validationResult.error.errors[0].message, payload: formData};
     }
 
     if (password !== confirmPassword) {
-        return { error: "Passwords do not match", payload: formData };
+        return {error: "Passwords do not match", payload: formData};
     }
 
     if (!email || !password || !firstName || !lastName || typeof email !== "string" || typeof password !== "string") {
-        return { error: "All fields are required", payload: formData };
+        return {error: "All fields are required", payload: formData};
     }
 
     let emailVerificationTokenRecord;
@@ -152,7 +158,7 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
         });
 
         if (existingUser) {
-            return { error: "An account with this email already exists", payload: formData };
+            return {error: "An account with this email already exists", payload: formData};
         }
 
         const user = await createUser({
@@ -163,10 +169,10 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
         });
 
         if (!user) {
-            return { error: "Internal server error, please try again later", payload: formData };
+            return {error: "Internal server error, please try again later", payload: formData};
         }
 
-        const emailVerificationToken = await generateEmailVerificationToken();
+        const emailVerificationToken = await generateToken();
         // 15 minutes
         const tokenExpiry = new Date(Date.now() + 15 * 60 * 1000);
 
@@ -177,7 +183,7 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
         });
 
         if (!emailVerificationTokenRecord) {
-            return { error: "Internal server error, please try again later", payload: formData };
+            return {error: "Internal server error, please try again later", payload: formData};
         }
 
         await sendVerificationEmail({
@@ -188,7 +194,7 @@ export const signUpWithEmail = async (prevState: any, formData: FormData) => {
 
     } catch (error) {
         console.error(error);
-        return { error: "Internal server error, please try again later", payload: formData };
+        return {error: "Internal server error, please try again later", payload: formData};
     }
     redirect(`/verify-email-prompt?id=${emailVerificationTokenRecord.id}`);
 };
@@ -199,7 +205,7 @@ export const resendEmailVerificationLink = async (prevState: any, formData: Form
         const email = formData.get("email");
 
         if (!email || typeof email !== "string") {
-            return { error: "Internal server error, please try again later." };
+            return {error: "Internal server error, please try again later."};
         }
 
         const user = await getUserByEmail(db, {
@@ -207,24 +213,24 @@ export const resendEmailVerificationLink = async (prevState: any, formData: Form
         });
 
         if (!user) {
-            return { error: "Internal server error, please try again later." };
+            return {error: "Internal server error, please try again later."};
         }
 
         const id = formData.get("id");
         if (!id || typeof id !== "string") {
-            return { error: "Internal server error, please try again later." };
+            return {error: "Internal server error, please try again later."};
         }
 
         // Check if email is already verified
         if (user.emailVerified) {
-            return { error: "Email is already verified" };
+            return {error: "Email is already verified"};
         }
 
         await deleteAllEmailVerificationTokensByUserID(db, {
             userId: user.id,
         });
 
-        const emailVerificationToken = await generateEmailVerificationToken();
+        const emailVerificationToken = await generateToken();
         // 15 minutes
         const tokenExpiry = new Date(Date.now() + 15 * 60 * 1000);
 
@@ -236,7 +242,7 @@ export const resendEmailVerificationLink = async (prevState: any, formData: Form
         });
 
         if (!newToken) {
-            return { error: "Internal server error, please try again later." };
+            return {error: "Internal server error, please try again later."};
         }
 
         await sendVerificationEmail({
@@ -245,10 +251,10 @@ export const resendEmailVerificationLink = async (prevState: any, formData: Form
             email: email,
         });
 
-        return { success: true };
+        return {success: true};
     } catch (error) {
         console.error(error);
-        return { error: "Internal server error, please try again later." };
+        return {error: "Internal server error, please try again later."};
     }
 };
 
@@ -270,7 +276,7 @@ interface SendVerificationEmailProps {
     email: string;
 }
 
-const sendVerificationEmail = async ({ emailVerificationToken, firstName, email }: SendVerificationEmailProps) => {
+const sendVerificationEmail = async ({emailVerificationToken, firstName, email}: SendVerificationEmailProps) => {
     const transporter = NodeMailer.createTransport({
         host: process.env.SMTP_HOST,
         port: parseInt(process.env.SMTP_PORT || "587"),
@@ -313,4 +319,135 @@ const sendVerificationEmail = async ({ emailVerificationToken, firstName, email 
     };
 
     await sendMailAsync(transporter, mailOptions);
+};
+
+export const requestPasswordReset = async (prevState: any, formData: FormData) => {
+    const email = formData.get("email");
+
+    if (!email || typeof email !== "string") {
+        return {error: "All fields are required"};
+    }
+    let passwordResetToken;
+    try {
+        const user = await getUserByEmail(db, {
+            email: email,
+        });
+
+        if (!user) {
+            return {error: "An account with this email does not exist."};
+        }
+
+        const resetToken = await generateToken();
+        // 15 minutes
+        const tokenExpiry = new Date(Date.now() + 15 * 60 * 1000);
+
+        passwordResetToken = await createPasswordResetToken(db, {
+            token: resetToken,
+            userId: user.id,
+            expiresAt: tokenExpiry,
+        });
+
+        if (!passwordResetToken) {
+            return {error: "Internal server error, please try again later."};
+        }
+
+        const transporter = NodeMailer.createTransport({
+            host: process.env.SMTP_HOST,
+            port: parseInt(process.env.SMTP_PORT || "587"),
+            secure: false,
+            auth: {
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASSWORD,
+            },
+            tls: {
+                rejectUnauthorized: false,
+            }
+        });
+
+        const headersList = await headers();
+        const domain = headersList.get("host");
+        const isHttp = process.env.DEV === "true";
+        const emailHTML = await render(ResetPasswordTemplate({
+            resetLink: `${isHttp ? "http" : "https"}://${domain}/reset-password?token=${resetToken}`,
+            userFirstname: user.firstName ?? "hacker",
+        }));
+
+        const emailText = `
+                Hi ${user.firstName ?? "hacker"},
+        
+                You have requested to reset your password. Please click the button below to reset it.
+                If you did not request this, please ignore this email.
+                
+                ${domain}/reset-password?token=${resetToken}
+                `;
+
+        const mailOptions = {
+            to: email,
+            from: `"EurekaHACKS" hello@eurekahacks.ca`,
+            subject: "Reset your password for EurekaHACKS",
+            text: emailText,
+            html: emailHTML,
+        };
+
+        await sendMailAsync(transporter, mailOptions);
+    } catch (error) {
+        console.error(error);
+        return {error: "Internal server error, please try again later."};
+    }
+    redirect(`/reset-password-prompt?id=${passwordResetToken.id}`);
+};
+
+export const resetPassword = async (prevState: any, formData: FormData) => {
+    const password = formData.get("password");
+    const confirmPassword = formData.get("confirm-password");
+    const token = formData.get("token");
+
+    if (!password || !confirmPassword || !token || typeof password !== "string" || typeof token !== "string") {
+        return {error: "All fields are required"};
+    }
+
+    if (password !== confirmPassword) {
+        return {error: "Passwords do not match"};
+    }
+
+    const validationResult = resetPasswordSchema.safeParse({
+        password: password,
+        confirmPassword: confirmPassword,
+    });
+
+    if (!validationResult.success) {
+        return {error: validationResult.error.errors[0].message};
+    }
+
+    try {
+        const passwordResetToken = await getPasswordResetTokenByToken(db, {
+            token: token,
+        });
+
+        if (!passwordResetToken) {
+            return {error: "Invalid or expired reset token"};
+        }
+
+        // Check if the token is expired
+        if (passwordResetToken.expiresAt < new Date()) {
+            return {error: "Invalid or expired reset token"};
+        }
+
+        const hashedPassword = await hashPassword(password);
+
+        await changePassword(db, {
+            id: passwordResetToken.userId,
+            password: hashedPassword,
+        });
+
+        // Delete the token
+        await deleteAllPasswordResetTokensByUserID(db, {
+            userId: passwordResetToken.userId,
+        });
+    } catch (error) {
+        console.error(error);
+        return {error: "Internal server error, please try again later."};
+    }
+
+    redirect("/reset-password-success");
 };

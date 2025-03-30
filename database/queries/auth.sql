@@ -60,3 +60,20 @@ select email from public.app_users where id = (select user_id from public.email_
 
 -- name: VerifyUserEmail :exec
 update public.app_users set email_verified = true where id = $1;
+
+-- name: ChangePassword :exec
+update public.app_users set password = $2 where id = $1;
+
+-- name: CreatePasswordResetToken :one
+insert into public.password_reset_tokens (user_id, token, expires_at)
+values ($1, $2, $3)
+returning *;
+
+-- name: GetEmailByPasswordResetTokenID :one
+select email from public.app_users where id = (select user_id from public.password_reset_tokens where public.password_reset_tokens.id = $1);
+
+-- name: GetPasswordResetTokenByToken :one
+select * from public.password_reset_tokens where token = $1;
+
+-- name: DeleteAllPasswordResetTokensByUserID :exec
+delete from public.password_reset_tokens where user_id = $1;

@@ -54,7 +54,7 @@ export async function generateSessionToken(): Promise<string> {
     return encodeBase32LowerCaseNoPadding(bytes);
 }
 
-export async function generateEmailVerificationToken(): Promise<string> {
+export async function generateToken(): Promise<string> {
     const bytes = new Uint8Array(32);
     crypto.getRandomValues(bytes);
     return encodeBase32LowerCaseNoPadding(bytes);

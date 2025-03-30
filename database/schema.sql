@@ -110,3 +110,12 @@ create table if not exists public.sent_decision_emails (
     ),
     created_at timestamptz not null default now()
 );
+
+create table if not exists password_reset_tokens (
+    id uuid primary key default uuid_generate_v4(),
+    user_id integer not null references public.app_users(id) on delete cascade,
+    token text not null,
+    expires_at timestamptz not null,
+    created_at timestamptz not null default now(),
+    updated_at timestamptz not null default now()
+);
