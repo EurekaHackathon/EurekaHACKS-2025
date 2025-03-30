@@ -20,7 +20,7 @@ export const AcceptanceEmailTemplate = ({firstName}: ApplicationsOpenTemplatePro
     <Html>
         <Head/>
         <Preview>
-            🚨 EurekaHACKS 2025 applications are due tomorrow! 🚨
+            Congratulations 🎉, See You At EurekaHACKS 2025!
         </Preview>
         <Body style={main}>
             <Container style={container}>
@@ -33,15 +33,37 @@ export const AcceptanceEmailTemplate = ({firstName}: ApplicationsOpenTemplatePro
                 />
                 <Text style={paragraph}>Hey {firstName}!</Text>
                 <Text style={paragraph}>
-                    We saw that you created a EurekaHACKS account but haven’t submitted an application yet! Applications
-                    are due on Saturday, March 22, 2025 at 11:59 PM EST. Applying only
-                    takes <strong>3</strong> minutes—no short answer
-                    responses required. Don't miss out on free food, $11,000 in prizes
-                    (including four 3D printers), and a ton of fun!
+                    We’re excited to have you as a hacker for EurekaHACKS 2025, our third hackathon iteration! (You are
+                    one step closer to the Bambu). Join us from 8:00 AM to 9:30 PM on April 5th 2025 at 1455 Glen
+                    Abbey Gate, Oakville to take part in a memorable day filled with fun workshops, exciting activities
+                    and free food!
+                </Text>
+                <Text style={paragraph}>
+                    Here’s a sneak peek into this years event:
+                    <br/>
+                    🌟 $11,000+ prize pool including 4 Bambu Lab A1 minis
+                    <br/>
+                    🍎 Free lunch and dinner for all hackers!
+                    <br/>
+                    🛠 Take part in fun workshops!
+                    <br/>
+                    <br/>
+                    Date: Saturday April
+                    <br/>
+                    Time: 8:00 AM - 10:00 PM
+                    <br/>
+                    Venue address: 1455 Glen Abbey Gate, Oakville
+                </Text>
+                <Text style={paragraph}>
+                    <strong>
+                        Please RSVP to confirm your spot at EurekaHACKS 2025 if you have not already! We’ll be sending
+                        you more details about the event
+                        in the following days, so stay tuned!
+                    </strong>
                 </Text>
                 <Section style={btnContainer}>
-                    <Button style={button} href={"https://eurekahacks.ca/dashboard/application"}>
-                        Apply Now
+                    <Button style={button} href={"https://eurekahacks.ca/dashboard/"}>
+                        RSVP Now
                     </Button>
                 </Section>
                 <Text style={paragraph}>
