@@ -48,7 +48,7 @@ export const AcceptanceEmailTemplate = ({firstName}: ApplicationsOpenTemplatePro
                     🛠 Take part in fun workshops!
                     <br/>
                     <br/>
-                    Date: Saturday April
+                    Date: Saturday April 5th
                     <br/>
                     Time: 8:00 AM - 10:00 PM
                     <br/>
