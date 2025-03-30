@@ -13,6 +13,8 @@ function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>)
 export default function ApplicationTableSkeleton() {
     return (
         <div className="overflow-x-auto grid">
+            <Skeleton className="w-24 text-start h-8"/>
+            <Skeleton className="text-start h-10 mt-2 mb-12"/>
             <table className="w-full border">
                 <thead>
                 <tr className="text-sm 2xl:text-base text-gray-500 hover:bg-gray-100 duration-75">

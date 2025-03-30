@@ -1,7 +1,7 @@
 export function Input({ label, ...props }: any) {
     return (
         <div className="flex-1">
-            <label className="block text-lg font-medium">
+            <label className="block text-lg font-medium text-gray-700">
                 {label} {props.required && <span className="text-error-600">*</span>}
             </label>
             <input {...props}

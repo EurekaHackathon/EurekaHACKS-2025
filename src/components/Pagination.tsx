@@ -6,11 +6,13 @@ export default function Pagination({
                                        numberOfCurrentItems,
                                        numberOfTotalItems,
                                        className,
+                                       query,
                                    }: {
     currentPage: number;
     numberOfCurrentItems: number;
     numberOfTotalItems: number;
     className?: string;
+    query?: string;
 }) {
     const lastPage = Math.ceil(numberOfTotalItems / 10);
     const pages = new Set<number>();
@@ -66,7 +68,7 @@ export default function Pagination({
         renderPages.push(
             <Link
                 key={sortedPages[i]}
-                href={`/dashboard/admin/applications?page=${sortedPages[i]}`}
+                href={`/dashboard/admin/applications?page=${sortedPages[i]}&q=${query}`}
                 scroll={false}
                 className={`flex items-center justify-center h-8 w-8 min-h-9 min-w-9 px-2 py-2 rounded-md duration-75 ${
                     sortedPages[i] === currentPage
@@ -86,7 +88,7 @@ export default function Pagination({
             </p>
             <div className="flex gap-2">
                 <Link
-                    href={`/dashboard/admin/applications?page=${currentPage - 1}`}
+                    href={`/dashboard/admin/applications?page=${currentPage - 1}&q=${query}`}
                     scroll={false}
                     className={`flex items-center justify-center bg-secondary-50 h-8 w-8 border border-gray-300 text-gray-700 min-h-9 min-w-9 px-2 py-2 rounded-md hover:bg-secondary-200 duration-75
                     ${currentPage === 1 ? "opacity-50 pointer-events-none" : ""}`}
@@ -96,12 +98,12 @@ export default function Pagination({
                 </Link>
                 {renderPages.map((page) => page)}
                 <Link
-                    href={`/dashboard/admin/applications?page=${currentPage + 1}`}
+                    href={`/dashboard/admin/applications?page=${currentPage + 1}&q=${query}`}
                     scroll={false}
                     className={`flex items-center justify-center bg-secondary-50 h-8 w-8 border border-gray-300 text-gray-700 min-h-9 min-w-9 px-2 py-2 rounded-md hover:bg-secondary-200 duration-75
-                    ${currentPage === lastPage ? "opacity-50 pointer-events-none" : ""}`}
-                    tabIndex={currentPage === lastPage ? -1 : undefined}
-                    aria-disabled={currentPage === lastPage}>
+                    ${currentPage >= lastPage ? "opacity-50 pointer-events-none" : ""}`}
+                    tabIndex={currentPage >= lastPage ? -1 : undefined}
+                    aria-disabled={currentPage >= lastPage}>
                     <Icon icon="f7:chevron-right" className="text-xl"/>
                 </Link>
             </div>
