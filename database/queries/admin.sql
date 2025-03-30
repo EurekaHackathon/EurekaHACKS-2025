@@ -14,7 +14,18 @@ select count(*) as count from public.hackathon_applications where status = 'reje
 select count(*) as count from public.hackathon_applications where status = 'submitted';
 
 -- name: GetApplicationsPaginated :many
-select id, first_name, last_name, school, status, created_at from public.hackathon_applications order by id desc limit $1 offset $2;
+select id, first_name, last_name, school, status, created_at
+from public.hackathon_applications
+where lower(first_name) like lower('%' || sqlc.arg(search_query) || '%')
+   or lower(last_name) like lower('%' || sqlc.arg(search_query) || '%')
+order by id desc
+limit $1 offset $2;
+
+-- name: GetNumberOfApplicationsFiltered :one
+select count(*)
+from public.hackathon_applications
+where lower(first_name) like lower('%' || sqlc.arg(search_query) || '%')
+   or lower(last_name) like lower('%' || sqlc.arg(search_query) || '%');
 
 -- name: GetApplicationById :one
 select * from public.hackathon_applications where id = $1 limit 1;

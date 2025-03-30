@@ -91,11 +91,17 @@ export async function getNumberOfPendingHackerApplications(sql: Sql): Promise<Ge
 }
 
 export const getApplicationsPaginatedQuery = `-- name: GetApplicationsPaginated :many
-select id, first_name, last_name, school, status, created_at from public.hackathon_applications order by id desc limit $1 offset $2`;
+select id, first_name, last_name, school, status, created_at
+from public.hackathon_applications
+where lower(first_name) like lower('%' || $3 || '%')
+   or lower(last_name) like lower('%' || $3 || '%')
+order by id desc
+limit $1 offset $2`;
 
 export interface GetApplicationsPaginatedArgs {
     limit: string;
     offset: string;
+    searchQuery: string | null;
 }
 
 export interface GetApplicationsPaginatedRow {
@@ -108,7 +114,7 @@ export interface GetApplicationsPaginatedRow {
 }
 
 export async function getApplicationsPaginated(sql: Sql, args: GetApplicationsPaginatedArgs): Promise<GetApplicationsPaginatedRow[]> {
-    return (await sql.unsafe(getApplicationsPaginatedQuery, [args.limit, args.offset]).values()).map(row => ({
+    return (await sql.unsafe(getApplicationsPaginatedQuery, [args.limit, args.offset, args.searchQuery]).values()).map(row => ({
         id: row[0],
         firstName: row[1],
         lastName: row[2],
@@ -116,6 +122,31 @@ export async function getApplicationsPaginated(sql: Sql, args: GetApplicationsPa
         status: row[4],
         createdAt: row[5]
     }));
+}
+
+export const getNumberOfApplicationsFilteredQuery = `-- name: GetNumberOfApplicationsFiltered :one
+select count(*)
+from public.hackathon_applications
+where lower(first_name) like lower('%' || $1 || '%')
+   or lower(last_name) like lower('%' || $1 || '%')`;
+
+export interface GetNumberOfApplicationsFilteredArgs {
+    searchQuery: string | null;
+}
+
+export interface GetNumberOfApplicationsFilteredRow {
+    count: string;
+}
+
+export async function getNumberOfApplicationsFiltered(sql: Sql, args: GetNumberOfApplicationsFilteredArgs): Promise<GetNumberOfApplicationsFilteredRow | null> {
+    const rows = await sql.unsafe(getNumberOfApplicationsFilteredQuery, [args.searchQuery]).values();
+    if (rows.length !== 1) {
+        return null;
+    }
+    const row = rows[0];
+    return {
+        count: row[0]
+    };
 }
 
 export const getApplicationByIdQuery = `-- name: GetApplicationById :one

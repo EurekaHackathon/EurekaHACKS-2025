@@ -1,17 +1,23 @@
 import { db } from "@/lib/database";
-import { getApplicationsPaginated, getNumberOfHackerApplications } from "@/lib/sqlc/admin_sql";
+import {
+    getApplicationsPaginated,
+    getNumberOfApplicationsFiltered,
+} from "@/lib/sqlc/admin_sql";
 import StatusBadge from "@/components/StatusBadge";
 import Link from "next/link";
 import Pagination from "@/components/Pagination";
+import ApplicationsSearch from "@/components/ApplicationsSearch";
 
 const clamp = (value: number, min: number, max: number) => {
     return Math.min(Math.max(value, min), max);
 };
 
-export default async function ApplicationsTable({ searchParams, }: {
+export default async function ApplicationsTable({searchParams,}: {
     searchParams: Promise<{ [key: string]: string | undefined }>
 }) {
-    const numberOfApplications = await getNumberOfHackerApplications(db);
+    const numberOfApplications = await getNumberOfApplicationsFiltered(db, {
+        searchQuery: (await searchParams).q?.toString().trim() ?? "",
+    });
 
     const params = await searchParams;
     let page = params.page ? clamp(parseInt(params.page), 1, Math.max(Math.ceil(parseInt(numberOfApplications?.count ?? "1") / 10), 1)) : 1;
@@ -22,6 +28,7 @@ export default async function ApplicationsTable({ searchParams, }: {
     const applications = await getApplicationsPaginated(db, {
         limit: "10",
         offset: ((page - 1) * 10).toString(),
+        searchQuery: params.q?.toString().trim() ?? "",
     });
 
     const formatDate = (date: Date) => {
@@ -30,6 +37,9 @@ export default async function ApplicationsTable({ searchParams, }: {
 
     return (
         <div className="overflow-x-auto grid">
+            <div className="pb-12">
+                <ApplicationsSearch page={page} query={params.q?.toString().trim() ?? ""}/>
+            </div>
             <table className="w-full border">
                 <thead>
                 <tr className="text-sm 2xl:text-base text-gray-500 hover:bg-gray-100 duration-75">
@@ -81,6 +91,7 @@ export default async function ApplicationsTable({ searchParams, }: {
                 </tbody>
             </table>
             <Pagination className="w-full mt-4" currentPage={page} numberOfCurrentItems={applications.length}
+                        query={params.q?.toString().trim() ?? ""}
                         numberOfTotalItems={isNaN(parseInt(numberOfApplications?.count ?? "0")) ? 0 : parseInt(numberOfApplications?.count ?? "0")}/>
         </div>
     );
