@@ -69,7 +69,6 @@
 
 .divider:nth-child(13)::after {
     height: 4px;
-    z-index: 2;
     content: "HACKING STARTS"
 }
 
@@ -77,7 +76,6 @@
     background-color: var(--terminal-yellow);
     height: 6px;
     border-radius: 6px;
-    z-index: 2;
     content: "SUBMISSION DEADLINE";
 }
 
