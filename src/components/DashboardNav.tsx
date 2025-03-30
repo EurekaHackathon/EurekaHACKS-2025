@@ -63,8 +63,8 @@ export function DashboardNav() {
                     <DashboardNavItem icon="fluent:home-16-filled" text="Home" route="/dashboard"/>
                     <DashboardNavItem icon="fluent:form-multiple-48-filled" text="Application"
                                       route="/dashboard/application"/>
-                    <DashboardNavItem icon="fluent:calendar-32-filled" text="Schedule"
-                                      route="/dashboard/schedule"/>
+                    {/*<DashboardNavItem icon="fluent:calendar-32-filled" text="Schedule"*/}
+                    {/*                  route="/dashboard/schedule"/>*/}
                     <DashboardNavItem icon="fluent:qr-code-28-filled" text="QR Code"
                                       route="/dashboard/qrcode"/>
                     {user.isAdmin &&
