@@ -39,7 +39,7 @@ export default function RequestPasswordResetForm() {
             </form>
             <h2 className="pt-8 text-center text-sm md:text-lg"><Link
                 className="font-semibold underline duration-100 hover:text-gray-500"
-                href="/register">Log in instead</Link></h2>
+                href="/login">Log in instead</Link></h2>
         </div>
     );
 }
