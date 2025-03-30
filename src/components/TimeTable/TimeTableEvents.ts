@@ -81,7 +81,7 @@ const workshops = [
         column: 4,
         duration: 15,
         images : undefined,
-        description: "",
+        description: "Moiz Hashmi's talk chronicles his and his friends' journey of building an AI B2B SaaS startup, Factful, during high school. His lessons learned include the importance of moving fast vs. being correct, the power of a good story, and that distribution may matter more than the product itself. Ultimately, it provides a great insider, behind-the-scenes look at what it takes to build and grow a startup from the ground up",
     },
 ]
 
@@ -231,7 +231,7 @@ const importantEvents = [
         column: 3,
         duration: 30,
         images : undefined,
-        description: "",
+        description: "Opening ceremony to kick off EurekaHacks 2025!",
     },
     {
         name: "Mandatory ICP Session",
@@ -243,7 +243,7 @@ const importantEvents = [
         column: 3,
         duration: 45,
         images : undefined,
-        description: "",
+        description: "Workshop session by Internet Computer Procotol",
     },
     {
         name: "LUNCH",
@@ -270,6 +270,18 @@ const importantEvents = [
         description: "Dinner will be served in the cafetria. First come first serve. Have your QR code ready.",
     },
     {
+        name: "JUDGING",
+        color: "var(--terminal-green)",
+        start: {
+            hour: 19,
+            minute: 0,
+        },
+        column: 5,
+        duration: 90,
+        images : undefined,
+        description: "Judging time! Judging schedule will be posted near the deadline.",
+    },
+    {
         name: "Closing Ceremony",
         color: "var(--terminal-green)",
         start: {
@@ -279,7 +291,7 @@ const importantEvents = [
         column: 3,
         duration: 30,
         images : undefined,
-        description: "",
+        description: "Closing ceremony for Eureka! Winners will be announced here.",
     },
     
 ]
