@@ -255,7 +255,7 @@ const importantEvents = [
         column: 2,
         duration: 60,
         images : undefined,
-        description: "Lunch will be served in the cafetria. First come first serve. Have yoour QR code ready.",
+        description: "Lunch will be served in the cafetria. First come first serve. Have your QR code ready.",
     },
     {
         name: "DINNER",
@@ -267,7 +267,7 @@ const importantEvents = [
         column: 2,
         duration: 60,
         images : undefined,
-        description: "Dinner will be served in the cafetria. First come first serve. Have yoour QR code ready.",
+        description: "Dinner will be served in the cafetria. First come first serve. Have your QR code ready.",
     },
     {
         name: "Closing Ceremony",
