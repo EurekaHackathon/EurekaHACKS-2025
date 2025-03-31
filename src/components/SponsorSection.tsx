@@ -60,6 +60,7 @@ export function SponsorSection() {
                         },
                         {fileName: "codecrafters.png", name: "CodeCrafters", url: "https://codecrafters.io/"},
                         {fileName: "gotcha.png", name: "Gotcha Bubble Tea", url: "https://www.gotchabubbletea.ca/"},
+                        {fileName: "xyz.png", name: ".xyz", url: "https://gen.xyz/"},
                     ]}
                 />
                 {/*Bronze tier*/}
