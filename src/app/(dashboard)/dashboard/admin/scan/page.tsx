@@ -5,12 +5,22 @@ import { binarize, Decoder, Detector, grayscale } from "@nuintun/qrcode";
 import Webcam from "react-webcam";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/Select";
 import { toast } from "@/hooks/use-toast";
+import Link from "next/link";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
+import { GetBasicUserInfoByUserIdRow } from "@/lib/sqlc/admin_sql";
+import { useSearchParams } from "next/navigation";
 
 const decodeQRCode = (dataURL: string): Promise<string | null> => {
     return new Promise((resolve, reject) => {
         const image = new Image();
         image.onload = () => {
-            const { width, height } = image;
+            const {width, height} = image;
             const canvas = new OffscreenCanvas(width, height);
             const context = canvas.getContext("2d")!;
             context.drawImage(image, 0, 0);
@@ -52,6 +62,7 @@ export default function AdminQRCodeScanner() {
     const [currentEvent, setCurrentEvent] = useState<string | undefined>(undefined);
     const [lastScannedQR, setLastScannedQR] = useState<string | null>(null);
     const [lastScannedTime, setLastScannedTime] = useState<number>(0);
+    const [currentUserInfo, setCurrentUserInfo] = useState<GetBasicUserInfoByUserIdRow | null>(null);
 
     const webcamRef = useRef<Webcam>(null);
 
@@ -107,6 +118,10 @@ export default function AdminQRCodeScanner() {
                                     title: "Success",
                                     description: "Successfully scanned user into event."
                                 });
+                                setCurrentUserInfo(await response.json());
+                                if (currentEvent === "check-in") {
+                                    setModalOpen(true);
+                                }
                             } else {
                                 const text = await response.text();
                                 if (response.status === 409) {
@@ -138,6 +153,8 @@ export default function AdminQRCodeScanner() {
         return () => clearInterval(interval);
     }, [lastScannedQR, lastScannedTime, currentEvent]);
 
+    const [modalOpen, setModalOpen] = useState(false);
+
     return (
         <div className="mt-8 flex justify-center gap-4">
             <div>
@@ -145,6 +162,7 @@ export default function AdminQRCodeScanner() {
                 <h2 className="text-gray-500">Choose the event to scan for</h2>
                 <form className="mt-4">
                     <Select
+                        defaultValue={["check-in", "lunch", "dinner"].includes(useSearchParams().get("event") ?? "") ? useSearchParams().get("event")! : undefined}
                         value={currentEvent as (string | undefined)}
                         onValueChange={val => setCurrentEvent(val)} required>
                         <SelectTrigger>
@@ -169,6 +187,27 @@ export default function AdminQRCodeScanner() {
                         onUserMediaError={() => setCameraError(true)}
                     />
                 )}
+                <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+                    <DialogContent
+                        className="flex flex-col justify-center items-center py-4 md:py-6 lg:py-8 px-6 md:px-8 lg:px-12 w-[90%] max-w-3xl rounded-xl">
+                        <DialogHeader className="w-full">
+                            <DialogTitle
+                                className="text-gray-700 text-2xl md:text-3xl font-semibold">{currentUserInfo?.firstName} {currentUserInfo?.lastName}</DialogTitle>
+                            <DialogDescription className="md:text-lg">
+                                <span className="text-lg">{currentUserInfo?.email}</span>
+                            </DialogDescription>
+                            <div className="w-full flex justify-center">
+                                <div className="w-64 pt-4 text-gray-700 font-semibold text-lg">
+                                    <Link
+                                        className="border py-1 px-2 rounded-lg bg-white hover:bg-gray-200 duration-75"
+                                        href={`/dashboard/admin/applications/${currentUserInfo?.id}?from=scan&event=${currentEvent}`}>
+                                        View scanned user
+                                    </Link>
+                                </div>
+                            </div>
+                        </DialogHeader>
+                    </DialogContent>
+                </Dialog>
             </div>
         </div>
     );

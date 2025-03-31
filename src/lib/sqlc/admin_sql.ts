@@ -264,3 +264,31 @@ export async function getEmailsOfUnappliedUsers(sql: Sql): Promise<GetEmailsOfUn
     }));
 }
 
+export const getBasicUserInfoByUserIdQuery = `-- name: GetBasicUserInfoByUserId :one
+select id, first_name, last_name, email from public.hackathon_applications where user_id = $1`;
+
+export interface GetBasicUserInfoByUserIdArgs {
+    userId: number;
+}
+
+export interface GetBasicUserInfoByUserIdRow {
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+}
+
+export async function getBasicUserInfoByUserId(sql: Sql, args: GetBasicUserInfoByUserIdArgs): Promise<GetBasicUserInfoByUserIdRow | null> {
+    const rows = await sql.unsafe(getBasicUserInfoByUserIdQuery, [args.userId]).values();
+    if (rows.length !== 1) {
+        return null;
+    }
+    const row = rows[0];
+    return {
+        id: row[0],
+        firstName: row[1],
+        lastName: row[2],
+        email: row[3]
+    };
+}
+

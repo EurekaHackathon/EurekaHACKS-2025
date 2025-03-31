@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { getApplicationById } from "@/lib/sqlc/admin_sql";
 import { db } from "@/lib/database";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import StatusBadge from "@/components/StatusBadge";
 import ApplicationItem from "@/components/ApplicationItem";
 import ApplicationLinkBox from "@/components/ApplicationLinkBox";
@@ -79,10 +79,11 @@ export default async function Application({
 
     return (
         <div className="mt-8">
-            <Link href={"/dashboard/admin/applications?page=" + from}
-                  className="border flex items-center justify-center gap-2 font-semibold text-gray-700 rounded-lg w-64 h-10 duration-75 hover:bg-gray-50">
+            <Link
+                href={from === "scan" ? "/dashboard/admin/scan?event=" + (await searchParams).event : "/dashboard/admin/applications?page=" + from}
+                className="border flex items-center justify-center gap-2 font-semibold text-gray-700 rounded-lg w-64 h-10 duration-75 hover:bg-gray-50">
                 <Icon icon="fluent:arrow-left-24-filled" className="text-2xl"/>
-                Back to applications list
+                {from === "scan" ? "Back to QR code scanner" : "Back to applications list"}
             </Link>
             <div
                 className="bg-secondary-50 bg-opacity-50 border-secondary-200 border rounded-xl mt-8 p-6 text-gray-700 font-semibold">

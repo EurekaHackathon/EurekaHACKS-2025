@@ -56,3 +56,6 @@ order by date(created_at at time zone 'America/Toronto') asc;
 
 -- name: GetEmailsOfUnappliedUsers :many
 select email from public.app_users where email not in (select email from public.hackathon_applications);
+
+-- name: GetBasicUserInfoByUserId :one
+select id, first_name, last_name, email from public.hackathon_applications where user_id = $1;
