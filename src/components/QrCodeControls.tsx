@@ -34,7 +34,7 @@ export function QrCodeControls({ dataURL }: { dataURL: string }) {
             <DialogContent
                 className="flex flex-col justify-center items-center py-4 md:py-6 lg:py-8 px-6 md:px-8 lg:px-12 w-[90%] max-w-3xl rounded-xl">
                 <DialogHeader className="w-full">
-                    <DialogTitle className="text-2xl md:text-3xl font-semibold">QR Code</DialogTitle>
+                    <DialogTitle className="text-gray-700 text-2xl md:text-3xl font-semibold">QR Code</DialogTitle>
                     <DialogDescription className="md:text-lg">
                         Use this QR code to check-in and receive food.
                     </DialogDescription>
