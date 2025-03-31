@@ -14,11 +14,21 @@ select count(*) as count from public.hackathon_applications where status = 'reje
 select count(*) as count from public.hackathon_applications where status = 'submitted';
 
 -- name: GetApplicationsPaginated :many
-select id, first_name, last_name, school, status, created_at
-from public.hackathon_applications
-where lower(first_name) like lower('%' || sqlc.arg(search_query) || '%')
-   or lower(last_name) like lower('%' || sqlc.arg(search_query) || '%')
-order by id desc
+select ha.id,
+       ha.first_name,
+       ha.last_name,
+       ha.school,
+       ha.status,
+       ha.created_at,
+       exists(
+           select 1
+           from public.rsvps r
+           where r.user_id = ha.user_id
+       ) as rsvped
+from public.hackathon_applications ha
+where lower(ha.first_name) like lower('%' || sqlc.arg(search_query) || '%')
+   or lower(ha.last_name) like lower('%' || sqlc.arg(search_query) || '%')
+order by ha.id desc
 limit $1 offset $2;
 
 -- name: GetNumberOfApplicationsFiltered :one
@@ -28,7 +38,15 @@ where lower(first_name) like lower('%' || sqlc.arg(search_query) || '%')
    or lower(last_name) like lower('%' || sqlc.arg(search_query) || '%');
 
 -- name: GetApplicationById :one
-select * from public.hackathon_applications where id = $1 limit 1;
+select ha.*,
+       exists(
+           select 1
+           from public.rsvps r
+           where r.user_id = ha.user_id
+       ) as rsvped
+from public.hackathon_applications ha
+where ha.id = $1
+limit 1;
 
 -- name: GetApplicationCountPerDay :many
 select date(created_at at time zone 'America/Toronto') as date, count(*) as count

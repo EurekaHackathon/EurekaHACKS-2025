@@ -72,7 +72,7 @@ export default async function ApplicationsTable({searchParams,}: {
                         </td>
                         <td className={`pr-4 text-start capitalize ${index !== applications.length - 1 ? "border-b" : ""}`}>
                             <div className="w-32">
-                                <StatusBadge status={application.status}/>
+                                <StatusBadge status={application.rsvped ? "rsvped" : application.status}/>
                             </div>
                         </td>
                         <td className={`text-start ${index !== applications.length - 1 ? "border-b" : ""}`}>

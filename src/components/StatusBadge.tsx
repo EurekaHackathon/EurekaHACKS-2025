@@ -1,4 +1,4 @@
-export default function StatusBadge({ status, className }: { status: string, className?: string }) {
+export default function StatusBadge({status, className}: { status: string, className?: string }) {
     const getGetStatusColor = (status: string) => {
         if (status === "accepted") {
             return "bg-green-500";
@@ -9,8 +9,15 @@ export default function StatusBadge({ status, className }: { status: string, cla
         if (status === "waitlisted") {
             return "bg-accent-400";
         }
+        if (status === "RSVPed") {
+            return "bg-sky-500";
+        }
         return "bg-secondary-500";
     };
+
+    if (status === "rsvped") {
+        status = "RSVPed";
+    }
 
     return (
         <div

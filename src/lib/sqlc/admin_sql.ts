@@ -91,11 +91,21 @@ export async function getNumberOfPendingHackerApplications(sql: Sql): Promise<Ge
 }
 
 export const getApplicationsPaginatedQuery = `-- name: GetApplicationsPaginated :many
-select id, first_name, last_name, school, status, created_at
-from public.hackathon_applications
-where lower(first_name) like lower('%' || $3 || '%')
-   or lower(last_name) like lower('%' || $3 || '%')
-order by id desc
+select ha.id,
+       ha.first_name,
+       ha.last_name,
+       ha.school,
+       ha.status,
+       ha.created_at,
+       exists(
+           select 1
+           from public.rsvps r
+           where r.user_id = ha.user_id
+       ) as rsvped
+from public.hackathon_applications ha
+where lower(ha.first_name) like lower('%' || $3 || '%')
+   or lower(ha.last_name) like lower('%' || $3 || '%')
+order by ha.id desc
 limit $1 offset $2`;
 
 export interface GetApplicationsPaginatedArgs {
@@ -111,6 +121,7 @@ export interface GetApplicationsPaginatedRow {
     school: string;
     status: string;
     createdAt: Date;
+    rsvped: boolean;
 }
 
 export async function getApplicationsPaginated(sql: Sql, args: GetApplicationsPaginatedArgs): Promise<GetApplicationsPaginatedRow[]> {
@@ -120,7 +131,8 @@ export async function getApplicationsPaginated(sql: Sql, args: GetApplicationsPa
         lastName: row[2],
         school: row[3],
         status: row[4],
-        createdAt: row[5]
+        createdAt: row[5],
+        rsvped: row[6]
     }));
 }
 
@@ -150,7 +162,15 @@ export async function getNumberOfApplicationsFiltered(sql: Sql, args: GetNumberO
 }
 
 export const getApplicationByIdQuery = `-- name: GetApplicationById :one
-select id, user_id, status, first_name, last_name, email, age, school, year_of_graduation, city, dietary_restrictions, number_of_hackathons_attended, github_link, linkedin_link, portfolio_link, resume_link, emergency_contact_full_name, emergency_contact_phone_number, short_answer_response, created_at, updated_at from public.hackathon_applications where id = $1 limit 1`;
+select ha.id, ha.user_id, ha.status, ha.first_name, ha.last_name, ha.email, ha.age, ha.school, ha.year_of_graduation, ha.city, ha.dietary_restrictions, ha.number_of_hackathons_attended, ha.github_link, ha.linkedin_link, ha.portfolio_link, ha.resume_link, ha.emergency_contact_full_name, ha.emergency_contact_phone_number, ha.short_answer_response, ha.created_at, ha.updated_at,
+       exists(
+           select 1
+           from public.rsvps r
+           where r.user_id = ha.user_id
+       ) as rsvped
+from public.hackathon_applications ha
+where ha.id = $1
+limit 1`;
 
 export interface GetApplicationByIdArgs {
     id: number;
@@ -178,6 +198,7 @@ export interface GetApplicationByIdRow {
     shortAnswerResponse: string;
     createdAt: Date;
     updatedAt: Date;
+    rsvped: boolean;
 }
 
 export async function getApplicationById(sql: Sql, args: GetApplicationByIdArgs): Promise<GetApplicationByIdRow | null> {
@@ -207,7 +228,8 @@ export async function getApplicationById(sql: Sql, args: GetApplicationByIdArgs)
         emergencyContactPhoneNumber: row[17],
         shortAnswerResponse: row[18],
         createdAt: row[19],
-        updatedAt: row[20]
+        updatedAt: row[20],
+        rsvped: row[21]
     };
 }
 

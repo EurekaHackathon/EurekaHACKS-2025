@@ -75,6 +75,8 @@ export default async function Application({
         return restrictions.map((restriction) => restriction.charAt(0).toUpperCase() + restriction.slice(1)).join(", ");
     };
 
+    const applicationStatus = application.rsvped ? "rsvped" : application.status;
+
     return (
         <div className="mt-8">
             <Link href={"/dashboard/admin/applications?page=" + from}
@@ -86,7 +88,7 @@ export default async function Application({
                 className="bg-secondary-50 bg-opacity-50 border-secondary-200 border rounded-xl mt-8 p-6 text-gray-700 font-semibold">
                 <div className="flex items-center gap-8">
                     <h1 className="text-2xl font-semibold">{application.firstName} {application.lastName}</h1>
-                    <StatusBadge className="font-semibold" status={application.status}/>
+                    <StatusBadge className="font-semibold" status={applicationStatus}/>
                 </div>
                 <div className="mt-2 text-gray-500">
                     <h1>
