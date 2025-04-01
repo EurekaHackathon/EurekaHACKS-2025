@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { getApplicationById } from "@/lib/sqlc/admin_sql";
 import { db } from "@/lib/database";
@@ -7,6 +6,8 @@ import StatusBadge from "@/components/StatusBadge";
 import ApplicationItem from "@/components/ApplicationItem";
 import ApplicationLinkBox from "@/components/ApplicationLinkBox";
 import { ApplicationActionsForm } from "@/components/ApplicationActionsForm";
+import { headers } from "next/headers";
+import BackButton from "@/components/BackButton";
 
 const formatTimeAgo = (date: Date) => {
     const now = new Date();
@@ -71,20 +72,21 @@ export default async function Application({
             return "None";
         }
 
-        // Capitalize first letter
+        // Capitalize the first letter
         return restrictions.map((restriction) => restriction.charAt(0).toUpperCase() + restriction.slice(1)).join(", ");
     };
 
     const applicationStatus = application.rsvped ? "rsvped" : application.status;
+    const headersList = await headers();
+    console.log(headersList.get("referer"));
 
     return (
         <div className="mt-8">
-            <Link
-                href={from === "scan" ? "/dashboard/admin/scan?event=" + (await searchParams).event : "/dashboard/admin/applications?page=" + from}
+            <BackButton
                 className="border flex items-center justify-center gap-2 font-semibold text-gray-700 rounded-lg w-64 h-10 duration-75 hover:bg-gray-50">
                 <Icon icon="fluent:arrow-left-24-filled" className="text-2xl"/>
                 {from === "scan" ? "Back to QR code scanner" : "Back to applications list"}
-            </Link>
+            </BackButton>
             <div
                 className="bg-secondary-50 bg-opacity-50 border-secondary-200 border rounded-xl mt-8 p-6 text-gray-700 font-semibold">
                 <div className="flex items-center gap-8">

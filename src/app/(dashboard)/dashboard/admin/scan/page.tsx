@@ -14,7 +14,7 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 import { GetBasicUserInfoByUserIdRow } from "@/lib/sqlc/admin_sql";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const decodeQRCode = (dataURL: string): Promise<string | null> => {
     return new Promise((resolve, reject) => {
@@ -154,6 +154,8 @@ export default function AdminQRCodeScanner() {
     }, [lastScannedQR, lastScannedTime, currentEvent]);
 
     const [modalOpen, setModalOpen] = useState(false);
+    const router = useRouter();
+    const eventParam = useSearchParams().get("event");
 
     return (
         <div className="mt-8 flex justify-center gap-4">
@@ -162,9 +164,14 @@ export default function AdminQRCodeScanner() {
                 <h2 className="text-gray-500">Choose the event to scan for</h2>
                 <form className="mt-4">
                     <Select
-                        defaultValue={["check-in", "lunch", "dinner"].includes(useSearchParams().get("event") ?? "") ? useSearchParams().get("event")! : undefined}
+                        defaultValue={["check-in", "lunch", "dinner"].includes(eventParam ?? "") ? eventParam! : undefined}
                         value={currentEvent as (string | undefined)}
-                        onValueChange={val => setCurrentEvent(val)} required>
+                        onValueChange={val => {
+                            setCurrentEvent(val);
+                            router.push(`?event=${val}`, {
+                                scroll: false,
+                            });
+                        }} required>
                         <SelectTrigger>
                             <SelectValue placeholder="Select an event"/>
                         </SelectTrigger>
