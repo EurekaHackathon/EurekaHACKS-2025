@@ -251,6 +251,24 @@ export async function getApplicationCountPerDay(sql: Sql): Promise<GetApplicatio
     }));
 }
 
+export const getNumberOfApplicationsPerSchoolQuery = `-- name: GetNumberOfApplicationsPerSchool :many
+select school, count(*) as count
+from public.hackathon_applications
+group by school
+order by count desc`;
+
+export interface GetNumberOfApplicationsPerSchoolRow {
+    school: string;
+    count: string;
+}
+
+export async function getNumberOfApplicationsPerSchool(sql: Sql): Promise<GetNumberOfApplicationsPerSchoolRow[]> {
+    return (await sql.unsafe(getNumberOfApplicationsPerSchoolQuery, []).values()).map(row => ({
+        school: row[0],
+        count: row[1]
+    }));
+}
+
 export const getEmailsOfUnappliedUsersQuery = `-- name: GetEmailsOfUnappliedUsers :many
 select email from public.app_users where email not in (select email from public.hackathon_applications)`;
 

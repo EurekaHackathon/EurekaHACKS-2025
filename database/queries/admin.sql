@@ -54,6 +54,12 @@ from public.hackathon_applications
 group by date(created_at at time zone 'America/Toronto')
 order by date(created_at at time zone 'America/Toronto') asc;
 
+-- name: GetNumberOfApplicationsPerSchool :many
+select school, count(*) as count
+from public.hackathon_applications
+group by school
+order by count desc;
+
 -- name: GetEmailsOfUnappliedUsers :many
 select email from public.app_users where email not in (select email from public.hackathon_applications);
 
