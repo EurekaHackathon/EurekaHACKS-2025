@@ -17,6 +17,7 @@ export default async function ApplicationsTable({searchParams,}: {
 }) {
     const numberOfApplications = await getNumberOfApplicationsFiltered(db, {
         searchQuery: (await searchParams).q?.toString().trim() ?? "",
+        onlyWithRsvp: (await searchParams).rsvp === "true",
     });
 
     const params = await searchParams;
@@ -29,6 +30,7 @@ export default async function ApplicationsTable({searchParams,}: {
         limit: "10",
         offset: ((page - 1) * 10).toString(),
         searchQuery: params.q?.toString().trim() ?? "",
+        onlyWithRsvp: params.rsvp === "true",
     });
 
     const formatDate = (date: Date) => {
@@ -92,6 +94,7 @@ export default async function ApplicationsTable({searchParams,}: {
             </table>
             <Pagination className="w-full mt-4" currentPage={page} numberOfCurrentItems={applications.length}
                         query={params.q?.toString().trim() ?? ""}
+                        rsvp={params.rsvp === "true"}
                         numberOfTotalItems={isNaN(parseInt(numberOfApplications?.count ?? "0")) ? 0 : parseInt(numberOfApplications?.count ?? "0")}/>
         </div>
     );

@@ -14,7 +14,8 @@ export default function ApplicationTableSkeleton() {
     return (
         <div className="overflow-x-auto grid">
             <Skeleton className="w-24 text-start h-8"/>
-            <Skeleton className="text-start h-10 mt-2 mb-12"/>
+            <Skeleton className="text-start h-10 mt-2 mb-3"/>
+            <Skeleton className="text-start w-40 h-6 mt-2 mb-10"/>
             <table className="w-full border">
                 <thead>
                 <tr className="text-sm 2xl:text-base text-gray-500 hover:bg-gray-100 duration-75">

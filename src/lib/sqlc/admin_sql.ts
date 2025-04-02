@@ -97,14 +97,22 @@ select ha.id,
        ha.school,
        ha.status,
        ha.created_at,
-       exists(
+       exists (
            select 1
            from public.rsvps r
            where r.user_id = ha.user_id
        ) as rsvped
 from public.hackathon_applications ha
-where lower(ha.first_name) like lower('%' || $3 || '%')
-   or lower(ha.last_name) like lower('%' || $3 || '%')
+where (lower(ha.first_name) like lower('%' || $3 || '%')
+    or lower(ha.last_name) like lower('%' || $3 || '%'))
+  and (
+        coalesce($4::boolean, false) = false
+        or exists (
+           select 1
+           from public.rsvps r
+           where r.user_id = ha.user_id
+       )
+  )
 order by ha.id desc
 limit $1 offset $2`;
 
@@ -112,6 +120,7 @@ export interface GetApplicationsPaginatedArgs {
     limit: string;
     offset: string;
     searchQuery: string | null;
+    onlyWithRsvp: boolean;
 }
 
 export interface GetApplicationsPaginatedRow {
@@ -125,7 +134,7 @@ export interface GetApplicationsPaginatedRow {
 }
 
 export async function getApplicationsPaginated(sql: Sql, args: GetApplicationsPaginatedArgs): Promise<GetApplicationsPaginatedRow[]> {
-    return (await sql.unsafe(getApplicationsPaginatedQuery, [args.limit, args.offset, args.searchQuery]).values()).map(row => ({
+    return (await sql.unsafe(getApplicationsPaginatedQuery, [args.limit, args.offset, args.searchQuery, args.onlyWithRsvp]).values()).map(row => ({
         id: row[0],
         firstName: row[1],
         lastName: row[2],
@@ -138,12 +147,21 @@ export async function getApplicationsPaginated(sql: Sql, args: GetApplicationsPa
 
 export const getNumberOfApplicationsFilteredQuery = `-- name: GetNumberOfApplicationsFiltered :one
 select count(*)
-from public.hackathon_applications
-where lower(first_name) like lower('%' || $1 || '%')
-   or lower(last_name) like lower('%' || $1 || '%')`;
+from public.hackathon_applications ha
+where (lower(ha.first_name) like lower('%' || $1 || '%')
+    or lower(ha.last_name) like lower('%' || $1 || '%'))
+  and (
+        coalesce($2::boolean, false) = false
+        or exists (
+            select 1
+            from public.rsvps r
+            where r.user_id = ha.user_id
+        )
+  )`;
 
 export interface GetNumberOfApplicationsFilteredArgs {
     searchQuery: string | null;
+    onlyWithRsvp: boolean;
 }
 
 export interface GetNumberOfApplicationsFilteredRow {
@@ -151,7 +169,7 @@ export interface GetNumberOfApplicationsFilteredRow {
 }
 
 export async function getNumberOfApplicationsFiltered(sql: Sql, args: GetNumberOfApplicationsFilteredArgs): Promise<GetNumberOfApplicationsFilteredRow | null> {
-    const rows = await sql.unsafe(getNumberOfApplicationsFilteredQuery, [args.searchQuery]).values();
+    const rows = await sql.unsafe(getNumberOfApplicationsFilteredQuery, [args.searchQuery, args.onlyWithRsvp]).values();
     if (rows.length !== 1) {
         return null;
     }

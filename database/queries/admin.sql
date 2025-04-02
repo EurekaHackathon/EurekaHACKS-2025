@@ -20,22 +20,40 @@ select ha.id,
        ha.school,
        ha.status,
        ha.created_at,
-       exists(
+       exists (
            select 1
            from public.rsvps r
            where r.user_id = ha.user_id
        ) as rsvped
 from public.hackathon_applications ha
-where lower(ha.first_name) like lower('%' || sqlc.arg(search_query) || '%')
-   or lower(ha.last_name) like lower('%' || sqlc.arg(search_query) || '%')
+where (lower(ha.first_name) like lower('%' || sqlc.arg(search_query) || '%')
+    or lower(ha.last_name) like lower('%' || sqlc.arg(search_query) || '%'))
+  and (
+        coalesce(sqlc.arg(only_with_rsvp)::boolean, false) = false
+        or exists (
+           select 1
+           from public.rsvps r
+           where r.user_id = ha.user_id
+       )
+  )
 order by ha.id desc
 limit $1 offset $2;
 
+
+
 -- name: GetNumberOfApplicationsFiltered :one
 select count(*)
-from public.hackathon_applications
-where lower(first_name) like lower('%' || sqlc.arg(search_query) || '%')
-   or lower(last_name) like lower('%' || sqlc.arg(search_query) || '%');
+from public.hackathon_applications ha
+where (lower(ha.first_name) like lower('%' || sqlc.arg(search_query) || '%')
+    or lower(ha.last_name) like lower('%' || sqlc.arg(search_query) || '%'))
+  and (
+        coalesce(sqlc.arg(only_with_rsvp)::boolean, false) = false
+        or exists (
+            select 1
+            from public.rsvps r
+            where r.user_id = ha.user_id
+        )
+  );
 
 -- name: GetApplicationById :one
 select ha.*,
