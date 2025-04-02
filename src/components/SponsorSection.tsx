@@ -60,7 +60,6 @@ export function SponsorSection() {
                         },
                         {fileName: "codecrafters.png", name: "CodeCrafters", url: "https://codecrafters.io/"},
                         {fileName: "gotcha.png", name: "Gotcha Bubble Tea", url: "https://www.gotchabubbletea.ca/"},
-                        {fileName: "xyz.png", name: ".xyz", url: "https://gen.xyz/"},
                     ]}
                 />
                 {/*Bronze tier*/}
@@ -103,6 +102,10 @@ export function SponsorSection() {
                         },
                         {fileName: "cobs.png", name: "Cobs Bread", url: "https://www.cobsbread.com/"},
                         {fileName: "nordvpn.png", name: "NordVPN", url: "https://nordvpn.com/"},
+                        {fileName: "saily.png", name: "NordVPN", url: "https://saily.com/"},
+                        {fileName: "nordpass.png", name: "NordVPN", url: "https://nordpass.com/"},
+                        {fileName: "incogni.png", name: "NordVPN", url: "https://incogni.com/"},
+                        {fileName: "xyz.png", name: ".xyz", url: "https://gen.xyz/"},
                     ]}
                 />
             </div>
