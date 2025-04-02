@@ -21,7 +21,7 @@ const workshops = [
         column: 3,
         duration: 45,
         images : undefined,
-        description: "Want to learn about potential pathways post secondary? Join us for a chat with Christopher Anand (Associate Professor at McMaster) and Christopher Venitus (Angel Investor at GTAN & Entrepreneurship Coach at McMaster). They'll share insights on turning ideas into reality—whether in research or startups. Bring your business ideas, be ready for hands-on activities, and to talk about innovation!",
+        description: "Want to learn about potential pathways post secondary? Join us for a chat with Christopher Anand (Associate Professor at McMaster) and Christopher Venantius (Angel Investor at GTAN & Entrepreneurship Coach at McMaster). They'll share insights on turning ideas into reality—whether in research or startups. Bring your business ideas, be ready for hands-on activities, and to talk about innovation!",
     },
     {
         name: "Fireside Chat w/ Nicholas Tao",
