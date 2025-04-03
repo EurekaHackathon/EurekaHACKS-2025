@@ -101,7 +101,7 @@ export function SponsorSection() {
                             url: "https://www.cupidsgourmetbakery.ca/"
                         },
                         {fileName: "cobs.png", name: "Cobs Bread", url: "https://www.cobsbread.com/"},
-                        {fileName: "nordvpn.png", name: "NordVPN", url: "https://nordvpn.com/"},
+                        {fileName: "nordvpn.png", name: "NordVPN", url: "https://nordvpn.com/hackathons"},
                         {fileName: "saily.png", name: "NordVPN", url: "https://saily.com/"},
                         {fileName: "nordpass.png", name: "NordVPN", url: "https://nordpass.com/"},
                         {fileName: "incogni.png", name: "NordVPN", url: "https://incogni.com/"},

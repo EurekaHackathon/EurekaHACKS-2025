@@ -62,3 +62,6 @@ select * from hackathon_applications where status = 'accepted';
 
 -- name: CreateDecisionEmailRecord :exec
 insert into sent_decision_emails (user_id, status) values ($1, $2);
+
+-- name: GetAllSentDecisionEmails :many
+select * from sent_decision_emails;

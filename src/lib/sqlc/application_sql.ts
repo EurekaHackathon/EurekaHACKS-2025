@@ -255,3 +255,22 @@ export async function createDecisionEmailRecord(sql: Sql, args: CreateDecisionEm
     await sql.unsafe(createDecisionEmailRecordQuery, [args.userId, args.status]);
 }
 
+export const getAllSentDecisionEmailsQuery = `-- name: GetAllSentDecisionEmails :many
+select id, user_id, status, created_at from sent_decision_emails`;
+
+export interface GetAllSentDecisionEmailsRow {
+    id: number;
+    userId: number;
+    status: string;
+    createdAt: Date;
+}
+
+export async function getAllSentDecisionEmails(sql: Sql): Promise<GetAllSentDecisionEmailsRow[]> {
+    return (await sql.unsafe(getAllSentDecisionEmailsQuery, []).values()).map(row => ({
+        id: row[0],
+        userId: row[1],
+        status: row[2],
+        createdAt: row[3]
+    }));
+}
+
