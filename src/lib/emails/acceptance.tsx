@@ -50,7 +50,7 @@ export const AcceptanceEmailTemplate = ({firstName}: ApplicationsOpenTemplatePro
                     <br/>
                     Date: Saturday April 5th
                     <br/>
-                    Time: 8:00 AM - 10:00 PM
+                    Time: 8:00 AM - 9:30 PM
                     <br/>
                     Venue address: 1455 Glen Abbey Gate, Oakville
                 </Text>
