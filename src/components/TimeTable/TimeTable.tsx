@@ -26,6 +26,11 @@ interface TimeTableProps {
     events: Event[]
 }
 
+const timeToMinutes = (time: Time): number => {
+    return time.hour * 60 + time.minute;
+};
+
+
 
 export default function TimeTable({
     startTime,
@@ -37,6 +42,9 @@ export default function TimeTable({
     const times = [startTime];
     const [selectedEvent, setSelectedEvent] = useState<number | null>(null);
     const popUpRef = useRef(null);
+    const headerRef = useRef<HTMLParagraphElement | null>(null);
+    const [timeOffsetX, setTimeOffsetX] = useState<number>(0);
+    const [timeOffsetY, setTimeOffsetY] = useState<number>(-1);
 
     function handleOutside(event: MouseEvent) {
         // @ts-expect-error Typescript is stupid and thinks this evaluates to never
@@ -45,13 +53,66 @@ export default function TimeTable({
         }
     }
 
+    const recalculateTime = () => {
+        setTimeOffsetX(headerRef.current!.getBoundingClientRect().width + 10);
+
+        const currentTime = new Date();
+        // --- Calculate current time indicator position ---
+        const currentHour = currentTime.getHours();
+        const currentMinute = currentTime.getMinutes();
+        const currentTimeInMinutes = timeToMinutes({ hour: currentHour, minute: currentMinute });
+        const startTimeInMinutes = timeToMinutes(startTime);
+        const endTimeInMinutes = timeToMinutes(endTime);
+    
+        console.log(startTimeInMinutes, endTimeInMinutes, currentTimeInMinutes)
+        // Check if current time is within the table's visible range
+        const isTimeVisible =
+            currentTimeInMinutes >= startTimeInMinutes &&
+            currentTimeInMinutes <= endTimeInMinutes;
+    
+        if (isTimeVisible) {
+            const offsetAmount = (currentTimeInMinutes - startTimeInMinutes) / 30;
+            const nth = Math.floor(offsetAmount);
+            const percentOff = offsetAmount - nth;
+
+            console.log(nth);
+            const sched = document.getElementById("schedule")!;
+            const el = sched.children.item(nth * 2 + 5);
+            const elAfter = sched.children.item(nth * 2 + 5 + 2);
+            if (el) {
+                if (elAfter) {
+                    const height = elAfter.getBoundingClientRect().bottom - el.getBoundingClientRect().bottom;
+                    console.log(height * percentOff);
+
+                    setTimeOffsetY(el.getBoundingClientRect().bottom - sched.getBoundingClientRect().top + height * percentOff); 
+                } else {
+                    setTimeOffsetY(el.getBoundingClientRect().bottom - sched.getBoundingClientRect().top);
+                }
+            }
+            
+        } else {
+            setTimeOffsetY(-1);
+            console.log("not shown1")
+        }
+    }
+
     useEffect(() => {
         document.addEventListener("mousedown", handleOutside);
+        document.addEventListener("resize", recalculateTime);
+
+        recalculateTime();
+        const timerId = setInterval(() => {
+            recalculateTime();
+        }, 60000);
 
         return () => {
+            clearInterval(timerId); 
             document.removeEventListener("mousedown", handleOutside);
+            document.removeEventListener("resize", recalculateTime);
         };
     }, []);
+
+
 
     for (;;) {
         const prevTime = times.at(-1)!;
@@ -73,14 +134,15 @@ export default function TimeTable({
 
     return (
         <>
-            <div className={`${styles.table}`}>
+            <div id="schedule" className={`${styles.table}`}>
                 {columnNames.map((name, index) => {
                     return (
-                        <p key={index + 200000} className={styles.columnName}>
+                        <p key={index + 200000} className={styles.columnName} ref={(el) => {if (index == 0) {headerRef.current = el}}}>
                             {name}
                         </p>
                     );
                 })}
+                <div id="current-time" className="absolute w-[100%] bg-red-600 h-[4px]" style={{display: timeOffsetY < 0 ? "none" : "", marginLeft: timeOffsetX, top: timeOffsetY}}></div>
                 {times.map((time, index) => {
                     const isHour = !time.minute;
 

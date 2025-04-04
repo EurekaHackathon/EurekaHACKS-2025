@@ -3,6 +3,7 @@
     grid-template-columns: auto repeat(4, 1fr);
     gap: 4px 2em;
     overflow-x: auto;
+    position: relative;
 }
 
 .columnName {
@@ -11,6 +12,7 @@
     font-family: "Manrope";
     font-size: 1.5rem;
     font-weight: 900;
+    border: 1px solid black;
 }
 
 .marker,
