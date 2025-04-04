@@ -68,12 +68,12 @@
     height: 2px;
 }
 
-.divider:nth-child(13)::after {
+.divider:nth-child(14)::after {
     height: 4px;
     content: "HACKING STARTS"
 }
 
-.divider:nth-child(51)::after {
+.divider:nth-child(52)::after {
     background-color: var(--terminal-yellow);
     height: 6px;
     border-radius: 6px;
