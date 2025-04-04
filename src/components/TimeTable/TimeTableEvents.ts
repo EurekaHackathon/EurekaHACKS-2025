@@ -72,7 +72,7 @@ const workshops = [
         description: "Be a Linkedin warrior - a satirical take on Linkedin Maxing your way to friends, fame and internships.",
     },
     {
-        name: "Factful – Lessons from Building an AI B2B SAAS in High School (Moiz Hashmi)",
+        name: "Lessons from building a startup valued at $7.5 million in high school (Moiz Hashmi)",
         color: "var(--terminal-blue)",
         start: {
             hour: 19,
