@@ -93,7 +93,7 @@ export default function TimeTable({
 
     useEffect(() => {
         document.addEventListener("mousedown", handleOutside);
-        document.addEventListener("resize", recalculateTime);
+        window.addEventListener("resize", recalculateTime);
 
         recalculateTime();
         const timerId = setInterval(() => {
@@ -103,7 +103,7 @@ export default function TimeTable({
         return () => {
             clearInterval(timerId); 
             document.removeEventListener("mousedown", handleOutside);
-            document.removeEventListener("resize", recalculateTime);
+            window.removeEventListener("resize", recalculateTime);
         };
     }, []);
 
