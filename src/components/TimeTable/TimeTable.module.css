@@ -3,6 +3,7 @@
     grid-template-columns: auto repeat(4, 1fr);
     gap: 4px 2em;
     overflow-x: auto;
+    position: relative;
 }
 
 .columnName {
@@ -67,12 +68,12 @@
     height: 2px;
 }
 
-.divider:nth-child(13)::after {
+.divider:nth-child(14)::after {
     height: 4px;
     content: "HACKING STARTS"
 }
 
-.divider:nth-child(51)::after {
+.divider:nth-child(52)::after {
     background-color: var(--terminal-yellow);
     height: 6px;
     border-radius: 6px;
@@ -93,6 +94,7 @@
     margin: 0;
     text-align: center;
     font-size: 0.8em;
+    z-index: 1;
 }
 
 .filter {
@@ -106,6 +108,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
 }
 
 .opened {
@@ -135,6 +138,7 @@
     font-size: 1em;
     margin: 0;
     font-weight: 300;
+    z-index: 10;
 }
 
 .time {

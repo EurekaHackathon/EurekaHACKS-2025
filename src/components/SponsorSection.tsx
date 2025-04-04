@@ -94,7 +94,6 @@ export function SponsorSection() {
                             name: "Hint Hunt",
                             url: "https://hinthuntcanada.com/?gad_source=1&gclid=Cj0KCQjwhMq-BhCFARIsAGvo0Kd-ZxO-oD_5J8aIy8XcwjnFx4iK0or0Wq3gY6fuLeDRlCbevSdy5JsaAjRfEALw_wcB"
                         },
-                        {fileName: "wolfram.png", name: "Wolfram", url: "https://www.wolframalpha.com/"},
                         {
                             fileName: "cupids.png",
                             name: "Cupid's Gourmet Bakery",
