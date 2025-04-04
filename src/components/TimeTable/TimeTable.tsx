@@ -137,7 +137,7 @@ export default function TimeTable({
                         </p>
                     );
                 })}
-                <div id="current-time" className="absolute w-[100%] bg-red-600 h-[4px]" style={{display: timeOffsetY < 0 ? "none" : "", marginLeft: timeOffsetX, top: timeOffsetY}}></div>
+                <div id="current-time" className="absolute w-[100%] bg-red-500/90 h-[3px]" style={{display: timeOffsetY < 0 ? "none" : "", marginLeft: timeOffsetX, top: timeOffsetY}}></div>
                 {times.map((time, index) => {
                     const isHour = !time.minute;
 
