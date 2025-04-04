@@ -30,8 +30,6 @@ const timeToMinutes = (time: Time): number => {
     return time.hour * 60 + time.minute;
 };
 
-
-
 export default function TimeTable({
     startTime,
     endTime,
@@ -64,7 +62,6 @@ export default function TimeTable({
         const startTimeInMinutes = timeToMinutes(startTime);
         const endTimeInMinutes = timeToMinutes(endTime);
     
-        console.log(startTimeInMinutes, endTimeInMinutes, currentTimeInMinutes)
         // Check if current time is within the table's visible range
         const isTimeVisible =
             currentTimeInMinutes >= startTimeInMinutes &&
@@ -75,7 +72,6 @@ export default function TimeTable({
             const nth = Math.floor(offsetAmount);
             const percentOff = offsetAmount - nth;
 
-            console.log(nth);
             const sched = document.getElementById("schedule")!;
             const el = sched.children.item(nth * 2 + 5);
             const elAfter = sched.children.item(nth * 2 + 5 + 2);
@@ -92,7 +88,6 @@ export default function TimeTable({
             
         } else {
             setTimeOffsetY(-1);
-            console.log("not shown1")
         }
     }
 
