@@ -60,6 +60,18 @@ const workshops = [
         description: "Ever wondered how to make your own programming language? Let us walk you through the basics of parsing, lexing and execution and make your own brain rot language. ",
     },
     {
+        name: "How I Got Into Waterloo Engineering & Hack The North",
+        color: "var(--terminal-blue)",
+        start: {
+            hour: 16,
+            minute: 0,
+        },
+        column: 4,
+        duration: 30,
+        images : undefined,
+        description: "EvA no bs breakdown of how Aayan Rahman got into Waterloo Electrical Engineering and Canada's biggest hackathon as a high schooler. Learn how to stand out in apps, build real projects, and get into your dream tech programs",
+    },
+    {
         name: "Linkedin Masterclass (Lakshya Jain)",
         color: "var(--terminal-blue)",
         start: {
@@ -111,14 +123,26 @@ const funEvents = [
         description: "May the best mario karter win – prize: bubble tea",
     },
     {
-        name: "Python One Liners (15 minutes)",
+        name: "Chess Tournament",
+        color: "var(--terminal-red)",
+        start: {
+            hour: 10,
+            minute: 45,
+        },
+        column: 4,
+        duration: 30,
+        images : undefined,
+        description: "May the best mario karter win – prize: bubble tea",
+    },
+    {
+        name: "Python One Liners Contest (15 minutes)",
         color: "var(--terminal-red)",
         start: {
             hour: 11,
             minute: 30,
         },
         column: 4,
-        duration: 30,
+        duration: 15,
         images : undefined,
         description: "Solve a series of programming challenges in one line of python code. Be the first to finish and win bubble tea.",
     },
