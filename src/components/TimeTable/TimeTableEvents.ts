@@ -36,6 +36,18 @@ const workshops = [
         description: "IRL podcast ahh... A unique opportunity to meet Nicholas Tao - known for having 150k+ subs on his Youtube channel and regularly receiving millions of views on his videos - he’s a UW CS student who’s had 7+ internships.",
     },
     {
+        name: "ICP Workshop",
+        color: "var(--terminal-red)",
+        start: {
+            hour: 13,
+            minute: 30,
+        },
+        column: 4,
+        duration: 30,
+        images : undefined,
+        description: "Solve a series of programming challenges in one line of python code. Be the first to finish and win bubble tea.",
+    },
+    {
         name: "How to be a normal human being (a guide to sunshine, sleep, showers and socializing)",
         color: "var(--terminal-blue)",
         start: {
@@ -115,7 +127,7 @@ const funEvents = [
         color: "var(--terminal-red)",
         start: {
             hour: 11,
-            minute: 15,
+            minute: 45,
         },
         column: 5,
         duration: 30,
