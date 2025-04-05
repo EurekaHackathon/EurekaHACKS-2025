@@ -19,7 +19,7 @@ const calculateTimeLeft = (eventDate: number) => {
 };
 
 export function CountdownTimer() {
-    const eventDate = new Date("2025-04-05T08:30:00-05:00").getTime();
+    const eventDate = new Date("2025-04-05T08:00:00-05:00").getTime();
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(eventDate));
 
     useEffect(() => {
