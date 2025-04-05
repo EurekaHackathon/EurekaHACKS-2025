@@ -12,16 +12,16 @@ const workshops = [
         description: "Learn the basics of how to use Git for project submission, and find cool team members to hack with!",
     },
     {
-        name: "From Prototype to Product",
-        color: "var(--terminal-blue)",
+        name: "Chess Tournament",
+        color: "var(--terminal-red)",
         start: {
             hour: 11,
             minute: 0,
         },
         column: 3,
-        duration: 45,
-        images : undefined,
-        description: "Want to learn about potential pathways post secondary? Join us for a chat with Christopher Anand (Associate Professor at McMaster) and Christopher Venantius (Angel Investor at GTAN & Entrepreneurship Coach at McMaster). They'll share insights on turning ideas into reality—whether in research or startups. Bring your business ideas, be ready for hands-on activities, and to talk about innovation!",
+        duration: 30,
+        images: undefined,
+        description: "May the best chess player win",
     },
     {
         name: "Fireside Chat w/ Nicholas Tao",
@@ -135,22 +135,22 @@ const funEvents = [
         description: "May the best mario karter win – prize: bubble tea",
     },
     {
-        name: "Chess Tournament",
-        color: "var(--terminal-red)",
+        name: "From Prototype to Product",
+        color: "var(--terminal-blue)",
         start: {
-            hour: 12,
+            hour: 11,
             minute: 0,
         },
         column: 4,
-        duration: 30,
+        duration: 45,
         images : undefined,
-        description: "May the best chess player win – prize: bubble tea",
+        description: "Want to learn about potential pathways post secondary? Join us for a chat with Christopher Anand (Associate Professor at McMaster) and Christopher Venantius (Angel Investor at GTAN & Entrepreneurship Coach at McMaster). They'll share insights on turning ideas into reality—whether in research or startups. Bring your business ideas, be ready for hands-on activities, and to talk about innovation!",
     },
     {
         name: "Python One Liners Contest (15 minutes)",
         color: "var(--terminal-red)",
         start: {
-            hour: 12,
+            hour: 13,
             minute: 45,
         },
         column: 4,
@@ -329,7 +329,7 @@ const importantEvents = [
         images : undefined,
         description: "Closing ceremony for Eureka! Winners will be announced here.",
     },
-    
+
 ]
 
 export const timeTableData = {
