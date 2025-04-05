@@ -114,8 +114,8 @@ const funEvents = [
         name: "Mario Kart Tournament",
         color: "var(--terminal-red)",
         start: {
-            hour: 10,
-            minute: 45,
+            hour: 11,
+            minute: 15,
         },
         column: 5,
         duration: 30,
@@ -126,20 +126,20 @@ const funEvents = [
         name: "Chess Tournament",
         color: "var(--terminal-red)",
         start: {
-            hour: 10,
-            minute: 45,
+            hour: 12,
+            minute: 0,
         },
         column: 4,
         duration: 30,
         images : undefined,
-        description: "May the best mario karter win – prize: bubble tea",
+        description: "May the best chess player win – prize: bubble tea",
     },
     {
         name: "Python One Liners Contest (15 minutes)",
         color: "var(--terminal-red)",
         start: {
-            hour: 11,
-            minute: 30,
+            hour: 12,
+            minute: 45,
         },
         column: 4,
         duration: 15,
@@ -159,7 +159,7 @@ const funEvents = [
         description: "May the best geoguessr win – prize: bubble tea",
     },
     {
-        name: "Arch + Hyperland Install + Rice Session",
+        name: "Arch + Hyprland Install + Rice Session",
         color: "var(--terminal-red)",
         start: {
             hour: 14,
