@@ -150,7 +150,7 @@ const funEvents = [
         name: "Python One Liners Contest (15 minutes)",
         color: "var(--terminal-red)",
         start: {
-            hour: 13,
+            hour: 14,
             minute: 45,
         },
         column: 4,
