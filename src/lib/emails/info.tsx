@@ -128,7 +128,7 @@ export const InfoEmailTemplate = ({firstName}: InfoTemplateProps) => (
                 </Text>
                 <Text style={paragraph}>
                     If you haven't already, please do so <a
-                    href="https://eurekahacks.ca/dashboard/rsvp" target="_blank">here</a>.
+                    href="https://eurekahacks.ca/dashboard" target="_blank">here</a>.
                 </Text>
                 <br/>
                 <Hr style={hr}/>
