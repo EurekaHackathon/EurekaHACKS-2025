@@ -12,16 +12,16 @@ const workshops = [
         description: "Learn the basics of how to use Git for project submission, and find cool team members to hack with!",
     },
     {
-        name: "From Prototype to Product",
-        color: "var(--terminal-blue)",
+        name: "Chess Tournament",
+        color: "var(--terminal-red)",
         start: {
             hour: 11,
             minute: 0,
         },
         column: 3,
-        duration: 45,
-        images : undefined,
-        description: "Want to learn about potential pathways post secondary? Join us for a chat with Christopher Anand (Associate Professor at McMaster) and Christopher Venantius (Angel Investor at GTAN & Entrepreneurship Coach at McMaster). They'll share insights on turning ideas into reality—whether in research or startups. Bring your business ideas, be ready for hands-on activities, and to talk about innovation!",
+        duration: 30,
+        images: undefined,
+        description: "May the best chess player win",
     },
     {
         name: "Fireside Chat w/ Nicholas Tao",
@@ -34,6 +34,18 @@ const workshops = [
         duration: 45,
         images : undefined,
         description: "IRL podcast ahh... A unique opportunity to meet Nicholas Tao - known for having 150k+ subs on his Youtube channel and regularly receiving millions of views on his videos - he’s a UW CS student who’s had 7+ internships.",
+    },
+    {
+        name: "ICP Workshop",
+        color: "var(--terminal-red)",
+        start: {
+            hour: 13,
+            minute: 30,
+        },
+        column: 4,
+        duration: 30,
+        images : undefined,
+        description: "Solve a series of programming challenges in one line of python code. Be the first to finish and win bubble tea.",
     },
     {
         name: "How to be a normal human being (a guide to sunshine, sleep, showers and socializing)",
@@ -114,7 +126,7 @@ const funEvents = [
         name: "Mario Kart Tournament",
         color: "var(--terminal-red)",
         start: {
-            hour: 10,
+            hour: 11,
             minute: 45,
         },
         column: 5,
@@ -123,23 +135,23 @@ const funEvents = [
         description: "May the best mario karter win – prize: bubble tea",
     },
     {
-        name: "Chess Tournament",
-        color: "var(--terminal-red)",
+        name: "From Prototype to Product",
+        color: "var(--terminal-blue)",
         start: {
-            hour: 10,
-            minute: 45,
+            hour: 11,
+            minute: 0,
         },
         column: 4,
-        duration: 30,
+        duration: 45,
         images : undefined,
-        description: "May the best mario karter win – prize: bubble tea",
+        description: "Want to learn about potential pathways post secondary? Join us for a chat with Christopher Anand (Associate Professor at McMaster) and Christopher Venantius (Angel Investor at GTAN & Entrepreneurship Coach at McMaster). They'll share insights on turning ideas into reality—whether in research or startups. Bring your business ideas, be ready for hands-on activities, and to talk about innovation!",
     },
     {
         name: "Python One Liners Contest (15 minutes)",
         color: "var(--terminal-red)",
         start: {
-            hour: 11,
-            minute: 30,
+            hour: 14,
+            minute: 45,
         },
         column: 4,
         duration: 15,
@@ -159,7 +171,7 @@ const funEvents = [
         description: "May the best geoguessr win – prize: bubble tea",
     },
     {
-        name: "Arch + Hyperland Install + Rice Session",
+        name: "Arch + Hyprland Install + Rice Session",
         color: "var(--terminal-red)",
         start: {
             hour: 14,
@@ -317,7 +329,7 @@ const importantEvents = [
         images : undefined,
         description: "Closing ceremony for Eureka! Winners will be announced here.",
     },
-    
+
 ]
 
 export const timeTableData = {
