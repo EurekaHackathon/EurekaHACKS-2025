@@ -1,8 +1,6 @@
 # EurekaHACKS 2025
 EurekaHACKS 2025 Website
 
-(in development)
-
 # Stack
 Next.js, TailwindCSS, Postgres, sqlc
 
